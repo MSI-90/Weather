@@ -1,0 +1,16 @@
+﻿@using Weather.ViewModels
+@model WeatherVM
+
+@{
+    ViewData["Title"] = "Подробно";
+}
+
+<div class="container-md">
+    <p>@Model.Name</p>
+    <p>@Model.Region</p>
+    <p>@Model.Country</p>
+    <p>@Model.TempC</p>
+    <p>
+        <img src="@Model.ImageSrc" alt="Графическое отображение состояния погоды" />
+    </p>
+</div>

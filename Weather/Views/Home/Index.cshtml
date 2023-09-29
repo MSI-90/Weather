@@ -1,0 +1,38 @@
+﻿@using Weather.ViewModels;
+@model CityToFind;
+@{
+    ViewData["Title"] = "Домашняя страница";
+}
+
+<div class="container-md">
+    <form asp-action="Search" method="post">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="input-group">
+                    <input asp-for="@Model.City" value="Введите наименование н.п." class="search form-control" onfocus="clearDefaultText()" aria-describedby="button" />
+                    <input type="submit" value="Найти" class="btn btn-outline-secondary" id="button" />
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span asp-validation-for="@Model.City"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div asp-validation-summary="All"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<script type="text/javascript">
+    function clearDefaultText() {
+        var input = document.getElementById('City');
+        if (input.value === 'Введите наименование н.п.') {
+            input.value = '';
+        }
+    }
+</script>
