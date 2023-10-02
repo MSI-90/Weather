@@ -45,13 +45,13 @@ namespace Weather.Services
         {
             using (var client = new HttpClient())
             {
-                string startConnectionApiService = _config.GetSection("ConnectionData")["StartString"];
+                string forecastString = _config.GetSection("ConnectionData")["ForecastString"];
                 string key = _config.GetSection("ConnectionData")["ConnectionKey"];
                 string lang = _config.GetSection("ConnectionData")["lang"];
 
                 using (var request = new HttpRequestMessage())
                 {
-                    request.RequestUri = new Uri($"{startConnectionApiService}?{nameof(key)}={key}&{lang}&q={cityToFind.City}&days=7");
+                    request.RequestUri = new Uri($"{forecastString}?{nameof(key)}={key}&q={cityToFind.City}&days=7&{nameof(lang)}={lang}");
                     request.Method = HttpMethod.Get;
 
                     HttpResponseMessage response = await client.SendAsync(request);
