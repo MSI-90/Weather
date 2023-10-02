@@ -28,21 +28,34 @@ namespace Weather.Controllers
         {
             if (ModelState.IsValid) 
             {
-                var model = _connection.GetDataAsync(cityName).Result;
+                //var model = _connection.GetDataAsync(cityName).Result;
+                //if (model?.location != null)
+                //{
+                //    var viewModel = new WeatherVM()
+                //    {
+                //        Name = model.location.name,
+                //        Region = model.location.region,
+                //        Country = model.location.country,
+                //        TempC = model.current.temp_c,
+                //        ImageSrc = model.current.condition.icon
+                //    };
+                //    return RedirectToAction("Details", viewModel);
+                //}
+                //else
+                //    ModelState.AddModelError(String.Empty, "Местоположение не найдено");
+
+                var model = _connection.GetDataOnWeekAsync(cityName).Result;
                 if (model?.location != null)
                 {
-                    var viewModel = new WeatherVM()
+                    var viewModel = new WeatherVM
                     {
-                        Name = model.location.name,
-                        Region = model.location.region,
-                        Country = model.location.country,
-                        TempC = model.current.temp_c,
-                        ImageSrc = model.current.condition.icon
+                        date = model.location.localtime,
+
                     };
+
                     return RedirectToAction("Details", viewModel);
                 }
-                else
-                    ModelState.AddModelError(String.Empty, "Местоположение не найдено");
+
             }
 
             return View("Index");

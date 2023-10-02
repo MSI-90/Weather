@@ -5,6 +5,7 @@
     ViewData["Title"] = "Подробно";
 }
 
+
 <div class="container-md">
     <p>@Model.Name</p>
     <p>@Model.Region</p>
@@ -13,4 +14,7 @@
     <p>
         <img src="@Model.ImageSrc" alt="иконка отображающая состояние погоды" />
     </p>
+    <div>
+        <a asp-action="Index">На главную</a>
+    </div>
 </div>
