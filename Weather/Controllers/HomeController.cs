@@ -29,7 +29,7 @@ namespace Weather.Controllers
             if (ModelState.IsValid) 
             {
                 var model = _connection.GetDataAsync(cityName).Result;
-                if (model.location != null)
+                if (model?.location != null)
                 {
                     var viewModel = new WeatherVM()
                     {
