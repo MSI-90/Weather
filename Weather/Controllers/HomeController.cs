@@ -24,7 +24,7 @@ namespace Weather.Controllers
         }
 
         [HttpPost]
-        public IActionResult Search(CityToFind cityName)
+        public IActionResult Index(CityToFind cityName)
         {
             if (ModelState.IsValid) 
             {
