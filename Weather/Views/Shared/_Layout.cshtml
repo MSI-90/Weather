@@ -11,7 +11,7 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
+            <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Weather</a>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
@@ -22,23 +22,21 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li>
-                            <div class="container-md">
-                                <form asp-action="Index" method="post">
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="input-group">
-                                                <input type="text" value="Введите наименование н.п." id="City" name="City" class="search form-control" onfocus="clearDefaultText()" aria-describedby="button" style="width:280px;" />
-                                                <input type="submit" value="Найти" class="btn btn-outline-secondary" id="button" style="display:none;" />
-                                            </div>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div asp-validation-summary="All"></div>
-                                                </div>
+                            <form asp-action="Search" method="post">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="input-group">
+                                            <input type="text" value="Введите наименование н.п." id="City" name="City" class="search form-control" onfocus="clearDefaultText()" aria-describedby="button" style="width:280px;" />
+                                            <input type="submit" value="Найти" class="btn btn-outline-secondary" id="button" style="display:none;" />
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div asp-validation-summary="All"></div>
                                             </div>
                                         </div>
                                     </div>
-                                </form>
-                            </div>
+                                </div>
+                            </form>
                         </li>
                     </ul>
                 </div>
