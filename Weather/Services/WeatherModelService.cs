@@ -33,9 +33,11 @@ namespace Weather.Services
                     if(response.IsSuccessStatusCode)
                     {
                         var obj = await response.Content.ReadAsStringAsync();
-                        var result = JsonConvert.DeserializeObject<IEnumerable<NewItem>>(obj);
-
-                        return result ?? Enumerable.Empty<NewItem>();
+                        while(obj != "[]")
+                        {
+                            var result = JsonConvert.DeserializeObject<IEnumerable<NewItem>>(obj);
+                            return result ?? Enumerable.Empty<NewItem>();
+                        }
                     }
                     return new NewItem[default];
                 }

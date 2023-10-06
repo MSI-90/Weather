@@ -30,30 +30,41 @@ namespace Weather.Controllers
         {
             if (ModelState.IsValid)
             {
-                IEnumerable<NewItem> model  = await _connection.GetCitiesAsync(cityName);
+                IEnumerable<NewItem> model;
+                try
+                {
+                    model = await _connection.GetCitiesAsync(cityName);
+                }
+                catch (Exception ex)
+                {
+                    throw new AggregateException("Ошибка");
+                }
 
                 if (model.Count() > 0)
                 {
                     return View(model);
                 }
-                //if (model?.location != null)
-                //{
-                //    var viewModel = new WeatherVM()
-                //    {
-                //        Name = model.location.name,
-                //        Region = model.location.region,
-                //        Country = model.location.country,
-                //        TempC = model.current.temp_c,
-                //        ImageSrc = model.current.condition.icon
-                //    };
-                //    return RedirectToAction("Details", viewModel);
-                //}
-                //else
-                //    ModelState.AddModelError(String.Empty, "Местоположение не найдено");
-
+                else
+                {
+                    ModelState.AddModelError(String.Empty, "Нет данных для отображения");
+                }
             }
-
             return View("Index");
+
+            //if (model?.location != null)
+            //{
+            //    var viewModel = new WeatherVM()
+            //    {
+            //        Name = model.location.name,
+            //        Region = model.location.region,
+            //        Country = model.location.country,
+            //        TempC = model.current.temp_c,
+            //        ImageSrc = model.current.condition.icon
+            //    };
+            //    return RedirectToAction("Details", viewModel);
+            //}
+            //else
+            //    ModelState.AddModelError(String.Empty, "Местоположение не найдено");
         }
 
         //public IActionResult Privacy()
