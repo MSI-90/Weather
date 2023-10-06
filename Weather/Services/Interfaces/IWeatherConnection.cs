@@ -7,7 +7,7 @@ namespace Weather.Services.Interfaces
 {
     public interface IWeatherConnection
     {
-        Task<IEnumerable<SearchCities>> GetCitiesAsync(CityToFind cityToFind);
+        Task<IEnumerable<NewItem>> GetCitiesAsync(CityToFind cityToFind);
         Task<WeatherModel> GetDataAsync(CityToFind cityToFind);
         Task<WeatherOnWeek> GetDataOnWeekAsync(CityToFind cityToFind);
     }

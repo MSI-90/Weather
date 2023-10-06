@@ -1,13 +1,5 @@
 ﻿@using Weather.Models.search;
-@model IEnumerable<SearchCities>
+
 @{
-    Layout = "_Layout";
     ViewData["Title"] = "Домашняя страница";
 }
-
-<div class="container">
-    @foreach (var item in Model ?? new List<SearchCities>())
-    {
-        <p>@item.Newitem</p>
-    }
-</div>

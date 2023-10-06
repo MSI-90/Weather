@@ -16,7 +16,7 @@ namespace Weather.Services
         {
             _config = config;
         }
-        public async Task<IEnumerable<SearchCities>> GetCitiesAsync(CityToFind cityToFind)
+        public async Task<IEnumerable<NewItem>> GetCitiesAsync(CityToFind cityToFind)
         {
             using (var client = new HttpClient())
             {
@@ -33,11 +33,11 @@ namespace Weather.Services
                     if(response.IsSuccessStatusCode)
                     {
                         var obj = await response.Content.ReadAsStringAsync();
-                        var result = new List<SearchCities>{ JsonConvert.DeserializeObject<SearchCities>(obj) };
+                        var result = JsonConvert.DeserializeObject<IEnumerable<NewItem>>(obj);
 
-                        return result;
+                        return result ?? Enumerable.Empty<NewItem>();
                     }
-                    return new List<SearchCities>();
+                    return new NewItem[default];
                 }
             }
         }

@@ -15,9 +15,9 @@ namespace Weather.Controllers
             _connection = connection;
         }
 
-        public IActionResult Index(SearchCities model)
+        public IActionResult Index()
         {
-            return View(model);
+            return View();
         }
         public IActionResult Details(WeatherVM model)
         {
@@ -26,19 +26,15 @@ namespace Weather.Controllers
         }
 
         [HttpPost]
-        public IActionResult Search(CityToFind cityName)
+        public async Task<IActionResult> Search(CityToFind cityName)
         {
             if (ModelState.IsValid)
             {
-                var model = _connection.GetCitiesAsync(cityName).Result;
+                IEnumerable<NewItem> model  = await _connection.GetCitiesAsync(cityName);
 
                 if (model.Count() > 0)
                 {
-                    //var viewModel = new SearchCities
-                    //{
-                    //    Newitem = model
-                    //};
-                    return RedirectToAction("Index", model);
+                    return View(model);
                 }
                 //if (model?.location != null)
                 //{
