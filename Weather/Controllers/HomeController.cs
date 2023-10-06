@@ -28,28 +28,31 @@ namespace Weather.Controllers
         [HttpPost]
         public async Task<IActionResult> Search(CityToFind cityName)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                IEnumerable<NewItem> model;
-                try
-                {
-                    model = await _connection.GetCitiesAsync(cityName);
-                }
-                catch (Exception ex)
-                {
-                    throw new AggregateException("Ошибка");
-                }
+                return BadRequest(ModelState);
+            }
 
-                if (model.Count() > 0)
+            IEnumerable<NewItem> model;
+            try
+            {
+                model = await _connection.GetCitiesAsync(cityName);
+
+                if (model.Any())
                 {
                     return View(model);
                 }
                 else
                 {
                     ModelState.AddModelError(String.Empty, "Нет данных для отображения");
+                    return View("Index");
                 }
+                        
             }
-            return View("Index");
+            catch (Exception ex)
+            {
+                throw;
+            }
 
             //if (model?.location != null)
             //{
@@ -72,6 +75,10 @@ namespace Weather.Controllers
         //    return View();
         //}
 
-        
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
     }
 }
