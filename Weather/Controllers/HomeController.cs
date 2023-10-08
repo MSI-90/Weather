@@ -14,7 +14,6 @@ namespace Weather.Controllers
         {
             _connection = connection;
         }
-
         public IActionResult Index()
         {
             return View();
@@ -26,6 +25,7 @@ namespace Weather.Controllers
         }
 
         [HttpPost]
+        [Route("Search")]
         public async Task<IActionResult> Search(CityToFind cityName)
         {
             if (!ModelState.IsValid)
@@ -37,48 +37,54 @@ namespace Weather.Controllers
             try
             {
                 model = await _connection.GetCitiesAsync(cityName);
-
-                if (model.Any())
+                if (!string.IsNullOrEmpty(_connection.Error))
                 {
-                    return View(model);
+                    return BadRequest(_connection.Error);   
                 }
                 else
                 {
-                    ModelState.AddModelError(String.Empty, "Нет данных для отображения");
-                    return View("Index");
-                }
-                        
+                    if (model.Any())
+                    {
+                        return View(model);
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("NotData", "Нет данных для отображения");
+                        return View("Index");
+                    }
+                }         
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
-
-            //if (model?.location != null)
-            //{
-            //    var viewModel = new WeatherVM()
-            //    {
-            //        Name = model.location.name,
-            //        Region = model.location.region,
-            //        Country = model.location.country,
-            //        TempC = model.current.temp_c,
-            //        ImageSrc = model.current.condition.icon
-            //    };
-            //    return RedirectToAction("Details", viewModel);
-            //}
-            //else
-            //    ModelState.AddModelError(String.Empty, "Местоположение не найдено");
         }
 
-        //public IActionResult Privacy()
+        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        //public IActionResult Error()
         //{
-        //    return View();
+        //    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         //}
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
+
+    //public IActionResult Privacy()
+    //{
+    //    return View();
+    //}
+
+    //if (model?.location != null)
+    //{
+    //    var viewModel = new WeatherVM()
+    //    {
+    //        Name = model.location.name,
+    //        Region = model.location.region,
+    //        Country = model.location.country,
+    //        TempC = model.current.temp_c,
+    //        ImageSrc = model.current.condition.icon
+    //    };
+    //    return RedirectToAction("Details", viewModel);
+    //}
+    //else
+    //    ModelState.AddModelError(String.Empty, "Местоположение не найдено");
+
 }

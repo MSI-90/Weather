@@ -16,6 +16,8 @@ namespace Weather
             var app = builder.Build();
 
 
+            app.UseExceptionHandler("/Error");
+            app.UseStatusCodePagesWithReExecute("/Error/{0}");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

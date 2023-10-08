@@ -1,14 +1,11 @@
 ﻿@using Weather.Models.search
 @model IEnumerable<NewItem>
+@{
+    ViewData["Title"] = "Результаты поиска";
+}
 
-@if (Model.Count() > 0)
+@if (Model.Any())
 {
-    <style>
-        .listOfCities {
-            display: block;
-        }
-    </style>
-
     <div class="container">
         <div class="row">
             <div class="col">Населенный пункт</div>
@@ -23,18 +20,5 @@
                 <div class="col">@item.region</div>
             </div>
         }
-    </div>
-}
-else
-{
-    <style>
-        .listOfCities {
-            display: none;
-        }
-    </style>
-    <div class="row">
-        <div class="col">
-            <div asp-validation-summary="All"></div>
-        </div>
     </div>
 }

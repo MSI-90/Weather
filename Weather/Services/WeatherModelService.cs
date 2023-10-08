@@ -12,6 +12,7 @@ namespace Weather.Services
     public class WeatherModelService : IWeatherConnection
     {
         private readonly IConfiguration _config;
+        public string Error { get; set; } = string.Empty;
         public WeatherModelService(IConfiguration config)
         {
             _config = config;
@@ -28,17 +29,25 @@ namespace Weather.Services
                 {
                     request.RequestUri = new Uri($"{searchString}?{nameof(key)}={key}&{nameof(lang)}={lang}&q={cityToFind.City}");
                     request.Method = HttpMethod.Get;
-
-                    var response = await client.SendAsync(request);
-                    if(response.IsSuccessStatusCode)
+                    try
                     {
-                        var obj = await response.Content.ReadAsStringAsync();
-                        while(obj != "[]")
+                        var response = await client.SendAsync(request);
+                        if (response.IsSuccessStatusCode)
                         {
-                            var result = JsonConvert.DeserializeObject<IEnumerable<NewItem>>(obj);
-                            return result ?? Enumerable.Empty<NewItem>();
+                            var obj = await response.Content.ReadAsStringAsync();
+                            while (obj != "[]")
+                            {
+                                var result = JsonConvert.DeserializeObject<IEnumerable<NewItem>>(obj);
+                                return result ?? Enumerable.Empty<NewItem>();
+                            }
                         }
+                        
                     }
+                    catch (Exception ex)
+                    {
+                        Error = ex.Message;
+                    }
+
                     return new NewItem[default];
                 }
             }
