@@ -14,13 +14,19 @@ html {
 }
 
 body {
-    background-color: #CCFFCC;
-    margin-bottom: 60px;
+    background-image: url(../images/topContentBg.png);
+    background-size: cover;
+    font-size: 12.5pt;
+}
+
+header {
+    background-image:url(../images/headerBg.png);
+    color: white;
+    
 }
 
 .search {
     width: 280px;
-
 }
 
 .search_listHeader,
@@ -47,9 +53,22 @@ body {
 }
 
 .search_list {
-    background-color: lightgrey;
+    background-image: url(../images/listBg.png);
     height: 30px;
-    margin: 2px 0px;
+    margin: 4px 0px;
+}
+
+.search_list:hover {
+    background: #005eb5;
+    color:white;
+}
+
+.search_list:hover a {
+    color: white;
+}
+
+.search_list a{
+    text-decoration: none;
 }
 
 .container {
