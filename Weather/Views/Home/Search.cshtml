@@ -7,14 +7,14 @@
 @if (Model.Any())
 {
     <div class="container">
-        <div class="row">
+        <div class="row search_listHeader">
             <div class="col">Населенный пункт</div>
             <div class="col">Страна</div>
             <div class="col">Регион</div>
         </div>
         @foreach (var item in Model)
         {
-            <div class="row">
+            <div class="row search_list">
                 <div class="col"><a asp-action="Details" asp-route-city="@item.name">@item.name</a></div>
                 <div class="col">@item.country</div>
                 <div class="col">@item.region</div>

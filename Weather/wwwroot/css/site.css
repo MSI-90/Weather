@@ -20,10 +20,40 @@ body {
 
 .search {
     width: 280px;
+
+}
+
+.search_listHeader,
+.search_list {
+    text-align: center;
+}
+
+.search_listHeader {
+    background-color: cornflowerblue;
+    --bs-gutter-x: 0;
+    color: azure;
+    font-weight: bold;
+    height: 35px;
+}
+
+.search_listHeader .col:nth-child(1),
+.search_listHeader .col:nth-child(2) {
+    border-right: 1px solid white;
+    margin-top: 5px;
+}
+
+.search_listHeader .col:nth-child(3) {
+    margin-top: 5px;
+}
+
+.search_list {
+    background-color: lightgrey;
+    height: 30px;
+    margin: 2px 0px;
 }
 
 .container {
-    max-width:1320px;
+    max-width: 1320px;
     width: 100%;
     padding-right: var(--bs-gutter-x,.75rem);
     padding-left: var(--bs-gutter-x,.75rem);
