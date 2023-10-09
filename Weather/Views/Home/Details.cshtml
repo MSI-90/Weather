@@ -3,11 +3,46 @@
 
 @{
     ViewData["Title"] = "Подробно";
+
+    string name = Model.Name;
+
+    GetLetter(ref name);
+
+    string GetLetter(ref string letter)
+    {
+        char lastLetter = name.Last();
+        letter = letter.TrimEnd(lastLetter);
+        if (lastLetter == 'а' || lastLetter == 'я')
+            letter = letter + 'е';
+        else
+        {
+            if (lastLetter == 'у' || lastLetter == 'ю')
+                letter = letter + 'е';
+            else
+            {
+                if (lastLetter == 'о' || lastLetter == 'е')
+                    letter = letter + 'м';
+                else
+                {
+                    if (lastLetter == 'й')
+                        letter = (letter.TrimEnd(letter.Last())) + "ом";
+                    else
+                    {
+                        letter = letter + lastLetter + 'е';
+                    }
+                }
+            }
+        }
+        return letter;
+    }
 }
 
 
 <div class="container-md">
-    <p>@Model.Name</p>
+    <p>
+        <h4>Погода в @name</h4>
+    </p>
+    @* <p>@Model.Name</p> *@
     <p>@Model.Region</p>
     <p>@Model.Country</p>
     <p>@Model.TempC</p>

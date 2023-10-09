@@ -15,7 +15,7 @@
         @foreach (var item in Model)
         {
             <div class="row">
-                <div class="col">@item.name</div>
+                <div class="col"><a asp-action="Details" asp-route-city="@item.name">@item.name</a></div>
                 <div class="col">@item.country</div>
                 <div class="col">@item.region</div>
             </div>

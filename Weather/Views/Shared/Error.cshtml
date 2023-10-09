@@ -5,10 +5,19 @@
     ViewData["Title"] = "Что-то пошло не так";
 }
 
-<h1 class="text-danger">Error @Model.StatusCode</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
+<h1>Что-то пошло не так. @* @Model.StatusCode *@ </h1>
 
-@if (Model.ShowRequestId)
+@if (Model.StatusCode == 404)
+{
+    <p>Страница не найдена!</p>
+}
+
+<a asp-controller="Home" asp-action="Index"> На главную </a>
+
+@* <h1 class="text-danger">Error @Model.StatusCode</h1>
+<h2 class="text-danger">An error occurred while processing your request.</h2> *@
+
+@* @if (Model.ShowRequestId)
 {
     <p>
         <strong>Request ID:</strong> <code>@Model.RequestId</code>
@@ -24,4 +33,4 @@
     It can result in displaying sensitive information from exceptions to end users.
     For local debugging, enable the <strong>Development</strong> environment by setting the <strong>ASPNETCORE_ENVIRONMENT</strong> environment variable to <strong>Development</strong>
     and restarting the app.
-</p>
+</p> *@

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Reflection;
 using Weather.Models;
 using Weather.Models.search;
 using Weather.Services.Interfaces;
@@ -17,11 +18,6 @@ namespace Weather.Controllers
         public IActionResult Index()
         {
             return View();
-        }
-        public IActionResult Details(WeatherVM model)
-        {
-            
-            return View(model);
         }
 
         [HttpPost]
@@ -49,7 +45,7 @@ namespace Weather.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("NotData", "Нет данных для отображения");
+                        ModelState.AddModelError("notData", "Нет данных для отображения");
                         return View("Index");
                     }
                 }         
@@ -59,26 +55,29 @@ namespace Weather.Controllers
                 throw;
             }
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(string city)
+        {
+            var model = await _connection.GetDataAsync(city);
+
+            if (model?.location != null)
+            {
+                var viewModel = new WeatherVM()
+                {
+                    Name = model.location.name,
+                    Region = model.location.region,
+                    Country = model.location.country,
+                    TempC = model.current.temp_c,
+                    ImageSrc = model.current.condition.icon
+                };
+                return View(viewModel);
+            }
+            else
+            {
+                ModelState.AddModelError("notLocation", "Местоположение не найдено");
+                return BadRequest();
+            }
+        }
     }
-
-    //public IActionResult Privacy()
-    //{
-    //    return View();
-    //}
-
-    //if (model?.location != null)
-    //{
-    //    var viewModel = new WeatherVM()
-    //    {
-    //        Name = model.location.name,
-    //        Region = model.location.region,
-    //        Country = model.location.country,
-    //        TempC = model.current.temp_c,
-    //        ImageSrc = model.current.condition.icon
-    //    };
-    //    return RedirectToAction("Details", viewModel);
-    //}
-    //else
-    //    ModelState.AddModelError(String.Empty, "Местоположение не найдено");
-
 }

@@ -11,12 +11,13 @@ namespace Weather
 
             // Add services to the container.
             builder.Services.AddMvc();
-            builder.Services.AddSingleton<IWeatherConnection, WeatherModelService>();
+            builder.Services.AddTransient<IWeatherConnection, WeatherModelService>();
 
             var app = builder.Build();
 
 
-            app.UseExceptionHandler("/Error");
+            //app.UseExceptionHandler("/Error");
+            //app.UseStatusCodePages();
             app.UseStatusCodePagesWithReExecute("/Error/{0}");
             app.UseHttpsRedirection();
             app.UseStaticFiles();

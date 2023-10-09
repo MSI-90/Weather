@@ -52,7 +52,7 @@ namespace Weather.Services
                 }
             }
         }
-        public async Task<WeatherModel> GetDataAsync(CityToFind cityToFind)
+        public async Task<WeatherModel> GetDataAsync(string cityToFind)
         {
             using (var client = new HttpClient())
             {
@@ -62,7 +62,7 @@ namespace Weather.Services
 
                 using (var request = new HttpRequestMessage())
                 {
-                    request.RequestUri = new Uri($"{currentString}?{nameof(key)}={key}&{nameof(lang)}={lang}&q={cityToFind.City}");
+                    request.RequestUri = new Uri($"{currentString}?{nameof(key)}={key}&{nameof(lang)}={lang}&q={cityToFind}");
                     request.Method = HttpMethod.Get;
 
                     HttpResponseMessage response = await client.SendAsync(request);
