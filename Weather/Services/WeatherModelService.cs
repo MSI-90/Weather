@@ -46,6 +46,7 @@ namespace Weather.Services
                     catch (Exception ex)
                     {
                         Error = ex.Message;
+                        throw;
                     }
 
                     return new NewItem[default];
@@ -64,15 +65,23 @@ namespace Weather.Services
                 {
                     request.RequestUri = new Uri($"{currentString}?{nameof(key)}={key}&{nameof(lang)}={lang}&q={cityToFind}");
                     request.Method = HttpMethod.Get;
-
-                    HttpResponseMessage response = await client.SendAsync(request);
-                    if (response.IsSuccessStatusCode)
+                    try
                     {
-                        var obj = await response.Content.ReadAsStringAsync();
-                        var result = JsonConvert.DeserializeObject<WeatherModel>(obj);
+                        HttpResponseMessage response = await client.SendAsync(request);
+                        if (response.IsSuccessStatusCode)
+                        {
+                            var obj = await response.Content.ReadAsStringAsync();
+                            var result = JsonConvert.DeserializeObject<WeatherModel>(obj);
 
-                        return result;
+                            return result;
+                        }
                     }
+                    catch (Exception ex)
+                    {
+                        Error = ex.Message;
+                        throw;
+                    }
+                    
                     return new WeatherModel();
                 }
             }

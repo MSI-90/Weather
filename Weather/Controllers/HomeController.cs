@@ -56,27 +56,32 @@ namespace Weather.Controllers
             }
         }
 
-        [HttpGet]
         public async Task<IActionResult> Details(string city)
         {
-            var model = await _connection.GetDataAsync(city);
-
-            if (model?.location != null)
+            try
             {
-                var viewModel = new WeatherVM()
+                var model = await _connection.GetDataAsync(city);
+                if (model?.location != null)
                 {
-                    Name = model.location.name,
-                    Region = model.location.region,
-                    Country = model.location.country,
-                    TempC = model.current.temp_c,
-                    ImageSrc = model.current.condition.icon
-                };
-                return View(viewModel);
+                    var viewModel = new WeatherVM()
+                    {
+                        Name = model.location.name,
+                        Region = model.location.region,
+                        Country = model.location.country,
+                        TempC = model.current.temp_c,
+                        ImageSrc = model.current.condition.icon
+                    };
+                    return View(viewModel);
+                }
+                else
+                {
+                    ModelState.AddModelError("notLocation", "Местоположение не найдено");
+                    return BadRequest();
+                }
             }
-            else
+            catch (Exception)
             {
-                ModelState.AddModelError("notLocation", "Местоположение не найдено");
-                return BadRequest();
+                throw;
             }
         }
     }
