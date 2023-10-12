@@ -66,6 +66,7 @@ namespace Weather.Controllers
                     var viewModel = new WeatherVM()
                     {
                         Name = model.location.name,
+                        LocalDateAndTime = model.location.localtime,
                         Region = model.location.region,
                         Country = model.location.country,
                         TempC = model.current.temp_c,

@@ -83,3 +83,10 @@ header {
 .errorPage h1{
     color: red;
 }
+
+.weather-compressed {
+    background-color: aquamarine;
+    display: block;
+    border-radius: 15px;
+    width: 40%;
+}

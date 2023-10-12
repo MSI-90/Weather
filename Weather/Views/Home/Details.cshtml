@@ -37,17 +37,23 @@
     }
 }
 
-
 <div class="container-md">
     <p>
         <h4 class="header_details">Погода в @name</h4>
     </p>
-    <p>@Model.Region</p>
-    <p>@Model.Country</p>
-    <p>@Model.TempC</p>
-    <p>
-        <img src="@Model.ImageSrc" alt="иконка отображающая состояние погоды" />
-    </p>
+    <div class="weather-compressed">
+        <div class="weather-compressed-current">
+            <p>
+                <h5>Сейчас @Model.LocalTime</h5>
+            </p>
+        </div>
+        <p>@Model.Region</p>
+        <p>@Model.Country</p>
+        <p>@Model.TempC °C</p>
+        <p>
+            <img src="@Model.ImageSrc" alt="иконка отображающая состояние погоды" />
+        </p>
+    </div>
     <div>
         <a asp-action="Index">На главную</a>
     </div>
