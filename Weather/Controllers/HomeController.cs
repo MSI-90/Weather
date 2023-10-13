@@ -41,6 +41,7 @@ namespace Weather.Controllers
                 {
                     if (model.Any())
                     {
+                        CityNameAfterSearchInRussian.Name = cityName.City;
                         return View(model);
                     }
                     else
@@ -67,7 +68,7 @@ namespace Weather.Controllers
                 {
                     var viewModel = new WeatherVM()
                     {
-                        Name = model.location.name,
+                        Name = CityNameAfterSearchInRussian.Name ?? model.location.name,
                         LocalDateAndTime = model.location.localtime,
                         Region = model.location.region,
                         Country = model.location.country,
