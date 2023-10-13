@@ -53,7 +53,7 @@ namespace Weather.Services
                 }
             }
         }
-        public async Task<WeatherModel> GetDataAsync(string cityToFind)
+        public async Task<WeatherModel> GetDataAsync(float lat, float lon)
         {
             using (var client = new HttpClient())
             {
@@ -61,9 +61,14 @@ namespace Weather.Services
                 string key = _config.GetSection("ConnectionData")["ConnectionKey"];
                 string lang = _config.GetSection("ConnectionData")["lang"];
 
+                string latitude = Convert.ToString(lat);
+                latitude = latitude.Replace(',', '.');
+                string longitude = Convert.ToString(lon);
+                longitude = longitude.Replace(",", ".");
+
                 using (var request = new HttpRequestMessage())
                 {
-                    request.RequestUri = new Uri($"{currentString}?{nameof(key)}={key}&{nameof(lang)}={lang}&q={cityToFind}");
+                    request.RequestUri = new Uri($"{currentString}?{nameof(key)}={key}&{nameof(lang)}={lang}&q={latitude},{longitude}");
                     request.Method = HttpMethod.Get;
                     try
                     {

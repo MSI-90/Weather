@@ -56,11 +56,13 @@ namespace Weather.Controllers
             }
         }
 
-        public async Task<IActionResult> Details(string city)
+        public async Task<IActionResult> Details(string lat, string lon)
         {
             try
             {
-                var model = await _connection.GetDataAsync(city);
+                float latitude = Convert.ToSingle(lat);
+                float longitude = Convert.ToSingle(lon);
+                var model = await _connection.GetDataAsync(latitude, longitude);
                 if (model?.location != null)
                 {
                     var viewModel = new WeatherVM()

@@ -9,7 +9,7 @@ namespace Weather.Services.Interfaces
     {
         public string Error { get; set; }
         Task<IEnumerable<NewItem>> GetCitiesAsync(CityToFind cityToFind);
-        Task<WeatherModel> GetDataAsync(string cityToFind);
+        Task<WeatherModel> GetDataAsync(float lat, float lon);
         Task<WeatherOnWeek> GetDataOnWeekAsync(CityToFind cityToFind);
     }
 }

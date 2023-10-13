@@ -4,42 +4,42 @@
 @{
     ViewData["Title"] = "Подробно";
 
-    string name = Model.Name;
+    // string name = Model.Name;
 
-    GetLetter(ref name);
+    // GetLetter(ref name);
 
-    string GetLetter(ref string letter)
-    {
-        char lastLetter = name.Last();
-        letter = letter.TrimEnd(lastLetter);
-        if (lastLetter == 'а' || lastLetter == 'я')
-            letter = letter + 'е';
-        else
-        {
-            if (lastLetter == 'у' || lastLetter == 'ю')
-                letter = letter + 'е';
-            else
-            {
-                if (lastLetter == 'о' || lastLetter == 'е')
-                    letter = letter + 'м';
-                else
-                {
-                    if (lastLetter == 'й')
-                        letter = (letter.TrimEnd(letter.Last())) + "ом";
-                    else
-                    {
-                        letter = letter + lastLetter + 'е';
-                    }
-                }
-            }
-        }
-        return letter;
-    }
+    // string GetLetter(ref string letter)
+    // {
+    //     char lastLetter = name.Last();
+    //     letter = letter.TrimEnd(lastLetter);
+    //     if (lastLetter == 'а' || lastLetter == 'я')
+    //         letter = letter + 'е';
+    //     else
+    //     {
+    //         if (lastLetter == 'у' || lastLetter == 'ю')
+    //             letter = letter + 'е';
+    //         else
+    //         {
+    //             if (lastLetter == 'о' || lastLetter == 'е')
+    //                 letter = letter + 'м';
+    //             else
+    //             {
+    //                 if (lastLetter == 'й')
+    //                     letter = (letter.TrimEnd(letter.Last())) + "ом";
+    //                 else
+    //                 {
+    //                     letter = letter + lastLetter + 'е';
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     return letter;
+    // }
 }
 
 <div class="container-md">
     <p>
-        <h4 class="header_details">Погода в @name</h4>
+        <h4 class="header_details">Погода в @Model.Name</h4>
     </p>
     <div class="weather-compressed">
         <div class="weather-compressed-current">
