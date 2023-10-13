@@ -41,7 +41,6 @@ namespace Weather.Controllers
                 {
                     if (model.Any())
                     {
-                        CityNameAfterSearchInRussian.Name = cityName.City;
                         return View(model);
                     }
                     else
@@ -57,7 +56,7 @@ namespace Weather.Controllers
             }
         }
 
-        public async Task<IActionResult> Details(string lat, string lon)
+        public async Task<IActionResult> Details(string name, string lat, string lon)
         {
             try
             {
@@ -68,7 +67,7 @@ namespace Weather.Controllers
                 {
                     var viewModel = new WeatherVM()
                     {
-                        Name = CityNameAfterSearchInRussian.Name ?? model.location.name,
+                        Name = name,
                         LocalDateAndTime = model.location.localtime,
                         Region = model.location.region,
                         Country = model.location.country,
