@@ -8,6 +8,7 @@ using Weather.ViewModels;
 
 namespace Weather.Controllers
 {
+    //[Route("Weather")]
     public class HomeController : Controller
     {
         private readonly IWeatherConnection _connection;
@@ -15,49 +16,60 @@ namespace Weather.Controllers
         {
             _connection = connection;
         }
-        public IActionResult Index()
+        public ViewResult Index()
+        {
+            return View();
+        }
+        public ViewResult Search()
         {
             return View();
         }
 
         [HttpPost]
         [Route("Search")]
-        public async Task<IActionResult> Search(CityToFind cityName)
+        public async Task<IActionResult> Search(CityToFind? cityName)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || cityName == null)
             {
-                return BadRequest(ModelState);
+                return View("Index");
             }
-
-            IEnumerable<NewItem> model;
-            try
+            else
             {
-                model = await _connection.GetCitiesAsync(cityName);
-                if (!string.IsNullOrEmpty(_connection.Error))
+                try
                 {
-                    return BadRequest(_connection.Error);   
-                }
-                else
-                {
-                    if (model.Any())
+                    IEnumerable<NewItem> model;
+                    model = await _connection.GetCitiesAsync(cityName);
+                    if (!string.IsNullOrEmpty(_connection.Error))
                     {
-                        return View(model);
+                        return BadRequest(_connection.Error);
                     }
                     else
                     {
-                        ModelState.AddModelError("notData", "Нет данных для отображения");
-                        return View("Index");
+                        if (model.Any())
+                            return View(model);
+                        else
+                        {
+                            ModelState.AddModelError(string.Empty, "Нет данных для отображения");
+                            return View("Index");
+                        }
                     }
-                }         
-            }
-            catch (Exception)
-            {
-                throw;
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
             }
         }
 
+        [Route("Details")]
         public async Task<IActionResult> Details(string name, string lat, string lon)
         {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError(string.Empty, "Местоположение не найдено");
+                return View();
+            }
+
             try
             {
                 float latitude = Convert.ToSingle(lat);
@@ -76,11 +88,7 @@ namespace Weather.Controllers
                     };
                     return View(viewModel);
                 }
-                else
-                {
-                    ModelState.AddModelError("notLocation", "Местоположение не найдено");
-                    return BadRequest();
-                }
+                return View();
             }
             catch (Exception)
             {
