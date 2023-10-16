@@ -25,7 +25,7 @@ namespace Weather.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("Search")]
         public async Task<IActionResult> Search(CityToFind? cityName)
         {
@@ -41,7 +41,7 @@ namespace Weather.Controllers
                     model = await _connection.GetCitiesAsync(cityName);
                     if (!string.IsNullOrEmpty(_connection.Error))
                     {
-                        return BadRequest(_connection.Error);
+                        return Problem(_connection.Error, statusCode: 500); //?
                     }
                     else
                     {
