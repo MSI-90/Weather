@@ -20,10 +20,6 @@ namespace Weather.Controllers
         {
             return View();
         }
-        public ViewResult Search()
-        {
-            return View();
-        }
 
         [HttpGet]
         [Route("Search")]

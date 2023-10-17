@@ -80,7 +80,17 @@ header {
     margin-left: auto;
 }
 
-.errorPage h1{
+.error{
+    color: red;
+    font-size: 12pt;
+    font-weight: 500;
+}
+
+.error li{
+    list-style-type: none;
+}
+
+.errorPage h1 {
     color: red;
 }
 
