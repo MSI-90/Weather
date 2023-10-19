@@ -3,7 +3,7 @@
 
     public class SearchCities
     {
-        public NewItem[] Newitem { get; set; }
+        public NewItem[] NewItem { get; set; }
     }
 
     public class NewItem

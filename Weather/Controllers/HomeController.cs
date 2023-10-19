@@ -2,27 +2,30 @@
 using System.Diagnostics;
 using System.Reflection;
 using Weather.Models;
+using Weather.Models.CityesOfRussia;
 using Weather.Models.search;
 using Weather.Services.Interfaces;
 using Weather.ViewModels;
 
 namespace Weather.Controllers
 {
-    //[Route("Weather")]
     public class HomeController : Controller
     {
         private readonly IWeatherConnection _connection;
-        public HomeController(IWeatherConnection connection)
+        private readonly IParseFromJsonFile _parseFromJsonFile;
+        public HomeController(IWeatherConnection connection, IParseFromJsonFile parseFromJsonFile)
         {
             _connection = connection;
+            _parseFromJsonFile = parseFromJsonFile;
         }
-        public ViewResult Index()
+        public async Task<ViewResult> Index()
         {
-            return View();
+            IEnumerable<Rootobject> model = await _parseFromJsonFile.GetCityFromFile();
+            return View(model);
         }
 
         [HttpGet]
-        [Route("Search")]
+        [Route("search")]
         public async Task<IActionResult> Search(CityToFind? cityName)
         {
             if (!ModelState.IsValid || cityName == null)
@@ -57,7 +60,7 @@ namespace Weather.Controllers
             }
         }
 
-        [Route("Details")]
+        [Route("details")]
         public async Task<IActionResult> Details(string name, string lat, string lon)
         {
             if (!ModelState.IsValid)

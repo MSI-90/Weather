@@ -12,19 +12,18 @@ namespace Weather
             // Add services to the container.
             builder.Services.AddMvc();
             builder.Services.AddTransient<IWeatherConnection, WeatherModelService>();
+            builder.Services.AddTransient<IParseFromJsonFile,  CityesListParseService>();
 
             var app = builder.Build();
 
 
             //app.UseExceptionHandler("/Error");
             //app.UseStatusCodePages();
-            app.UseStatusCodePagesWithReExecute("/Error/{0}");
+            app.UseRouting();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
-            app.UseRouting();
-
-            //app.MapDefaultControllerRoute();
+            app.UseStatusCodePagesWithReExecute("/Error/{0}");
+            
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");

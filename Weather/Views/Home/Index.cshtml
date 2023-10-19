@@ -1,8 +1,23 @@
-﻿@using Weather.Models.search;
+﻿@using Weather.Models.CityesOfRussia;
+@model IEnumerable<Rootobject>
 
 @{
     ViewData["Title"] = "Домашняя страница";
 }
+
+<div>
+    @if (Model != null)
+    {
+        foreach (var item in Model ?? new List<Rootobject>())
+        {
+            if (item.Newitem != null)
+            {
+               <p>@item.Newitem.Select(x=>x.label == "Московская")</p>
+            }
+           
+        }
+    }
+</div>
 
 <div class="row error">
     <div class="col">
