@@ -46,9 +46,8 @@ namespace Weather.Services
                     catch (Exception ex)
                     {
                         Error = ex.Message;
-                        throw;
+                        throw;//ToDo решить этот момент лучше
                     }
-
                     return new NewItem[default];
                 }
             }
@@ -84,9 +83,8 @@ namespace Weather.Services
                     catch (Exception ex)
                     {
                         Error = ex.Message;
-                        throw;
+                        throw;//ToDo решить этот момент лучше
                     }
-                    
                     return new WeatherModel();
                 }
             }
@@ -103,14 +101,21 @@ namespace Weather.Services
                 {
                     request.RequestUri = new Uri($"{forecastString}?{nameof(key)}={key}&q={cityToFind.City}&days=7&{nameof(lang)}={lang}");
                     request.Method = HttpMethod.Get;
-
-                    HttpResponseMessage response = await client.SendAsync(request);
-                    if (response.IsSuccessStatusCode)
+                    try
                     {
-                        var obj = await response.Content.ReadAsStringAsync();
-                        var result = JsonConvert.DeserializeObject<WeatherOnWeek>(obj);
+                        HttpResponseMessage response = await client.SendAsync(request);
+                        if (response.IsSuccessStatusCode)
+                        {
+                            var obj = await response.Content.ReadAsStringAsync();
+                            var result = JsonConvert.DeserializeObject<WeatherOnWeek>(obj);
 
-                        return result;
+                            return result;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Error = ex.Message;
+                        throw;//ToDo решить этот момент лучше
                     }
                     return new WeatherOnWeek();
                 }

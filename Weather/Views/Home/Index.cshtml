@@ -1,5 +1,5 @@
-﻿@using Weather.Models.CityesOfRussia;
-@model IEnumerable<Rootobject>
+﻿@using Weather.Models.Cityes;
+@model IEnumerable<Root>
 
 @{
     ViewData["Title"] = "Домашняя страница";
@@ -8,11 +8,14 @@
 <div>
     @if (Model != null)
     {
-        foreach (var item in Model ?? new List<Rootobject>())
+        <div class="cityes_count">
+            <p>@Model.Count()</p>
+        </div>
+        foreach (var item in Model ?? new List<Root>())
         {
-            if (item.Newitem != null)
+            if (item != null)
             {
-               <p>@item.Newitem.Select(x=>x.label == "Московская")</p>
+               <p>@item.label</p>
             }
            
         }

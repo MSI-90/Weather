@@ -1,9 +1,9 @@
-﻿using Weather.Models.CityesOfRussia;
+﻿using Weather.Models.Cityes;
 
 namespace Weather.Services.Interfaces
 {
     public interface IParseFromJsonFile
     {
-        Task<IEnumerable<Rootobject>> GetCityFromFile();
+        Task<IEnumerable<Root>> GetCityFromFile();
     }
 }

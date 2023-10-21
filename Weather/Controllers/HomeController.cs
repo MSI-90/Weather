@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Reflection;
 using Weather.Models;
-using Weather.Models.CityesOfRussia;
+using Weather.Models.Cityes;
 using Weather.Models.search;
 using Weather.Services.Interfaces;
 using Weather.ViewModels;
@@ -20,7 +20,7 @@ namespace Weather.Controllers
         }
         public async Task<ViewResult> Index()
         {
-            IEnumerable<Rootobject> model = await _parseFromJsonFile.GetCityFromFile();
+            IEnumerable<Root> model = await _parseFromJsonFile.GetCityFromFile();
             return View(model);
         }
 
