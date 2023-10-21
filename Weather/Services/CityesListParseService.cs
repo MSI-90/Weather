@@ -8,11 +8,17 @@ namespace Weather.Services
     {
         public async Task<IEnumerable<Root>> GetCityFromFile()
         {
-            string filePath = Path.Combine(Environment.CurrentDirectory, "Res", "towns-russia.json");
-            string json = await File.ReadAllTextAsync(filePath);
-
-            var cityList = JsonConvert.DeserializeObject<IEnumerable<Root>>(json);
-            return cityList;
+            try
+            {
+                string filePath = Path.Combine(Environment.CurrentDirectory, "Res", "towns-russia.json");
+                string json = await File.ReadAllTextAsync(filePath);
+                var cityList = JsonConvert.DeserializeObject<IEnumerable<Root>>(json);
+                return cityList;
+            }
+            catch (Exception fileExcepton)
+            {
+                throw new Exception(); //ToDo решить этот момент лучше
+            }
         }
     }
 }

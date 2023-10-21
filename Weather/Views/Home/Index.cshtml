@@ -8,16 +8,25 @@
 <div>
     @if (Model != null)
     {
-        <div class="cityes_count">
-            <p>@Model.Count()</p>
-        </div>
-        foreach (var item in Model ?? new List<Root>())
+       
+        var list = Model.OrderBy(name => name.label).ToList();
+        if (list != null)
         {
-            if (item != null)
-            {
-               <p>@item.label</p>
-            }
-           
+            <div class="cityes_count">
+                <p>@Model.Count()</p>
+            </div>
+        }
+        for (int i = 0; i < list.Count; i += 4)
+        {
+            <div class="row">
+                @for (int j = i; j < i + 4 && j < list.Count; j++)
+                {
+                    var item = list[j];
+                    <div class="col">
+                        <p>@item.label</p>
+                    </div>
+                }
+            </div>
         }
     }
 </div>
