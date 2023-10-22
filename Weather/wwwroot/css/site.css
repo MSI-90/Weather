@@ -78,6 +78,7 @@ header {
     padding-left: var(--bs-gutter-x,.75rem);
     margin-right: auto;
     margin-left: auto;
+    margin-bottom: 20px;
 }
 
 .error{
@@ -99,4 +100,9 @@ header {
     display: block;
     border-radius: 15px;
     width: 40%;
+}
+
+/*--index--*/
+.cityes_count{
+    font-family:'Times New Roman', Times, serif;
 }

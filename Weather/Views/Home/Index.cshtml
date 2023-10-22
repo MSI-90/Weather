@@ -5,16 +5,16 @@
     ViewData["Title"] = "Домашняя страница";
 }
 
-<div>
+<div class="container">
     @if (Model != null)
     {
-       
+
         var list = Model.OrderBy(name => name.label).ToList();
-        List<char> firstLettersInList = default;
+        List<char> firstLettersInList = null;
         if (list != null)
         {
             <div class="cityes_count">
-                <p>@Model.Count()</p>
+                <h4>Погода в России в @Model.Count() регионах</h4>
             </div>
 
             HashSet<char> firstLetters = new HashSet<char>();
@@ -26,6 +26,7 @@
         }
 
         var regionsByGroup = new Dictionary<char, List<string>>();
+        var regionsByGropWithNumberKeys = new Dictionary<int, List<string>>();
 
         for (int r = 0; r < firstLettersInList.Count; r++)
         {
@@ -38,32 +39,31 @@
                 }
             }
             regionsByGroup.Add(firstLettersInList[r], regions);
+            regionsByGropWithNumberKeys.Add(r, regions);
         }
 
-        foreach (var kvp in regionsByGroup)
-        {
-            var group = kvp.Key;
-            var regionList = kvp.Value;
-            <div>
-                @group
-                @foreach (var item in regionList)
-                    @item
-            </div>
-        }
-
-        for (int i = 0; i < list.Count; i += 4)
+        List<char> regionKeys = new List<char>(regionsByGroup.Keys);
+        
+        for (int i = 0; i < regionsByGropWithNumberKeys.Count(); i+=4)
         {
             <div class="row">
-                @for (int j = i; j < i + 4 && j < list.Count; j++)
+                @for (int j = i; j < i + 4 && j < regionsByGropWithNumberKeys.Count; j++)
                 {
-                    var item = list[j];
+                    var item = regionsByGropWithNumberKeys[j];
                     <div class="col">
-                        <p>@item.label</p>
+                        <span>
+                            <strong>@regionKeys[j]</strong>
+                        </span>
+                        @foreach (var v in item)
+                        {
+                            <p>@v</p>
+                        }
                     </div>
                 }
             </div>
         }
     }
+
 </div>
 
 <div class="row error">
