@@ -10,12 +10,47 @@
     {
        
         var list = Model.OrderBy(name => name.label).ToList();
+        List<char> firstLettersInList = default;
         if (list != null)
         {
             <div class="cityes_count">
                 <p>@Model.Count()</p>
             </div>
+
+            HashSet<char> firstLetters = new HashSet<char>();
+            foreach (var item in list)
+            {
+                firstLetters.Add((item.label).First());
+            }
+            firstLettersInList = firstLetters.ToList();
         }
+
+        var regionsByGroup = new Dictionary<char, List<string>>();
+
+        for (int r = 0; r < firstLettersInList.Count; r++)
+        {
+            var regions = new List<string>();
+            foreach (var item in list)
+            {
+                if (item.label.StartsWith(firstLettersInList[r]))
+                {
+                    regions.Add(item.label + " ");
+                }
+            }
+            regionsByGroup.Add(firstLettersInList[r], regions);
+        }
+
+        foreach (var kvp in regionsByGroup)
+        {
+            var group = kvp.Key;
+            var regionList = kvp.Value;
+            <div>
+                @group
+                @foreach (var item in regionList)
+                    @item
+            </div>
+        }
+
         for (int i = 0; i < list.Count; i += 4)
         {
             <div class="row">
