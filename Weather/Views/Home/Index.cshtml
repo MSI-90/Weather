@@ -30,19 +30,21 @@
                     {
                         var item = regionsByGropWithNumberKeys[j];
                         <div class="col">
-                            <span>
+                            <div class="region_first_letter">
                                 <strong>@regionKeys[j]</strong>
-                            </span>
+                            </div>
                             @foreach (var v in item)
                             {
-                                <p>@v</p>
+                                <p class="region_link">
+                                    <a asp-action="">@v</a>
+                                </p>
                             }
                         </div>
                     }
                 </div>
             }
         }
-        catch (Exception ex) { }
+        catch (Exception ex) { var erMessage = ex.Message; }
     }
     else
     {
