@@ -6,25 +6,34 @@
 
     string GetLetter(ref string letter)
     {
-        char lastLetter = letter.Last();
-        letter = letter.TrimEnd(lastLetter);
-        if (lastLetter == 'а' || lastLetter == 'я')
-            letter = letter + 'е';
-        else
+        if (!letter.EndsWith("ово"))
         {
-            if (lastLetter == 'у' || lastLetter == 'ю')
+            char lastLetter = letter.Last();
+            letter = letter.TrimEnd(lastLetter);
+            if (lastLetter == 'а' || lastLetter == 'я')
                 letter = letter + 'е';
             else
             {
-                if (lastLetter == 'о' || lastLetter == 'е')
-                    letter = letter + 'м';
+                if (lastLetter == 'у' || lastLetter == 'ю')
+                    letter = letter + 'е';
                 else
                 {
-                    if (lastLetter == 'й')
-                        letter = (letter.TrimEnd(letter.Last())) + "ом";
+                    if ((lastLetter == 'о' || lastLetter == 'е'))
+                        letter = letter + 'м';
                     else
                     {
-                        letter = letter + lastLetter + 'е';
+                        if (letter.EndsWith("ово"))
+                            letter = letter + "";
+
+                        if (lastLetter == 'й')
+                            letter = (letter.TrimEnd(letter.Last())) + "ом";
+                        else
+                        {
+                            if (lastLetter == 'и')
+                                letter = letter + "ах";
+                            else
+                                letter = letter + lastLetter + 'е';
+                        }
                     }
                 }
             }
