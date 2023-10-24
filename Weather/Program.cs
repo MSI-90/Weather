@@ -11,8 +11,8 @@ namespace Weather
 
             // Add services to the container.
             builder.Services.AddMvc();
-            builder.Services.AddTransient<IWeatherConnection, WeatherModelService>();
-            builder.Services.AddTransient<IParseFromJsonFile,  CityesListParseService>();
+            builder.Services.AddTransient<IWeatherConnection, WeatherService>();
+            builder.Services.AddTransient<ICitiesParseJsonFile,  CityesParseService>();
 
             var app = builder.Build();
 

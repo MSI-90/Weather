@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <Folder Include="Res\" />
-    <Folder Include="Services\Новая папка\" />
   </ItemGroup>
 
 </Project>

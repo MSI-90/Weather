@@ -103,6 +103,12 @@ header {
 }
 
 /*--index--*/
-.cityes_count{
-    font-family:'Times New Roman', Times, serif;
+.notCityList{
+    color:chocolate;
+    font-weight:bold;
+    font-size:15pt;
+    text-align:center;
+}
+.cityes_count {
+    font-family: 'Times New Roman', Times, serif;
 }

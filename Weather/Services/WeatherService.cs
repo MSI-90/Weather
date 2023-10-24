@@ -9,11 +9,11 @@ using Weather.Models.search;
 
 namespace Weather.Services
 {
-    public class WeatherModelService : IWeatherConnection
+    public class WeatherService : IWeatherConnection
     {
         private readonly IConfiguration _config;
         public string Error { get; set; } = string.Empty;
-        public WeatherModelService(IConfiguration config)
+        public WeatherService(IConfiguration config)
         {
             _config = config;
         }

@@ -12,15 +12,15 @@ namespace Weather.Controllers
     public class HomeController : Controller
     {
         private readonly IWeatherConnection _connection;
-        private readonly IParseFromJsonFile _parseFromJsonFile;
-        public HomeController(IWeatherConnection connection, IParseFromJsonFile parseFromJsonFile)
+        private readonly ICitiesParseJsonFile _parseFromJsonFile;
+        public HomeController(IWeatherConnection connection, ICitiesParseJsonFile parseFromJsonFile)
         {
             _connection = connection;
             _parseFromJsonFile = parseFromJsonFile;
         }
         public async Task<ViewResult> Index()
         {
-            IEnumerable<Root> model = await _parseFromJsonFile.GetCityFromFile();
+            IEnumerable<Root> model = await _parseFromJsonFile.GetCityFromFileAsync();
             return View(model);
         }
 

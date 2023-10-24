@@ -1,5 +1,7 @@
 ﻿@using Weather.Models.Cityes;
+@using Weather.Services.Interfaces;
 @model IEnumerable<Root>
+@inject ICitiesParseJsonFile fileParse
 
 @{
     ViewData["Title"] = "Домашняя страница";
@@ -8,39 +10,9 @@
 <div class="container">
     @if (Model != null)
     {
-
-        var list = Model.OrderBy(name => name.label).ToList();
-        List<char> firstLettersInList = null;
-        if (list != null)
-        {
-            <div class="cityes_count">
-                <h4>Погода в России в @Model.Count() регионах</h4>
-            </div>
-
-            HashSet<char> firstLetters = new HashSet<char>();
-            foreach (var item in list)
-            {
-                firstLetters.Add((item.label).First());
-            }
-            firstLettersInList = firstLetters.ToList();
-        }
-
-        var regionsByGroup = new Dictionary<char, List<string>>();
-        var regionsByGropWithNumberKeys = new Dictionary<int, List<string>>();
-
-        for (int r = 0; r < firstLettersInList.Count; r++)
-        {
-            var regions = new List<string>();
-            foreach (var item in list)
-            {
-                if (item.label.StartsWith(firstLettersInList[r]))
-                {
-                    regions.Add(item.label + " ");
-                }
-            }
-            regionsByGroup.Add(firstLettersInList[r], regions);
-            regionsByGropWithNumberKeys.Add(r, regions);
-        }
+        var cityList = fileParse.GetCityesGroupAsync(Model);
+        var regionsByGroup = cityList.Result.RegiosByGroupWithCharKey;
+        var regionsByGropWithNumberKeys = cityList.Result.RegionsByGropWithNumberKeys;
 
         List<char> regionKeys = new List<char>(regionsByGroup.Keys);
         
@@ -63,7 +35,14 @@
             </div>
         }
     }
-
+    else
+    {
+        <div class="notCityList">
+            <p>Отображение информации временно недоступно,<br />
+                воспользуйтесь функцией поиска из шапки сайта
+            </p>
+        </div>
+    }
 </div>
 
 <div class="row error">
