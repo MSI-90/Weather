@@ -10,39 +10,50 @@
 <div class="container">
     @if (Model != null)
     {
-        var cityList = fileParse.GetCityesGroupAsync(Model);
-        var regionsByGroup = cityList.Result.RegiosByGroupWithCharKey;
-        var regionsByGropWithNumberKeys = cityList.Result.RegionsByGropWithNumberKeys;
-
-        List<char> regionKeys = new List<char>(regionsByGroup.Keys);
-        
-        for (int i = 0; i < regionsByGropWithNumberKeys.Count(); i+=4)
+        try
         {
-            <div class="row">
-                @for (int j = i; j < i + 4 && j < regionsByGropWithNumberKeys.Count; j++)
-                {
-                    var item = regionsByGropWithNumberKeys[j];
-                    <div class="col">
-                        <span>
-                            <strong>@regionKeys[j]</strong>
-                        </span>
-                        @foreach (var v in item)
-                        {
-                            <p>@v</p>
-                        }
-                    </div>
-                }
+            <div class="cityes_count">
+                <p>
+                    <h4>Погода в @Model.Count() регионах страны</h4>
+                </p>
             </div>
+            var cityList = fileParse.GetCityesGroupAsync(Model);
+            var regionsByGroup = cityList.Result.RegiosByGroupWithCharKey;
+            var regionsByGropWithNumberKeys = cityList.Result.RegionsByGropWithNumberKeys;
+
+            List<char> regionKeys = new List<char>(regionsByGroup.Keys);
+
+            for (int i = 0; i < regionsByGropWithNumberKeys.Count(); i += 4)
+            {
+                <div class="row">
+                    @for (int j = i; j < i + 4 && j < regionsByGropWithNumberKeys.Count; j++)
+                    {
+                        var item = regionsByGropWithNumberKeys[j];
+                        <div class="col">
+                            <span>
+                                <strong>@regionKeys[j]</strong>
+                            </span>
+                            @foreach (var v in item)
+                            {
+                                <p>@v</p>
+                            }
+                        </div>
+                    }
+                </div>
+            }
         }
+        catch (Exception ex) { }
     }
     else
     {
         <div class="notCityList">
-            <p>Отображение информации временно недоступно,<br />
+            <p>
+                Отображение информации временно недоступно,<br />
                 воспользуйтесь функцией поиска из шапки сайта
             </p>
         </div>
     }
+        
 </div>
 
 <div class="row error">

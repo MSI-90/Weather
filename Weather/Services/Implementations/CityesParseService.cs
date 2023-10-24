@@ -24,7 +24,7 @@ namespace Weather.Services
         }
         public async Task<CityGroupModel> GetCityesGroupAsync(IEnumerable<Root> cityes)
         {
-            var list = cityes.OrderBy(name => name.label).ToList();
+            var list = cityes?.OrderBy(name => name.label).ToList();
             List<char> firstLettersInList = null;
             if (list != null)
             {
@@ -43,7 +43,24 @@ namespace Weather.Services
                     {
                         if (item.label.StartsWith(firstLettersInList[r]))
                         {
-                            regions.Add(item.label + " ");
+                            switch (item.type)
+                            {
+                                case "obl":
+                                    regions.Add(item.label + " область" + " ");
+                                    break;
+                                case "republic":
+                                    regions.Add("Республика " + item.label + " ");
+                                    break;
+                                case "aobl":
+                                    regions.Add(item.label + " АО" + " ");
+                                    break;
+                                case "kray":
+                                    regions.Add(item.label + " край" + " ");
+                                    break;
+                                default:
+                                    regions.Add(item.label + " ");
+                                    break;
+                            }
                         }
                     }
                     cityGroup.RegiosByGroupWithCharKey.Add(firstLettersInList[r], regions);
