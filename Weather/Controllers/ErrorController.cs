@@ -13,5 +13,13 @@ namespace Weather.Controllers
             var errorViewModel = new ErrorViewModel { StatusCode = statusCode, RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier };
             return View(errorViewModel);
         }
+
+        [Route("Error/{statusCode}")]
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error(string message)
+        {
+            var errorViewModel = new ErrorViewModel { Message = message, RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier };
+            return View(errorViewModel);
+        }
     }
 }

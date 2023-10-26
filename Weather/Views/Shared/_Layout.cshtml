@@ -12,8 +12,8 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Weather</a>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Weather</a>
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
@@ -22,16 +22,32 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Правила сервиса</a>
                         </li>
                         <li>
-                            <form asp-action="Search" method="get">
+                            <div class="row">
+                                <div class="col">
+                                    <form asp-action="Search" method="get">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="input-group">
+                                                    <input type="text" value="Введите наименование н.п." id="City" name="City" class="search form-control" onfocus="clearDefaultText()" aria-describedby="button" style="width:280px;" />
+                                                    <input type="submit" value="Найти" class="btn btn-outline-secondary" id="button" style="display:none;" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            @if (!ViewData.ModelState.IsValid)
+                            {
                                 <div class="row">
                                     <div class="col">
-                                        <div class="input-group">
-                                            <input type="text" value="Введите наименование н.п." id="City" name="City" class="search form-control" onfocus="clearDefaultText()" aria-describedby="button" style="width:280px;" />
-                                            <input type="submit" value="Найти" class="btn btn-outline-secondary" id="button" style="display:none;" />
+                                        <div class="row error">
+                                            <div class="col">
+                                                <div asp-validation-summary="All"></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            }
                         </li>
                     </ul>
                 </div>

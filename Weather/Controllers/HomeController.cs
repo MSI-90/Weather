@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Diagnostics;
+using System.Net.Sockets;
 using System.Reflection;
 using Weather.Models;
 using Weather.Models.Cityes;
@@ -28,6 +30,7 @@ namespace Weather.Controllers
         [Route("search")]
         public async Task<IActionResult> Search(CityToFind? cityName)
         {
+            
             if (!ModelState.IsValid || cityName == null)
             {
                 return View("Index");
@@ -40,7 +43,7 @@ namespace Weather.Controllers
                     model = await _connection.GetCitiesAsync(cityName);
                     if (!string.IsNullOrEmpty(_connection.Error))
                     {
-                        return Problem(_connection.Error, statusCode: 500); //?
+                        return new ErrorController().Error(_connection.Error);
                     }
                     else
                     {
@@ -53,9 +56,13 @@ namespace Weather.Controllers
                         }
                     }
                 }
-                catch (Exception)
+                catch (SocketException)
                 {
-                    throw;
+                    return new ErrorController().Error("Ответ от удалённого сервера занимает слишком много времени, попробуйте повторить запрос.");
+                }
+                catch (Exception ex)
+                {
+                    return new ErrorController().Error(ex.Message);
                 }
             }
         }
@@ -71,28 +78,33 @@ namespace Weather.Controllers
 
             try
             {
-                float latitude = Convert.ToSingle(lat);
-                float longitude = Convert.ToSingle(lon);
-                var model = await _connection.GetDataAsync(latitude, longitude);
-                if (model?.location != null)
+                if ((Single.TryParse(lat, out float latitude)) && (Single.TryParse(lon, out float longitude)))
                 {
-                    var viewModel = new WeatherVM()
+                    var model = await _connection.GetDataAsync(latitude, longitude);
+                    if (model?.location != null)
                     {
-                        Name = name,
-                        LocalDateAndTime = model.location.localtime,
-                        Region = model.location.region,
-                        Country = model.location.country,
-                        TempC = model.current.temp_c,
-                        ImageSrc = model.current.condition.icon
-                    };
-                    return View(viewModel);
+                        var viewModel = new WeatherVM()
+                        {
+                            Name = name,
+                            LocalDateAndTime = model.location.localtime,
+                            Region = model.location.region,
+                            Country = model.location.country,
+                            TempC = model.current.temp_c,
+                            ImageSrc = model.current.condition.icon
+                        };
+                        return View(viewModel);
+                    }
                 }
                 return View();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                return new ErrorController().Error(ex.Message);
             }
+        }
+        public ViewResult ViewCityesInRegion()
+        {
+            throw new Exception();
         }
     }
 }
