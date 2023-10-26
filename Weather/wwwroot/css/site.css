@@ -87,6 +87,11 @@ header {
     font-weight: bold;
 }
 
+.error ul{
+    margin: 0;
+    padding-left: 2px;
+}
+
 .error li{
     list-style-type: none;
 }
