@@ -1,0 +1,9 @@
+﻿@using Weather.ViewModels
+@model CityesInRegion;
+
+<h3>@ViewData["Region"]</h3>
+
+@foreach(var item in Model.City ?? new List<string>())
+{
+    <p>@item</p>
+}

@@ -3,10 +3,12 @@ using System.Reflection;
 using System.Linq;
 using Weather.Models.Cityes;
 using Weather.Services.Interfaces;
+using System.Collections.Generic;
+using Weather.ViewModels;
 
 namespace Weather.Services
 {
-    public class CityesParseService : ICitiesParseJsonFile
+    public class RegionParseService : ICitiesParseJsonFile
     {
         public async Task<IEnumerable<Root>> GetCityFromFileAsync()
         {
@@ -22,17 +24,19 @@ namespace Weather.Services
                 throw new Exception(); //ToDo решить этот момент лучше
             }
         }
-        public async Task<CityGroupModel> GetCityesGroupAsync(IEnumerable<Root> cityes)
+        public async Task<RegionGroupModel> GetCityesGroupAsync(IEnumerable<Root> cityes)
         {
             var list = cityes?.OrderBy(name => name.label).ToList();
             List<char> firstLettersInList = null;
             if (list != null)
             {
-                var cityGroup = new CityGroupModel();
+                var cityGroup = new RegionGroupModel();
                 HashSet<char> firstLetters = new HashSet<char>();
                 foreach (var item in list)
                 {
                     firstLetters.Add((item.label).First());
+                    var cityesList = item.localities.ToList();
+                    cityGroup.CityesInRegion.Add(item.label, cityesList.Select(c => c.label).ToList());
                 }
                 firstLettersInList = firstLetters.ToList();
 
@@ -70,8 +74,27 @@ namespace Weather.Services
             }
             else
             {
-                return new CityGroupModel();
+                return new RegionGroupModel();
             }
+        }
+        public async Task<CityesInRegion> GetCityesInRegionAsync(string region)
+        {
+            var dataList = GetCityFromFileAsync().Result;
+            var regWithKeys = GetCityesGroupAsync(dataList).Result;
+            var regions = regWithKeys.CityesInRegion;
+
+            var cityesFromRegion = new CityesInRegion();
+
+            foreach (var item in regions)
+            {
+                if (region.Contains(item.Key))
+                {
+                    cityesFromRegion.City = item.Value;
+                }
+            }
+
+            return cityesFromRegion;
+
         }
     }
 }

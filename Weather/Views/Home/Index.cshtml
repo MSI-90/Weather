@@ -20,6 +20,7 @@
             var cityList = fileParse.GetCityesGroupAsync(Model);
             var regionsByGroup = cityList.Result.RegiosByGroupWithCharKey;
             var regionsByGropWithNumberKeys = cityList.Result.RegionsByGropWithNumberKeys;
+            var cityes = cityList.Result.CityesInRegion;
 
             List<char> regionKeys = new List<char>(regionsByGroup.Keys);
 
@@ -33,10 +34,10 @@
                             <div class="region_first_letter">
                                 <strong>@regionKeys[j]</strong>
                             </div>
-                            @foreach (var v in item)
+                            @foreach (string region in item)
                             {
                                 <p class="region_link">
-                                    <a asp-action="ViewCityesInRegion">@v</a>
+                                    <a asp-action="CityesReg" asp-route-region="@region">@region</a>
                                 </p>
                             }
                         </div>
@@ -55,5 +56,4 @@
             </p>
         </div>
     }
-        
 </div>

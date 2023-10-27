@@ -22,7 +22,7 @@ namespace Weather.Controllers
         }
         public async Task<ViewResult> Index()
         {
-            IEnumerable<Root> model = await _parseFromJsonFile.GetCityFromFileAsync();
+            var model = GetCityFromFile().Result;
             return View(model);
         }
 
@@ -102,9 +102,17 @@ namespace Weather.Controllers
                 return new ErrorController().Error(ex.Message);
             }
         }
-        public ViewResult ViewCityesInRegion()
+        public async Task<ViewResult> CityesReg(string region)
         {
-            throw new Exception();
+            ViewData["Region"] = region;
+            var model = await _parseFromJsonFile.GetCityesInRegionAsync(region);
+
+            return View(model);
+        }
+        public async Task<IEnumerable<Root>> GetCityFromFile()
+        {
+            IEnumerable<Root> data = await _parseFromJsonFile.GetCityFromFileAsync();
+            return data;
         }
     }
 }
