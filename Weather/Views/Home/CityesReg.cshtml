@@ -1,9 +1,22 @@
 ﻿@using Weather.ViewModels
 @model CityesInRegion;
 
-<h3>@ViewData["Region"]</h3>
+<div class="container">
+    @if (Model.City.Any())
+    {
+        <h4>@ViewData["Region"]</h4>
 
-@foreach(var item in Model.City ?? new List<string>())
-{
-    <p>@item</p>
-}
+        @foreach (var item in Model.City ?? new List<string>())
+        {
+            <partial name="_CityesReg" model="item" />
+        }
+    }
+    else
+    {
+        <div class="notCityList">
+            <p>
+                Возникла непредвиденная ошибка, попробуйте обновить страницу <br /> или повторите запрос позднее.
+            </p>
+        </div>
+    }
+</div>

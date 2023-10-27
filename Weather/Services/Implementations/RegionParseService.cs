@@ -79,22 +79,27 @@ namespace Weather.Services
         }
         public async Task<CityesInRegion> GetCityesInRegionAsync(string region)
         {
-            var dataList = GetCityFromFileAsync().Result;
-            var regWithKeys = GetCityesGroupAsync(dataList).Result;
-            var regions = regWithKeys.CityesInRegion;
-
-            var cityesFromRegion = new CityesInRegion();
-
-            foreach (var item in regions)
+            if (!string.IsNullOrEmpty(region))
             {
-                if (region.Contains(item.Key))
+                var cityesFromRegion = new CityesInRegion();
+                try
                 {
-                    cityesFromRegion.City = item.Value;
+                    var dataList = await GetCityFromFileAsync();
+                    var regWithKeys = await GetCityesGroupAsync(dataList);
+                    var regions = regWithKeys.CityesInRegion;
+                    foreach (var item in regions)
+                    {
+                        if (region.Contains(item.Key))
+                        {
+                            cityesFromRegion.City = item.Value;
+                        }
+                    }
                 }
+                catch (Exception ex) { throw; }
+                return cityesFromRegion;
             }
-
-            return cityesFromRegion;
-
+            else 
+                return new CityesInRegion();
         }
     }
 }

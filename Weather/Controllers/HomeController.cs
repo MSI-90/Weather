@@ -102,12 +102,23 @@ namespace Weather.Controllers
                 return new ErrorController().Error(ex.Message);
             }
         }
-        public async Task<ViewResult> CityesReg(string region)
+        public async Task<IActionResult> CityesReg(string region)
         {
-            ViewData["Region"] = region;
-            var model = await _parseFromJsonFile.GetCityesInRegionAsync(region);
-
-            return View(model);
+            try
+            {
+                var model = await _parseFromJsonFile.GetCityesInRegionAsync(region);
+                if (model != null)
+                {
+                    ViewData["Region"] = region;
+                    return View(model);
+                }
+                return View();
+            }
+            catch (Exception ex)
+            {
+                return new ErrorController().Error(ex.Message);
+            }
+            
         }
         public async Task<IEnumerable<Root>> GetCityFromFile()
         {
