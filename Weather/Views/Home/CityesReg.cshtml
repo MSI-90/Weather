@@ -1,14 +1,45 @@
 ﻿@using Weather.ViewModels
 @model CityesInRegion;
 
+@{
+    int numberOfColumnsInRow = 4;
+    int count = Model.City.Count();
+}
+
 <div class="container">
     @if (Model.City.Any())
     {
         <h4>@ViewData["Region"]</h4>
 
-        @foreach (var item in Model.City ?? new List<string>())
+        for (int i = 0; i < count; i += numberOfColumnsInRow)
         {
-            <partial name="_CityesReg" model="item" />
+            <div class="row">
+                @if (count - i < numberOfColumnsInRow)
+                {
+                    <div class="col">
+                        @for (int j = i; j < count; j++)
+                        {
+                            var item = Model.City[j];
+                            <p>
+                                <a asp-action="" asp-route-city="">@item</a>
+                            </p>
+                        }
+                    </div>
+                }
+                else
+                {
+                    @for (int j = i; j < i + numberOfColumnsInRow && j < count; j++)
+                    {
+                        var item = Model.City[j];
+                        <div class="col">
+                            <p>
+                                <a asp-action="" asp-route-city="">@item</a>
+                            </p>
+                        </div>
+                    }
+                }
+            </div>
+            
         }
     }
     else

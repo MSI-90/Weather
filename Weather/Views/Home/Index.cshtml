@@ -5,6 +5,7 @@
 
 @{
     ViewData["Title"] = "Домашняя страница";
+    int numberOfColumnsInRow = 4;
 }
 
 <div class="container">
@@ -24,10 +25,10 @@
 
             List<char> regionKeys = new List<char>(regionsByGroup.Keys);
 
-            for (int i = 0; i < regionsByGropWithNumberKeys.Count(); i += 4)
+            for (int i = 0; i < regionsByGropWithNumberKeys.Count(); i += numberOfColumnsInRow)
             {
                 <div class="row">
-                    @for (int j = i; j < i + 4 && j < regionsByGropWithNumberKeys.Count; j++)
+                    @for (int j = i; j < i + numberOfColumnsInRow && j < regionsByGropWithNumberKeys.Count; j++)
                     {
                         var item = regionsByGropWithNumberKeys[j];
                         <div class="col">
