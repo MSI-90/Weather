@@ -143,3 +143,29 @@ header {
 .region_link a:hover {
     text-decoration: underline;
 }
+
+/*---404---*/
+.body_404{
+    display:block;
+    position:relative;
+    text-align:center;
+}
+
+.body_404 .NotFound {
+    font-size: 15vw;
+    font-weight: bold;
+    color: maroon;
+}
+
+.body_404 .NotFound h1{
+    font-size: 7vw;
+}
+
+.body_404 .NotFound p {
+    font-size: 5vw;
+}
+
+.body_404 form .my-btn {
+    font-size: 1vw;
+    padding: 6px 15px;
+}

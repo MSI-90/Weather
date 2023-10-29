@@ -3,4 +3,16 @@
     ViewData["404"] = "404";
 }
 
-<h1>404</h1>
+<div class="container">
+    <div class="body_404">
+        <p class="NotFound">404</p>
+        <h1>Ошибка!</h1>
+        <p>
+            Страница не найдена. Видимо она не существует, <br />
+            либо указана неверная ссылка.
+        </p>
+        <form name="backToIndex" method="get" asp-controller="Home" asp-action="Index">
+            <input type="submit" value="Вернуться на главную" class="btn btn-primary my-btn" />
+        </form>
+    </div>
+</div>
