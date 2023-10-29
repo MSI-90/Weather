@@ -6,7 +6,7 @@ namespace Weather.Controllers
     
     public class StatusCodeController : Controller
     {
-        [Route("/Error/{statusCode}")]
+        [Route("/status/{statusCode}")]
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public ViewResult Error(int statusCode)
         {
