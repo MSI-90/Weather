@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Diagnostics;
 using System.Net.Sockets;
@@ -128,6 +129,16 @@ namespace Weather.Controllers
         {
             IEnumerable<Root> data = await _parseFromJsonFile.GetCityFromFileAsync();
             return data;
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            var exceptionData = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
+            string path = exceptionData?.Path ?? "";
+            string errorMessage = exceptionData?.Error?.ToString();
+
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

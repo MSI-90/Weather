@@ -16,8 +16,17 @@ namespace Weather
 
             var app = builder.Build();
 
+            //if (!app.Environment.IsDevelopment())
+            //{
+            //    app.UseExceptionHandler("/Home/Error");
+            //    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+            //    app.UseHsts();
+            //}
+
+            app.UseExceptionHandler("/Error");
             //app.UseExceptionHandler("/Error/{0}");
-            app.UseStatusCodePagesWithReExecute("/Error/{0}");
+            //app.UseStatusCodePagesWithReExecute("/Error/{0}");
+            app.UseStatusCodePagesWithRedirects("/Error/{0}");
             app.UseRouting();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -25,11 +34,6 @@ namespace Weather
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-
-            app.MapControllerRoute(
-                name: "Error",
-                pattern: "Error/Message/{message}",
-                defaults: new { controller = "Error", action = "Error" });
 
             app.Run();
         }
