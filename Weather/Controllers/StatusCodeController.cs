@@ -8,7 +8,7 @@ namespace Weather.Controllers
     {
         [Route("/Error/{statusCode}")]
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error(int statusCode)
+        public ViewResult Error(int statusCode)
         {
             if (statusCode == 404)
             {

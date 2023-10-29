@@ -5,13 +5,7 @@
     ViewData["Title"] = "Что-то пошло не так";
 }
 
-<h1>Что-то пошло не так. @* @Model.StatusCode *@ </h1>
-
-@if (Model?.StatusCode == 404)
-{
-    <p>Страница не найдена!</p>
-}
-
+<h1>Что-то пошло не так.</h1>
 
 <a asp-controller="Home" asp-action="Index"> На главную </a>
 
