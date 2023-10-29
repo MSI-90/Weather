@@ -41,14 +41,9 @@ namespace Weather.Services
                                 return result ?? Enumerable.Empty<NewItem>();
                             }
                         }
-                        
                     }
-                    catch (Exception ex)
-                    {
-                        Error = ex.Message;
-                        throw;//ToDo решить этот момент лучше
-                    }
-                    return new NewItem[default];
+                    catch {throw;}
+                    return new List<NewItem>();
                 }
             }
         }
@@ -76,15 +71,10 @@ namespace Weather.Services
                         {
                             var obj = await response.Content.ReadAsStringAsync();
                             var result = JsonConvert.DeserializeObject<WeatherModel>(obj);
-
-                            return result;
+                            return result ?? new WeatherModel();
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        Error = ex.Message;
-                        throw;//ToDo решить этот момент лучше
-                    }
+                    catch {throw;}
                     return new WeatherModel();
                 }
             }
@@ -109,14 +99,10 @@ namespace Weather.Services
                             var obj = await response.Content.ReadAsStringAsync();
                             var result = JsonConvert.DeserializeObject<WeatherOnWeek>(obj);
 
-                            return result;
+                            return new WeatherOnWeek();
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        Error = ex.Message;
-                        throw;//ToDo решить этот момент лучше
-                    }
+                    catch {throw;}
                     return new WeatherOnWeek();
                 }
             }

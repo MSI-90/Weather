@@ -16,17 +16,20 @@ namespace Weather
 
             var app = builder.Build();
 
-
-            //app.UseExceptionHandler("/Error");
-            //app.UseStatusCodePages();
+            //app.UseExceptionHandler("/Error/{0}");
+            app.UseStatusCodePagesWithReExecute("/Error/{0}");
             app.UseRouting();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseStatusCodePagesWithReExecute("/Error/{0}");
-            
+
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
+            app.MapControllerRoute(
+                name: "Error",
+                pattern: "Error/Message/{message}",
+                defaults: new { controller = "Error", action = "Error" });
 
             app.Run();
         }

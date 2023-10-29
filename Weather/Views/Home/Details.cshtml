@@ -42,36 +42,37 @@
     }
 }
 
-@if (Model != null)
-{
-    string name = Model.Name;
-    GetLetter(ref name);
-    <div class="container">
-        <p>
-            <h4 class="header_details">Погода в @name</h4>
-        </p>
-        <div class="weather-compressed">
-            <div class="weather-compressed-current">
+<div class="container">
+    @if (Model != null)
+    {
+        string name = Model.Name;
+        GetLetter(ref name);
+        <div class="container">
+            <p>
+                <h4 class="header_details">Погода в @name</h4>
+            </p>
+            <div class="weather-compressed">
+                <div class="weather-compressed-current">
+                    <p>
+                        <h5>Сейчас @Model.LocalTime</h5>
+                    </p>
+                </div>
+                <p>@Model.Region</p>
+                <p>@Model.Country</p>
+                <p>@Model.TempC °C</p>
                 <p>
-                    <h5>Сейчас @Model.LocalTime</h5>
+                    <img src="@Model.ImageSrc" alt="иконка отображающая состояние погоды" />
                 </p>
             </div>
-            <p>@Model.Region</p>
-            <p>@Model.Country</p>
-            <p>@Model.TempC °C</p>
-            <p>
-                <img src="@Model.ImageSrc" alt="иконка отображающая состояние погоды" />
-            </p>
         </div>
+    }
+    else
+    {
+        <div class="notCityList">
+            <div asp-validation-summary="All"></div>
+        </div>
+    }
+    <div>
+        <a asp-action="Index">На главную</a>
     </div>
-}
-else
-{
-    <div class="container error">
-        <div asp-validation-summary="ModelOnly"></div>
-    </div>
-}
-
-<div>
-    <a asp-action="Index">На главную</a>
 </div>

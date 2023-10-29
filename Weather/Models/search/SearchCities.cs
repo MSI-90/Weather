@@ -1,4 +1,6 @@
-﻿namespace Weather.Models.search
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Weather.Models.search
 {
 
     public class SearchCities

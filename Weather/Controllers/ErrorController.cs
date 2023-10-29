@@ -14,9 +14,9 @@ namespace Weather.Controllers
             return View(errorViewModel);
         }
 
-        [Route("Error/{statusCode}")]
+        [Route("Error/Message/{message}")]
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error(string message)
+        public ViewResult Error(string message)
         {
             var errorViewModel = new ErrorViewModel { Message = message, RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier };
             return View(errorViewModel);

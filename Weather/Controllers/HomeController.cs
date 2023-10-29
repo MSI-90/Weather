@@ -22,13 +22,21 @@ namespace Weather.Controllers
         }
         public async Task<ViewResult> Index()
         {
-            var model = GetCityFromFile().Result;
-            return View(model);
+            try
+            {
+                var model = GetCityFromFile().Result;
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return View();
+            }
         }
 
         [HttpGet]
         [Route("search")]
-        public async Task<IActionResult> Search(CityToFind? cityName)
+        public async Task<IActionResult> Search(CityToFind cityName)
         {
             
             if (!ModelState.IsValid || cityName == null)
@@ -39,30 +47,21 @@ namespace Weather.Controllers
             {
                 try
                 {
-                    IEnumerable<NewItem> model;
+                    IEnumerable<NewItem> model = null;
                     model = await _connection.GetCitiesAsync(cityName);
-                    if (!string.IsNullOrEmpty(_connection.Error))
-                    {
-                        return new ErrorController().Error(_connection.Error);
-                    }
+
+                    if (model.Any())
+                        return View(model);
                     else
                     {
-                        if (model.Any())
-                            return View(model);
-                        else
-                        {
-                            ModelState.AddModelError(string.Empty, "Нет данных для отображения");
-                            return View("Index");
-                        }
+                        ModelState.AddModelError(string.Empty, "Нет данных для отображения");
+                        return View();
                     }
                 }
-                catch (SocketException)
+                catch
                 {
-                    return new ErrorController().Error("Ответ от удалённого сервера занимает слишком много времени, попробуйте повторить запрос.");
-                }
-                catch (Exception ex)
-                {
-                    return new ErrorController().Error(ex.Message);
+                    ModelState.AddModelError(string.Empty, "Возникла ошибка, повторите попытку позднее");
+                    return View();
                 }
             }
         }
@@ -72,6 +71,9 @@ namespace Weather.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ModelState.Remove("name");
+                ModelState.Remove("lat");
+                ModelState.Remove("lon");
                 ModelState.AddModelError(string.Empty, "Местоположение не найдено");
                 return View();
             }
@@ -97,9 +99,10 @@ namespace Weather.Controllers
                 }
                 return View();
             }
-            catch (Exception ex)
+            catch
             {
-                return new ErrorController().Error(ex.Message);
+                ModelState.AddModelError(string.Empty, "Возникла ошибка, повторите попытку позднее");
+                return View();
             }
         }
         public async Task<IActionResult> CityesReg(string region)
@@ -114,9 +117,10 @@ namespace Weather.Controllers
                 }
                 return View();
             }
-            catch (Exception ex)
+            catch
             {
-                return new ErrorController().Error(ex.Message);
+                ModelState.AddModelError(string.Empty, "Возникла ошибка, повторите попытку позднее");
+                return View();
             }
             
         }

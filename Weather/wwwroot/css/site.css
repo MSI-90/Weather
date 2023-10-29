@@ -114,9 +114,15 @@ header {
     font-size:15pt;
     text-align:center;
 }
-.cityes_count {
-    font-family: 'Times New Roman', Times, serif;
+
+/*Details--, Search*/
+.notCityList ul li{
+    list-style-type: none;
 }
+
+    .cityes_count {
+        font-family: 'Times New Roman', Times, serif;
+    }
 
 .region_first_letter {
     background: url("../images/BgLetter.png") repeat-x;

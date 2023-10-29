@@ -16,12 +16,13 @@ namespace Weather.Services
             {
                 string filePath = Path.Combine(Environment.CurrentDirectory, "Res", "towns-russia.json");
                 string json = await File.ReadAllTextAsync(filePath);
-                var cityList = JsonConvert.DeserializeObject<IEnumerable<Root>>(json);
+                var cityList = JsonConvert.DeserializeObject<IEnumerable<Root>>(json) ?? new List<Root>();
                 return cityList;
+
             }
-            catch (Exception fileExcepton)
+            catch (Exception ex)
             {
-                throw new Exception(); //ToDo решить этот момент лучше
+                throw new Exception("Данные недоступны.", ex);
             }
         }
         public async Task<RegionGroupModel> GetCityesGroupAsync(IEnumerable<Root> cityes)
@@ -95,7 +96,7 @@ namespace Weather.Services
                         }
                     }
                 }
-                catch (Exception ex) { throw; }
+                catch { throw; }
                 return cityesFromRegion;
             }
             else 

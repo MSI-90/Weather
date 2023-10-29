@@ -4,9 +4,9 @@
     ViewData["Title"] = "Результаты поиска";
 }
 
-@if (Model.Any())
-{
-    <div class="container">
+<div class="container">
+    @if (Model != null && Model.Any())
+    {
         <div class="row search_listHeader">
             <div class="col">Населенный пункт</div>
             <div class="col">Страна</div>
@@ -16,5 +16,11 @@
         {
             <partial name="_CityResults" model="item" />
         }
-    </div>
-}
+    }
+    else
+    {
+        <div class="notCityList">
+            <div asp-validation-summary="All"></div>
+        </div>
+    }
+</div>
