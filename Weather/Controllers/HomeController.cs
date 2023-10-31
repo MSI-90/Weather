@@ -1,11 +1,5 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using System.Net.Sockets;
-using System.Reflection;
-using Weather.Models;
-using Weather.Models.Cityes;
 using Weather.Models.search;
 using Weather.Services.Interfaces;
 using Weather.ViewModels;
@@ -25,7 +19,7 @@ namespace Weather.Controllers
         {
             try
             {
-                var model = GetDataForIndex().Result;
+                var model = await GetDataForIndex();
                 return View(model);
             }
             catch (Exception ex)
@@ -48,7 +42,7 @@ namespace Weather.Controllers
             {
                 try
                 {
-                    IEnumerable<NewItem> model = null;
+                    IEnumerable<NewItem> model = new List<NewItem>();
                     model = await _connection.GetCitiesAsync(cityName);
 
                     if (model.Any())
@@ -136,11 +130,12 @@ namespace Weather.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
+            #region
             //for logging
             //var exceptionData = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
             //string path = exceptionData?.Path ?? "";
             //string errorMessage = exceptionData?.Error?.ToString();
-
+            #endregion
             return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }

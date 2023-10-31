@@ -22,13 +22,13 @@ namespace Weather.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Данные недоступны.", ex);
+                throw new Exception("Данные недоступны для отображения.", ex);
             }
         }
         public async Task<RegionGroupModel> GetCityesGroupAsync(IEnumerable<Root> cityes)
         {
             var list = cityes?.OrderBy(name => name.label).ToList();
-            List<char> firstLettersInList = null;
+            List<char> firstLettersInList = new List<char>();
             if (list != null)
             {
                 var cityGroup = new RegionGroupModel();

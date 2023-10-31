@@ -20,8 +20,8 @@
                         @for (int j = i; j < count; j++)
                         {
                             var item = Model.City[j];
-                            <p>
-                                <a asp-action="" asp-route-city="">@item</a>
+                            <p class="city_link">
+                                <a asp-action="#" asp-route-city="#">@item</a>
                             </p>
                         }
                     </div>

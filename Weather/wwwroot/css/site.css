@@ -120,19 +120,25 @@ header {
     list-style-type: none;
 }
 
-    .cityes_count {
-        font-family: 'Times New Roman', Times, serif;
-    }
+.cityes_count {
+    font-family: 'Times New Roman', Times, serif;
+}
 
+/*Index*/
 .region_first_letter {
     background: url("../images/BgLetter.png") repeat-x;
     color: white;
+    margin-top: 0.05rem;
     font-family: helvetica, arial, verdana, sans-serif;
     font-size: 13px;
     font-weight: bold;
     text-align: center;
     width: 25px;
     height: 25px;
+}
+
+.region_link {
+    margin-bottom: 0.3rem;
 }
 
 .region_link a {
@@ -169,3 +175,10 @@ header {
     font-size: 1vw;
     padding: 6px 15px;
 }
+
+/*CityesInRegion*/
+.city_link a {
+    text-decoration: none;
+    color: black;
+}
+
