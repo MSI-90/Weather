@@ -25,7 +25,7 @@ namespace Weather.Controllers
         {
             try
             {
-                var model = GetCityFromFile().Result;
+                var model = GetDataForIndex().Result;
                 return View(model);
             }
             catch (Exception ex)
@@ -125,18 +125,21 @@ namespace Weather.Controllers
             }
             
         }
-        public async Task<IEnumerable<Root>> GetCityFromFile()
+        public async Task<CityesByRegionsModel> GetDataForIndex()
         {
-            IEnumerable<Root> data = await _parseFromJsonFile.GetCityFromFileAsync();
+            var data = new CityesByRegionsModel();
+            var cityesFromJson = data.CityesFromJson = await _parseFromJsonFile.GetCityFromFileAsync();
+            data.RegionGroup = await _parseFromJsonFile.GetCityesGroupAsync(cityesFromJson);
             return data;
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            var exceptionData = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
-            string path = exceptionData?.Path ?? "";
-            string errorMessage = exceptionData?.Error?.ToString();
+            //for logging
+            //var exceptionData = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
+            //string path = exceptionData?.Path ?? "";
+            //string errorMessage = exceptionData?.Error?.ToString();
 
             return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }

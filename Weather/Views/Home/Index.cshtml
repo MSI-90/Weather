@@ -1,7 +1,6 @@
-﻿@using Weather.Models.Cityes;
-@using Weather.Services.Interfaces;
-@model IEnumerable<Root>
-@inject ICitiesParseJsonFile fileParse
+﻿@using Weather.Services.Interfaces;
+@using Weather.ViewModels;
+@model CityesByRegionsModel
 
 @{
     ViewData["Title"] = "Домашняя страница";
@@ -15,13 +14,13 @@
         {
             <div class="cityes_count">
                 <p>
-                    <h4>Погода в @Model.Count() регионах страны</h4>
+                    <h4>Погода в @Model.CityesFromJson.Count() регионах страны</h4>
                 </p>
             </div>
-            var cityList = fileParse.GetCityesGroupAsync(Model);
-            var regionsByGroup = cityList.Result.RegiosByGroupWithCharKey;
-            var regionsByGropWithNumberKeys = cityList.Result.RegionsByGropWithNumberKeys;
-            var cityes = cityList.Result.CityesInRegion;
+            var cityList = Model.CityesFromJson;
+            var regionsByGroup = Model.RegionGroup.RegiosByGroupWithCharKey;
+            var regionsByGropWithNumberKeys = Model.RegionGroup.RegionsByGropWithNumberKeys;
+            var cityes = Model.RegionGroup.CityesInRegion;
 
             List<char> regionKeys = new List<char>(regionsByGroup.Keys);
 
@@ -52,10 +51,6 @@
     {
         <div class="notCityList">
             <div asp-validation-summary="All"></div>
-            @* <p>
-                Отображение информации временно недоступно,<br />
-                повторите попытку позднее.
-            </p> *@
         </div>
     }  
 </div>
