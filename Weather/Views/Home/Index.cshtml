@@ -5,6 +5,8 @@
 @{
     ViewData["Title"] = "Домашняя страница";
     int numberOfColumnsInRow = 4;
+    string errorMessage = string.Empty;
+    bool isException = false;
 }
 
 <div class="container">
@@ -45,12 +47,23 @@
                 </div>
             }
         }
-        catch (Exception ex) { var erMessage = ex.Message; }
+        catch (Exception ex) 
+        {
+            isException = true;
+            throw new Exception(errorMessage, ex);
+        }
     }
     else
     {
         <div class="notCityList">
             <div asp-validation-summary="All"></div>
+            @if (isException)
+            {
+                {
+                    errorMessage = "Возникла непредвиденная ошибка!";
+                }
+                <p>@errorMessage</p>
+            }
         </div>
     }  
 </div>
