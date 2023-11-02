@@ -78,16 +78,16 @@ namespace Weather.Controllers
                 if ((Single.TryParse(lat, out float latitude)) && (Single.TryParse(lon, out float longitude)))
                 {
                     var model = await _connection.GetDataAsync(latitude, longitude);
-                    if (model?.location != null)
+                    if (model?.Location != null)
                     {
                         var viewModel = new WeatherVM()
                         {
                             Name = name,
-                            LocalDateAndTime = model.location.localtime,
-                            Region = model.location.region,
-                            Country = model.location.country,
-                            TempC = model.current.temp_c,
-                            ImageSrc = model.current.condition.icon
+                            LocalDateAndTime = model.Location.Localtime,
+                            Region = model.Location.Region,
+                            Country = model.Location.Country,
+                            TempC = model.Current.Temp_c,
+                            ImageSrc = model.Current.Condition.Icon
                         };
                         return View(viewModel);
                     }

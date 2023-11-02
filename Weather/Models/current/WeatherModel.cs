@@ -2,54 +2,54 @@
 {
     public class WeatherModel
     {
-        public Location location { get; set; }
-        public Current current { get; set; }
+        public Location Location { get; set; }
+        public Current Current { get; set; }
     }
 
     public class Location
     {
-        public string name { get; set; }
-        public string region { get; set; }
-        public string country { get; set; }
-        public float lat { get; set; }
-        public float lon { get; set; }
-        public string tz_id { get; set; }
-        public int localtime_epoch { get; set; }
-        public string localtime { get; set; }
+        public string Name { get; set; }
+        public string Region { get; set; }
+        public string Country { get; set; }
+        public float Lat { get; set; }
+        public float Lon { get; set; }
+        public string Tz_id { get; set; }
+        public int Localtime_epoch { get; set; }
+        public string Localtime { get; set; }
     }
 
     public class Current
     {
-        public int last_updated_epoch { get; set; }
-        public string last_updated { get; set; }
-        public float temp_c { get; set; }
-        public float temp_f { get; set; }
-        public int is_day { get; set; }
-        public Condition condition { get; set; }
-        public float wind_mph { get; set; }
-        public float wind_kph { get; set; }
-        public int wind_degree { get; set; }
-        public string wind_dir { get; set; }
-        public float pressure_mb { get; set; }
-        public float pressure_in { get; set; }
-        public float precip_mm { get; set; }
-        public float precip_in { get; set; }
-        public int humidity { get; set; }
-        public int cloud { get; set; }
-        public float feelslike_c { get; set; }
-        public float feelslike_f { get; set; }
-        public float vis_km { get; set; }
-        public float vis_miles { get; set; }
-        public float uv { get; set; }
-        public float gust_mph { get; set; }
-        public float gust_kph { get; set; }
+        public int Last_updated_epoch { get; set; }
+        public string Last_updated { get; set; }
+        public float Temp_c { get; set; }
+        public float Temp_f { get; set; }
+        public int Is_day { get; set; }
+        public Condition Condition { get; set; }
+        public float Wind_mph { get; set; }
+        public float Wind_kph { get; set; }
+        public int Wind_degree { get; set; }
+        public string Wind_dir { get; set; }
+        public float Pressure_mb { get; set; }
+        public float Pressure_in { get; set; }
+        public float Precip_mm { get; set; }
+        public float Precip_in { get; set; }
+        public int Humidity { get; set; }
+        public int Cloud { get; set; }
+        public float Feelslike_c { get; set; }
+        public float Feelslike_f { get; set; }
+        public float Vis_km { get; set; }
+        public float Vis_miles { get; set; }
+        public float Uv { get; set; }
+        public float Gust_mph { get; set; }
+        public float Gust_kph { get; set; }
     }
 
     public class Condition
     {
-        public string text { get; set; }
-        public string icon { get; set; }
-        public int code { get; set; }
+        public string Text { get; set; }
+        public string Icon { get; set; }
+        public int Code { get; set; }
     }
 
 }

@@ -1,9 +1,6 @@
 ﻿using Newtonsoft.Json;
-using System.Reflection;
-using System.Linq;
 using Weather.Models.Cityes;
 using Weather.Services.Interfaces;
-using System.Collections.Generic;
 using Weather.ViewModels;
 
 namespace Weather.Services
@@ -18,7 +15,6 @@ namespace Weather.Services
                 string json = await File.ReadAllTextAsync(filePath);
                 var cityList = JsonConvert.DeserializeObject<IEnumerable<Root>>(json) ?? new List<Root>();
                 return cityList;
-
             }
             catch (Exception ex)
             {
@@ -27,7 +23,7 @@ namespace Weather.Services
         }
         public async Task<RegionGroupModel> GetCityesGroupAsync(IEnumerable<Root> cityes)
         {
-            var list = cityes?.OrderBy(name => name.label).ToList();
+            var list = cityes?.OrderBy(name => name.Label).ToList();
             List<char> firstLettersInList = new List<char>();
             if (list != null)
             {
@@ -35,9 +31,9 @@ namespace Weather.Services
                 HashSet<char> firstLetters = new HashSet<char>();
                 foreach (var item in list)
                 {
-                    firstLetters.Add((item.label).First());
-                    var cityesList = item.localities.ToList();
-                    cityGroup.CityesInRegion.Add(item.label, cityesList.Select(c => c.label).ToList());
+                    firstLetters.Add((item.Label).First());
+                    var cityesList = item.Localities.ToList();
+                    cityGroup.CityesInRegion.Add(item.Label, cityesList.Select(c => c.Label).ToList());
                 }
                 firstLettersInList = firstLetters.ToList();
 
@@ -46,24 +42,24 @@ namespace Weather.Services
                     var regions = new List<string>();
                     foreach (var item in list)
                     {
-                        if (item.label.StartsWith(firstLettersInList[r]))
+                        if (item.Label.StartsWith(firstLettersInList[r]))
                         {
-                            switch (item.type)
+                            switch (item.Type)
                             {
                                 case "obl":
-                                    regions.Add(item.label + " область" + " ");
+                                    regions.Add(item.Label + " область" + " ");
                                     break;
                                 case "republic":
-                                    regions.Add("Республика " + item.label + " ");
+                                    regions.Add("Республика " + item.Label + " ");
                                     break;
                                 case "aobl":
-                                    regions.Add(item.label + " АО" + " ");
+                                    regions.Add(item.Label + " АО" + " ");
                                     break;
                                 case "kray":
-                                    regions.Add(item.label + " край" + " ");
+                                    regions.Add(item.Label + " край" + " ");
                                     break;
                                 default:
-                                    regions.Add(item.label + " ");
+                                    regions.Add(item.Label + " ");
                                     break;
                             }
                         }

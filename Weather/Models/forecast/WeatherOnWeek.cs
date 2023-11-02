@@ -1,158 +1,146 @@
 ﻿namespace Weather.Models.OnWeek
 {
-
-    public class WeatherOnWeek
+    // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
+    public class Astro
     {
-        public Location location { get; set; }
-        public Current current { get; set; }
-        public Forecast forecast { get; set; }
-    }
-
-    public class Location
-    {
-        public string name { get; set; }
-        public string region { get; set; }
-        public string country { get; set; }
-        public float lat { get; set; }
-        public float lon { get; set; }
-        public string tz_id { get; set; }
-        public int localtime_epoch { get; set; }
-        public string localtime { get; set; }
-    }
-
-    public class Current
-    {
-        public int last_updated_epoch { get; set; }
-        public string last_updated { get; set; }
-        public float temp_c { get; set; }
-        public float temp_f { get; set; }
-        public int is_day { get; set; }
-        public Condition condition { get; set; }
-        public float wind_mph { get; set; }
-        public float wind_kph { get; set; }
-        public int wind_degree { get; set; }
-        public string wind_dir { get; set; }
-        public float pressure_mb { get; set; }
-        public float pressure_in { get; set; }
-        public float precip_mm { get; set; }
-        public float precip_in { get; set; }
-        public int humidity { get; set; }
-        public int cloud { get; set; }
-        public float feelslike_c { get; set; }
-        public float feelslike_f { get; set; }
-        public float vis_km { get; set; }
-        public float vis_miles { get; set; }
-        public float uv { get; set; }
-        public float gust_mph { get; set; }
-        public float gust_kph { get; set; }
+        public string Sunrise { get; set; }
+        public string Sunset { get; set; }
+        public string Moonrise { get; set; }
+        public string Moonset { get; set; }
+        public string MoonPhase { get; set; }
+        public int MoonIllumination { get; set; }
+        public int IsMoonUp { get; set; }
+        public int IsSunUp { get; set; }
     }
 
     public class Condition
     {
-        public string text { get; set; }
-        public string icon { get; set; }
-        public int code { get; set; }
+        public string Text { get; set; }
+        public string Icon { get; set; }
+        public int Code { get; set; }
     }
 
-    public class Forecast
+    public class Current
     {
-        public Forecastday[] forecastday { get; set; }
-    }
-
-    public class Forecastday
-    {
-        public string date { get; set; }
-        public int date_epoch { get; set; }
-        public Day day { get; set; }
-        public Astro astro { get; set; }
-        public Hour[] hour { get; set; }
+        public int LastUpdatedEpoch { get; set; }
+        public string LastUpdated { get; set; }
+        public double TempC { get; set; }
+        public double TempF { get; set; }
+        public int IsDay { get; set; }
+        public Condition Condition { get; set; }
+        public double WindMph { get; set; }
+        public double WindKph { get; set; }
+        public int WindDegree { get; set; }
+        public string WindDir { get; set; }
+        public double PressureMb { get; set; }
+        public double PressureIn { get; set; }
+        public double PrecipMm { get; set; }
+        public double PrecipIn { get; set; }
+        public int Humidity { get; set; }
+        public int Cloud { get; set; }
+        public double FeelslikeC { get; set; }
+        public double FeelslikeF { get; set; }
+        public double VisKm { get; set; }
+        public double VisMiles { get; set; }
+        public double Uv { get; set; }
+        public double GustMph { get; set; }
+        public double GustKph { get; set; }
     }
 
     public class Day
     {
-        public float maxtemp_c { get; set; }
-        public float maxtemp_f { get; set; }
-        public float mintemp_c { get; set; }
-        public float mintemp_f { get; set; }
-        public float avgtemp_c { get; set; }
-        public float avgtemp_f { get; set; }
-        public float maxwind_mph { get; set; }
-        public float maxwind_kph { get; set; }
-        public float totalprecip_mm { get; set; }
-        public float totalprecip_in { get; set; }
-        public float totalsnow_cm { get; set; }
-        public float avgvis_km { get; set; }
-        public float avgvis_miles { get; set; }
-        public float avghumidity { get; set; }
-        public int daily_will_it_rain { get; set; }
-        public int daily_chance_of_rain { get; set; }
-        public int daily_will_it_snow { get; set; }
-        public int daily_chance_of_snow { get; set; }
-        public Condition1 condition { get; set; }
-        public float uv { get; set; }
+        public double MaxtempC { get; set; }
+        public double MaxtempF { get; set; }
+        public double MintempC { get; set; }
+        public double MintempF { get; set; }
+        public double AvgtempC { get; set; }
+        public double AvgtempF { get; set; }
+        public double MaxwindMph { get; set; }
+        public double MaxwindKph { get; set; }
+        public double TotalprecipMm { get; set; }
+        public double TotalprecipIn { get; set; }
+        public double TotalsnowCm { get; set; }
+        public double AvgvisKm { get; set; }
+        public double AvgvisMiles { get; set; }
+        public double Avghumidity { get; set; }
+        public int DailyWillItRain { get; set; }
+        public int DailyChanceOfRain { get; set; }
+        public int DailyWillItSnow { get; set; }
+        public int DailyChanceOfSnow { get; set; }
+        public Condition Condition { get; set; }
+        public double Uv { get; set; }
     }
 
-    public class Condition1
+    public class Forecast
     {
-        public string text { get; set; }
-        public string icon { get; set; }
-        public int code { get; set; }
+        public List<Forecastday> Forecastday { get; set; }
     }
 
-    public class Astro
+    public class Forecastday
     {
-        public string sunrise { get; set; }
-        public string sunset { get; set; }
-        public string moonrise { get; set; }
-        public string moonset { get; set; }
-        public string moon_phase { get; set; }
-        public string moon_illumination { get; set; }
-        public int is_moon_up { get; set; }
-        public int is_sun_up { get; set; }
+        public string Date { get; set; }
+        public int DateEpoch { get; set; }
+        public Day Day { get; set; }
+        public Astro Astro { get; set; }
+        public List<Hour> Hour { get; set; }
     }
 
     public class Hour
     {
-        public int time_epoch { get; set; }
-        public string time { get; set; }
-        public float temp_c { get; set; }
-        public float temp_f { get; set; }
-        public int is_day { get; set; }
-        public Condition2 condition { get; set; }
-        public float wind_mph { get; set; }
-        public float wind_kph { get; set; }
-        public int wind_degree { get; set; }
-        public string wind_dir { get; set; }
-        public float pressure_mb { get; set; }
-        public float pressure_in { get; set; }
-        public float precip_mm { get; set; }
-        public float precip_in { get; set; }
-        public int humidity { get; set; }
-        public int cloud { get; set; }
-        public float feelslike_c { get; set; }
-        public float feelslike_f { get; set; }
-        public float windchill_c { get; set; }
-        public float windchill_f { get; set; }
-        public float heatindex_c { get; set; }
-        public float heatindex_f { get; set; }
-        public float dewpoint_c { get; set; }
-        public float dewpoint_f { get; set; }
-        public int will_it_rain { get; set; }
-        public int chance_of_rain { get; set; }
-        public int will_it_snow { get; set; }
-        public int chance_of_snow { get; set; }
-        public float vis_km { get; set; }
-        public float vis_miles { get; set; }
-        public float gust_mph { get; set; }
-        public float gust_kph { get; set; }
-        public float uv { get; set; }
+        public int TimeEpoch { get; set; }
+        public string Time { get; set; }
+        public double TempC { get; set; }
+        public double TempF { get; set; }
+        public int IsDay { get; set; }
+        public Condition Condition { get; set; }
+        public double WindMph { get; set; }
+        public double WindKph { get; set; }
+        public int WindDegree { get; set; }
+        public string WindDir { get; set; }
+        public double PressureMb { get; set; }
+        public double PressureIn { get; set; }
+        public double PrecipMm { get; set; }
+        public double PrecipIn { get; set; }
+        public int Humidity { get; set; }
+        public int Cloud { get; set; }
+        public double FeelslikeC { get; set; }
+        public double FeelslikeF { get; set; }
+        public double WindchillC { get; set; }
+        public double WindchillF { get; set; }
+        public double HeatindexC { get; set; }
+        public double HeatindexF { get; set; }
+        public double DewpointC { get; set; }
+        public double DewpointF { get; set; }
+        public int WillItRain { get; set; }
+        public int ChanceOfRain { get; set; }
+        public int WillItSnow { get; set; }
+        public int ChanceOfSnow { get; set; }
+        public double VisKm { get; set; }
+        public double VisMiles { get; set; }
+        public double GustMph { get; set; }
+        public double GustKph { get; set; }
+        public double Uv { get; set; }
     }
 
-    public class Condition2
+    public class Location
     {
-        public string text { get; set; }
-        public string icon { get; set; }
-        public int code { get; set; }
+        public string Name { get; set; }
+        public string Region { get; set; }
+        public string Country { get; set; }
+        public double Lat { get; set; }
+        public double Lon { get; set; }
+        public string TzId { get; set; }
+        public int LocaltimeEpoch { get; set; }
+        public string Localtime { get; set; }
     }
+
+    public class WeatherOnWeek
+    {
+        public Location Location { get; set; }
+        public Current Current { get; set; }
+        public Forecast Forecast { get; set; }
+    }
+
+
 
 }

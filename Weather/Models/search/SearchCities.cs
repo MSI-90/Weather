@@ -10,13 +10,13 @@ namespace Weather.Models.search
 
     public class NewItem
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string region { get; set; }
-        public string country { get; set; }
-        public float lat { get; set; }
-        public float lon { get; set; }
-        public string url { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Region { get; set; } = string.Empty;
+        public string Country { get; set; } = string.Empty;
+        public float Lat { get; set; }
+        public float Lon { get; set; }
+        public string Url { get; set; } = string.Empty;
     }
 
 }
