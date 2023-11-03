@@ -12,7 +12,6 @@ namespace Weather.Services
     public class WeatherService : IWeatherConnection
     {
         private readonly IConfiguration _config;
-        public string Error { get; set; } = string.Empty;
         public WeatherService(IConfiguration config)
         {
             _config = config;
