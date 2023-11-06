@@ -107,6 +107,11 @@ namespace Weather.Controllers
                 var model = await _parseFromJsonFile.GetCityesInRegionAsync(region);
                 if (model != null)
                 {
+                    int count = 0;
+                    if (model.City.Count > 0)
+                        count = model.City.Count;
+
+                    ViewBag.Count = count;
                     ViewData["Region"] = region;
                     return View(model);
                 }
@@ -123,7 +128,7 @@ namespace Weather.Controllers
         {
             var data = new CityesByRegionsModel();
             var cityesFromJson = data.CityesFromJson = await _parseFromJsonFile.GetCityFromFileAsync();
-            data.RegionGroup = await _parseFromJsonFile.GetCityesGroupAsync(cityesFromJson);
+            data.RegionGroup = _parseFromJsonFile.GetCityesGroup(cityesFromJson);
             return data;
         }
 

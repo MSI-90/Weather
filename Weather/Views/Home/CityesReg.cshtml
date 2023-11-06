@@ -3,7 +3,7 @@
 
 @{
     int numberOfColumnsInRow = 4;
-    int count = Model.City.Count();
+    int count = ViewBag.Count;
 }
 
 <div class="container">
@@ -11,7 +11,22 @@
     {
         <h4>@ViewData["Region"]</h4>
 
-        for (int i = 0; i < count; i += numberOfColumnsInRow)
+        List<char> firstLetter = new List<char>(Model.CityesListWithFirstLetter.Keys);
+
+        foreach (KeyValuePair<char, List<string>> dict in Model.CityesListWithFirstLetter)
+        {
+            <div class="region_first_letter">
+                <p>@dict.Key</p>
+            </div>
+            foreach (var item in dict.Value)
+            {
+                <p class="city_link">
+                    <a asp-action="#" asp-route-city="#">@item</a>
+                </p>
+            }
+            
+        }
+        @* for (int i = 0; i < count; i += numberOfColumnsInRow)
         {
             <div class="row">
                 @if (count - i < numberOfColumnsInRow)
@@ -19,9 +34,11 @@
                     <div class="col">
                         @for (int j = i; j < count; j++)
                         {
-                            var item = Model.City[j];
+                            <div class="region_first_letter">
+                                <strong class="letter">@firstLetter[j]</strong>
+                            </div>
                             <p class="city_link">
-                                <a asp-action="#" asp-route-city="#">@item</a>
+                                <a asp-action="#" asp-route-city="#">@Model.CityesListWithFirstLetter[firstLetter[j]]</a>
                             </p>
                         }
                     </div>
@@ -39,7 +56,7 @@
                     }
                 }
             </div>
-        }
+        } *@
     }
     else
     {

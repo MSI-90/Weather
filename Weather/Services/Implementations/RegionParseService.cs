@@ -1,4 +1,7 @@
 ﻿using Newtonsoft.Json;
+using NuGet.DependencyResolver;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using Weather.Models.Cityes;
 using Weather.Services.Interfaces;
 using Weather.ViewModels;
@@ -21,7 +24,7 @@ namespace Weather.Services
                 throw new Exception("Данные недоступны для отображения.", ex);
             }
         }
-        public async Task<RegionGroupModel> GetCityesGroupAsync(IEnumerable<Root> cityes)
+        public RegionGroupModel GetCityesGroup(IEnumerable<Root> cityes)
         {
             var list = cityes?.OrderBy(name => name.Label).ToList();
             List<char> firstLettersInList = new List<char>();
@@ -82,13 +85,84 @@ namespace Weather.Services
                 try
                 {
                     var dataList = await GetCityFromFileAsync();
-                    var regWithKeys = await GetCityesGroupAsync(dataList);
-                    var regions = regWithKeys.CityesInRegion;
-                    foreach (var item in regions)
+                    var regWithKeys = GetCityesGroup(dataList);
+                    var cityesInRegion = regWithKeys.CityesInRegion;
+                    var firstLetter = new HashSet<char>();
+                    string[] regionArr = region.Split();
+                    foreach (var item in cityesInRegion)
                     {
-                        if (region.Contains(item.Key))
+                        for (int i = 0; i < regionArr.Length; i++)
                         {
-                            cityesFromRegion.City = item.Value;
+                            if (regionArr[i] == item.Key)
+                            {
+                                cityesFromRegion.City = item.Value;
+                                string[] cityArr = new string[cityesFromRegion.City.Count()];
+
+                                for (int z = 0; z < item.Value.Count(); z++)
+                                {
+                                    cityArr[z] = cityesFromRegion.City[z];
+                                }
+
+                                foreach (var city in cityesFromRegion.City)
+                                {
+                                    firstLetter.Add(city.First());
+                                }
+
+                                var firstLetterList = firstLetter.ToList();
+
+                                foreach (var letter in firstLetterList)
+                                {
+                                    var list = new List<string>();
+                                    foreach (var city in cityArr)
+                                    if (city.StartsWith(letter))
+                                    {
+                                        list.Add(city);
+                                    }
+
+                                    if (list.Count > 0)
+                                    {
+                                        cityesFromRegion.CityesListWithFirstLetter.Add(letter, list);
+                                    }
+                                }
+
+                                #region
+                                //var key = firstLetterList[j];
+                                //if (cityArr[j].StartsWith(key) && cityesFromRegion.CityesListWithFirstLetter.ContainsKey(key))
+                                //{
+                                //    cityesFromRegion.CityesListWithFirstLetter[key].Add(cityArr[j]);
+                                //}
+                                //else
+                                //{
+                                //    if (cityArr[j].StartsWith(key) && !cityesFromRegion.CityesListWithFirstLetter.ContainsKey(key))
+                                //    {
+                                //        List<string> list = new List<string>();
+                                //        list.Add(cityArr[j]);
+                                //        cityesFromRegion.CityesListWithFirstLetter.Add(key, list);
+                                //    }
+                                //}
+
+                                //for (int j = 0; j < cityesFromRegion.City.Count(); j++)
+                                //{
+                                //    var key = firstLetter.ToList();
+
+                                //    if (cityesFromRegion.CityesListWithFirstLetter.ContainsKey(key[j]))
+                                //    {
+                                //        cityesFromRegion.CityesListWithFirstLetter[key[j]] = item.Value;
+                                //    }
+                                //    else
+                                //    {
+                                //        foreach (var city in item.Value)
+                                //        {
+                                //            if (cityesFromRegion.CityesListWithFirstLetter.ContainsKey(key[j]))
+                                //                cityesFromRegion.CityesListWithFirstLetter[key[j]] = item.Value;
+                                //            else
+                                //                cityesFromRegion.CityesListWithFirstLetter[key[j]] = city;
+                                //        }
+
+                                //    }
+                                //}
+                                #endregion
+                            }
                         }
                     }
                 }
