@@ -16,9 +16,20 @@ namespace Weather.Services
             try
             {
                 string filePath = Path.Combine(Environment.CurrentDirectory, "Res", "towns-russia.json");
-                string json = await File.ReadAllTextAsync(filePath);
-                var cityList = JsonConvert.DeserializeObject<IEnumerable<Root>>(json) ?? new List<Root>();
-                return cityList;
+                if (File.Exists(filePath))
+                {
+                    string json = await File.ReadAllTextAsync(filePath);
+                    var cityList = JsonConvert.DeserializeObject<IEnumerable<Root>>(json) ?? new List<Root>();
+                    return cityList;
+                }
+                else
+                {
+                    throw new FileNotFoundException("Файл не найден, попробуйте придти позже.");
+                }
+            }
+            catch(FileNotFoundException ex)
+            {
+                throw new Exception(ex.Message);
             }
             catch (Exception ex)
             {
