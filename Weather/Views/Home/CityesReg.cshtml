@@ -12,51 +12,28 @@
         <h4>@ViewData["Region"]</h4>
 
         List<char> firstLetter = new List<char>(Model.CityesListWithFirstLetter.Keys);
+        var keysAsDigits = Model.CityesListWithNumberKey;
 
-        foreach (KeyValuePair<char, List<string>> dict in Model.CityesListWithFirstLetter)
-        {
-            <div class="region_first_letter">
-                <p>@dict.Key</p>
-            </div>
-            foreach (var item in dict.Value)
-            {
-                <p class="city_link">
-                    <a asp-action="#" asp-route-city="#">@item</a>
-                </p>
-            }
-            
-        }
-        @* for (int i = 0; i < count; i += numberOfColumnsInRow)
+        for (int i = 0; i < keysAsDigits.Count; i += numberOfColumnsInRow)
         {
             <div class="row">
-                @if (count - i < numberOfColumnsInRow)
+                @for (int j = i; j < i + numberOfColumnsInRow && j < keysAsDigits.Count; j++)
                 {
+                    var item = keysAsDigits[j];
                     <div class="col">
-                        @for (int j = i; j < count; j++)
+                        <div class="region_first_letter">
+                            <strong class="letter">@firstLetter[j]</strong>
+                        </div>
+                        @foreach (string city in item)
                         {
-                            <div class="region_first_letter">
-                                <strong class="letter">@firstLetter[j]</strong>
-                            </div>
                             <p class="city_link">
-                                <a asp-action="#" asp-route-city="#">@Model.CityesListWithFirstLetter[firstLetter[j]]</a>
+                                <a asp-action="#" asp-route-city="#">@city</a>
                             </p>
-                        }
+                        } 
                     </div>
                 }
-                else
-                {
-                    @for (int j = i; j < i + numberOfColumnsInRow && j < count; j++)
-                    {
-                        var item = Model.City[j];
-                        <div class="col">
-                            <p class="city_link">
-                                <a asp-action="#" asp-route-city="#">@item</a>
-                            </p>
-                        </div>
-                    }
-                }
             </div>
-        } *@
+        }
     }
     else
     {

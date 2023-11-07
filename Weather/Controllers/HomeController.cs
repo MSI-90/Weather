@@ -112,6 +112,7 @@ namespace Weather.Controllers
                         count = model.City.Count;
 
                     ViewBag.Count = count;
+                    //ViewBag.CountOfCityes = model.CityesListWithFirstLetter.Values.Count;
                     ViewData["Region"] = region;
                     return View(model);
                 }

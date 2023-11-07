@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using NuGet.DependencyResolver;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using Weather.Models.Cityes;
@@ -110,18 +111,19 @@ namespace Weather.Services
 
                                 var firstLetterList = firstLetter.ToList();
 
-                                foreach (var letter in firstLetterList)
+                                for (int j = 0; j < firstLetterList.Count; j++)
                                 {
                                     var list = new List<string>();
                                     foreach (var city in cityArr)
-                                    if (city.StartsWith(letter))
+                                    if (city.StartsWith(firstLetterList[j]))
                                     {
                                         list.Add(city);
                                     }
 
                                     if (list.Count > 0)
                                     {
-                                        cityesFromRegion.CityesListWithFirstLetter.Add(letter, list);
+                                        cityesFromRegion.CityesListWithFirstLetter.Add(firstLetterList[j], list);
+                                        cityesFromRegion.CityesListWithNumberKey.Add(j, list);
                                     }
                                 }
                             }
