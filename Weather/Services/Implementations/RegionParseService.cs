@@ -124,44 +124,6 @@ namespace Weather.Services
                                         cityesFromRegion.CityesListWithFirstLetter.Add(letter, list);
                                     }
                                 }
-
-                                #region
-                                //var key = firstLetterList[j];
-                                //if (cityArr[j].StartsWith(key) && cityesFromRegion.CityesListWithFirstLetter.ContainsKey(key))
-                                //{
-                                //    cityesFromRegion.CityesListWithFirstLetter[key].Add(cityArr[j]);
-                                //}
-                                //else
-                                //{
-                                //    if (cityArr[j].StartsWith(key) && !cityesFromRegion.CityesListWithFirstLetter.ContainsKey(key))
-                                //    {
-                                //        List<string> list = new List<string>();
-                                //        list.Add(cityArr[j]);
-                                //        cityesFromRegion.CityesListWithFirstLetter.Add(key, list);
-                                //    }
-                                //}
-
-                                //for (int j = 0; j < cityesFromRegion.City.Count(); j++)
-                                //{
-                                //    var key = firstLetter.ToList();
-
-                                //    if (cityesFromRegion.CityesListWithFirstLetter.ContainsKey(key[j]))
-                                //    {
-                                //        cityesFromRegion.CityesListWithFirstLetter[key[j]] = item.Value;
-                                //    }
-                                //    else
-                                //    {
-                                //        foreach (var city in item.Value)
-                                //        {
-                                //            if (cityesFromRegion.CityesListWithFirstLetter.ContainsKey(key[j]))
-                                //                cityesFromRegion.CityesListWithFirstLetter[key[j]] = item.Value;
-                                //            else
-                                //                cityesFromRegion.CityesListWithFirstLetter[key[j]] = city;
-                                //        }
-
-                                //    }
-                                //}
-                                #endregion
                             }
                         }
                     }
