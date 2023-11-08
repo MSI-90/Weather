@@ -23,7 +23,7 @@ namespace Weather.ViewModels
         public string Name { get; set; } = string.Empty;
         public string Region { get; set; } = string.Empty;
         public string Country { get; set; } = string.Empty;
-        public float TempC { get; set; } = float.MinValue;
+        public float TempC { get; set; }
         public string ImageSrc { get; set; } = string.Empty;
 
     }

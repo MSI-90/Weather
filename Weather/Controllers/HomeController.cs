@@ -83,13 +83,16 @@ namespace Weather.Controllers
                     var model = await _connection.GetDataAsync(latitude, longitude);
                     if (model?.Location != null)
                     {
+                        float temperature = 0;
+                        _= model.Current.Temp_c == -0 ? temperature = 0 : temperature = model.Current.Temp_c;
+
                         var viewModel = new WeatherVM()
                         {
                             Name = name,
                             LocalDateAndTime = model.Location.Localtime,
                             Region = model.Location.Region,
                             Country = model.Location.Country,
-                            TempC = model.Current.Temp_c,
+                            TempC = temperature,
                             ImageSrc = model.Current.Condition.Icon
                         };
                         return View(viewModel);
@@ -112,11 +115,9 @@ namespace Weather.Controllers
                 var model = await _parseFromJsonFile.GetCityesInRegionAsync(region);
                 if (model != null)
                 {
-                    int count = 0;
                     if (model.City.Count > 0)
-                        count = model.City.Count;
+                        ViewBag.Count = model.City.Count;
 
-                    ViewBag.Count = count;
                     ViewData["Region"] = region;
                     return View(model);
                 }

@@ -9,7 +9,7 @@
 <div class="container">
     @if (Model.City.Any())
     {
-        <h4>@ViewData["Region"]</h4>
+        <h4>@ViewData["Region"] (@count)</h4>
 
         List<char> firstLetter = new List<char>(Model.CityesListWithFirstLetter.Keys);
         var keysAsDigits = Model.CityesListWithNumberKey;
