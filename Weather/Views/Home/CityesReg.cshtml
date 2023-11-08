@@ -9,7 +9,7 @@
 <div class="container">
     @if (Model.City.Any())
     {
-        <h4>@ViewData["Region"] (@count)</h4>
+        <h4>@ViewData["Region"] - населённых пунктов: <span class="number_city">@count</span></h4>
 
         List<char> firstLetter = new List<char>(Model.CityesListWithFirstLetter.Keys);
         var keysAsDigits = Model.CityesListWithNumberKey;
@@ -27,7 +27,7 @@
                         @foreach (string city in item)
                         {
                             <p class="city_link">
-                                <a asp-action="#" asp-route-city="#">@city</a>
+                                <a asp-action="search" asp-route-city="@city">@city</a>
                             </p>
                         } 
                     </div>
