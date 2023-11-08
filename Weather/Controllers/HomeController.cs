@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SmartBreadcrumbs.Attributes;
 using System.Diagnostics;
 using Weather.Models.search;
 using Weather.Services.Interfaces;
@@ -6,6 +7,7 @@ using Weather.ViewModels;
 
 namespace Weather.Controllers
 {
+    [DefaultBreadcrumb]
     public class HomeController : Controller
     {
         private readonly IWeatherConnection _connection;
@@ -16,7 +18,7 @@ namespace Weather.Controllers
             _parseFromJsonFile = parseFromJsonFile;
         }
         public async Task<ViewResult> Index()
-        {
+        { 
             try
             {
                 var model = await GetDataForIndex();
@@ -31,9 +33,9 @@ namespace Weather.Controllers
 
         [HttpGet]
         [Route("search")]
+        [Breadcrumb("ViewData.Title")]
         public async Task<IActionResult> Search(CityToFind cityName)
         {
-            
             if (!ModelState.IsValid || cityName == null)
             {
                 return View("Index");
@@ -62,6 +64,7 @@ namespace Weather.Controllers
         }
 
         [Route("details")]
+        [Breadcrumb("ViewData.Title")]
         public async Task<IActionResult> Details(string name, string lat, string lon)
         {
             if (!ModelState.IsValid)
@@ -100,6 +103,8 @@ namespace Weather.Controllers
                 return View();
             }
         }
+
+        [Breadcrumb("ViewData.Region")]
         public async Task<IActionResult> CityesReg(string region)
         {
             try
@@ -112,7 +117,6 @@ namespace Weather.Controllers
                         count = model.City.Count;
 
                     ViewBag.Count = count;
-                    //ViewBag.CountOfCityes = model.CityesListWithFirstLetter.Values.Count;
                     ViewData["Region"] = region;
                     return View(model);
                 }

@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using SmartBreadcrumbs.Extensions;
+using System.Reflection;
 using Weather.Services;
 using Weather.Services.Interfaces;
 
@@ -14,6 +16,16 @@ namespace Weather
             builder.Services.AddMvc();
             builder.Services.AddTransient<IWeatherConnection, WeatherService>();
             builder.Services.AddTransient<ICitiesParseJsonFile,  RegionParseService>();
+
+            builder.Services.AddBreadcrumbs(Assembly.GetExecutingAssembly(), options =>
+            {
+                options.TagName = "nav";
+                options.TagClasses = "";
+                options.OlClasses = "breadcrumb";
+                options.LiClasses = "breadcrumb-item";
+                options.ActiveLiClasses = "breadcrumb-item active";
+            });
+
 
             var app = builder.Build();
 
