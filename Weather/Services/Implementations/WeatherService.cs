@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Weather.Services.Interfaces;
-using System.Net.Http;
+﻿using Weather.Services.Interfaces;
 using Newtonsoft.Json;
 using Weather.ViewModels;
 using Weather.Models.OnWeek;

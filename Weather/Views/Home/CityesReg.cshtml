@@ -27,7 +27,7 @@
                         @foreach (string city in item)
                         {
                             <p class="city_link">
-                                <a asp-action="search" asp-route-city="@city">@city</a>
+                                <a asp-action="OnDetailsFromRegion" asp-route-cityName="@city">@city</a>
                             </p>
                         } 
                     </div>

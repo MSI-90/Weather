@@ -36,7 +36,7 @@ namespace Weather.Controllers
         [Breadcrumb("ViewData.Title")]
         public async Task<IActionResult> Search(CityToFind cityName)
         {
-            if (!ModelState.IsValid || cityName == null)
+            if (!ModelState.IsValid || cityName.City == null)
             {
                 return View("Index");
             }
@@ -78,13 +78,13 @@ namespace Weather.Controllers
 
             try
             {
-                if ((Single.TryParse(lat, out float latitude)) && (Single.TryParse(lon, out float longitude)))
+                if (Single.TryParse(lat, out float latitude) && Single.TryParse(lon, out float longitude))
                 {
                     var model = await _connection.GetDataAsync(latitude, longitude);
                     if (model?.Location != null)
                     {
-                        float temperature = 0;
-                        _= model.Current.Temp_c == -0 ? temperature = 0 : temperature = model.Current.Temp_c;
+                        float temperature = 0f;
+                        _= model.Current.Temp_c == -0f ? temperature = 0f : temperature = model.Current.Temp_c;
 
                         var viewModel = new WeatherVM()
                         {
@@ -129,6 +129,29 @@ namespace Weather.Controllers
                 return View();
             }
             
+        }
+
+        [Breadcrumb("ViewData.Title")]
+        public async Task<IActionResult> OnDetailsFromRegion(string cityName)
+        {
+            if (!ModelState.IsValid || cityName == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            try
+            {
+                IEnumerable<NewItem> modelCityList = new List<NewItem>();
+                var city = new CityToFind { City = cityName };
+                modelCityList = await _connection.GetCitiesAsync(city);
+                if (modelCityList.Any())
+                {
+                    var myVariant = modelCityList.Where(model => model.Country == "Россия");
+                    return View("Search", myVariant);
+                }
+                return RedirectToAction("Index");
+            }
+            catch { return RedirectToAction("Index"); }
         }
         public async Task<CityesByRegionsModel> GetDataForIndex()
         {
