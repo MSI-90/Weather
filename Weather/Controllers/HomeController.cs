@@ -36,7 +36,7 @@ namespace Weather.Controllers
         [Breadcrumb("ViewData.Title")]
         public async Task<IActionResult> Search(CityToFind cityName)
         {
-            if (!ModelState.IsValid || cityName.City == null)
+            if (!ModelState.IsValid || cityName?.City == null)
             {
                 return View("Index");
             }
@@ -132,7 +132,7 @@ namespace Weather.Controllers
         }
 
         [Breadcrumb("ViewData.Title")]
-        public async Task<IActionResult> OnDetailsFromRegion(string cityName)
+        public async Task<IActionResult> OnDetailsFromRegion (string cityName)
         {
             if (!ModelState.IsValid || cityName == null)
             {
@@ -147,7 +147,13 @@ namespace Weather.Controllers
                 if (modelCityList.Any())
                 {
                     var myVariant = modelCityList.Where(model => model.Country == "Россия");
-                    return View("Search", myVariant);
+                    if (myVariant.Any())
+                        return View("Search", myVariant);
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Нет данных для отображения");
+                        return View("Search");
+                    }
                 }
                 return RedirectToAction("Index");
             }
