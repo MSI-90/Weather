@@ -11,30 +11,10 @@ namespace Weather.Services
 {
     public class RegionParseService : ICitiesParseJsonFile
     {
-        public async Task<IEnumerable<Root>> GetCityFromFileAsync()
+        private readonly ReadCityesFromFile _russianCityes;
+        public RegionParseService(ReadCityesFromFile cityes)
         {
-            try
-            {
-                string filePath = Path.Combine(Environment.CurrentDirectory, "Res", "towns-russia.json");
-                if (File.Exists(filePath))
-                {
-                    string json = await File.ReadAllTextAsync(filePath);
-                    var cityList = JsonConvert.DeserializeObject<IEnumerable<Root>>(json) ?? new List<Root>();
-                    return cityList;
-                }
-                else
-                {
-                    throw new FileNotFoundException("Файл не найден, попробуйте придти позже.");
-                }
-            }
-            catch(FileNotFoundException ex)
-            {
-                throw new Exception(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Данные недоступны для отображения.", ex);
-            }
+            _russianCityes = cityes;
         }
         public RegionGroupModel GetCityesGroup(IEnumerable<Root> cityes)
         {
@@ -96,7 +76,8 @@ namespace Weather.Services
                 var cityesFromRegion = new CityesInRegion();
                 try
                 {
-                    var dataList = await GetCityFromFileAsync();
+                    IEnumerable<Root> dataList = _russianCityes.GetCityes();
+
                     var regWithKeys = GetCityesGroup(dataList);
                     var cityesInRegion = regWithKeys.CityesInRegion;
                     var firstLetter = new HashSet<char>();

@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SmartBreadcrumbs.Attributes;
 using System.Diagnostics;
+using Weather.Models.Cityes;
 using Weather.Models.search;
+using Weather.Services;
 using Weather.Services.Interfaces;
 using Weather.ViewModels;
 
@@ -10,12 +12,14 @@ namespace Weather.Controllers
     [DefaultBreadcrumb]
     public class HomeController : Controller
     {
+        private readonly ReadCityesFromFile _russianCityes;
         private readonly IWeatherConnection _connection;
         private readonly ICitiesParseJsonFile _parseFromJsonFile;
-        public HomeController(IWeatherConnection connection, ICitiesParseJsonFile parseFromJsonFile)
+        public HomeController(IWeatherConnection connection, ICitiesParseJsonFile parseFromJsonFile, ReadCityesFromFile russianCityes)
         {
             _connection = connection;
             _parseFromJsonFile = parseFromJsonFile;
+            _russianCityes = russianCityes;
         }
         public async Task<ViewResult> Index()
         { 
@@ -162,7 +166,11 @@ namespace Weather.Controllers
         public async Task<CityesByRegionsModel> GetDataForIndex()
         {
             var data = new CityesByRegionsModel();
-            var cityesFromJson = data.CityesFromJson = await _parseFromJsonFile.GetCityFromFileAsync();
+
+            IEnumerable<Root> cityesFromJson = new List<Root>();
+
+            cityesFromJson = data.CityesFromJson = _russianCityes.GetCityes();
+
             data.RegionGroup = _parseFromJsonFile.GetCityesGroup(cityesFromJson);
             return data;
         }

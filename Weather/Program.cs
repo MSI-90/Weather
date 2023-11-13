@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SmartBreadcrumbs.Extensions;
 using System.Reflection;
+using Weather.Models.Cityes;
 using Weather.Services;
 using Weather.Services.Interfaces;
 
@@ -13,13 +14,14 @@ namespace Weather
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddSession(options =>
-            {
-                options.Cookie.HttpOnly = true;
-                options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-                options.IdleTimeout = TimeSpan.FromMinutes(15);
-            });
+            //builder.Services.AddSession(options =>
+            //{
+            //    options.Cookie.HttpOnly = true;
+            //    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+            //    options.IdleTimeout = TimeSpan.FromMinutes(15);
+            //});
             builder.Services.AddMvc();
+            builder.Services.AddSingleton<ReadCityesFromFile>();
             builder.Services.AddTransient<IWeatherConnection, WeatherService>();
             builder.Services.AddTransient<ICitiesParseJsonFile,  RegionParseService>();
 
@@ -43,7 +45,7 @@ namespace Weather
 
             app.UseRouting();
 
-            app.UseSession();
+            //app.UseSession();
 
             app.MapControllerRoute(
                 name: "default",
