@@ -13,6 +13,12 @@ namespace Weather
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddSession(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+                options.IdleTimeout = TimeSpan.FromMinutes(15);
+            });
             builder.Services.AddMvc();
             builder.Services.AddTransient<IWeatherConnection, WeatherService>();
             builder.Services.AddTransient<ICitiesParseJsonFile,  RegionParseService>();
@@ -37,6 +43,7 @@ namespace Weather
 
             app.UseRouting();
 
+            app.UseSession();
 
             app.MapControllerRoute(
                 name: "default",
