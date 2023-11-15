@@ -90,7 +90,6 @@ namespace Weather.Controllers
                     var model = await _connection.GetDataAsync(latitude, longitude);
                     if (model?.Location != null)
                     {
-
                         //cookie
                         CookieTools.SetOnce(HttpContext, name);
 
