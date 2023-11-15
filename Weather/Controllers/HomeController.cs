@@ -3,6 +3,7 @@ using SmartBreadcrumbs.Attributes;
 using System.Diagnostics;
 using Weather.Models.Cityes;
 using Weather.Models.search;
+using Weather.OtherTools;
 using Weather.Services;
 using Weather.Services.Interfaces;
 using Weather.ViewModels;
@@ -22,7 +23,7 @@ namespace Weather.Controllers
             _russianCityes = russianCityes;
         }
         public async Task<ViewResult> Index()
-        { 
+        {
             try
             {
                 var model = await GetDataForIndex();
@@ -52,7 +53,9 @@ namespace Weather.Controllers
                     model = await _connection.GetCitiesAsync(cityName);
 
                     if (model.Any())
+                    {
                         return View(model);
+                    }
                     else
                     {
                         ModelState.AddModelError(string.Empty, "Нет данных для отображения");
@@ -87,6 +90,12 @@ namespace Weather.Controllers
                     var model = await _connection.GetDataAsync(latitude, longitude);
                     if (model?.Location != null)
                     {
+
+                        //cookie
+                        CookieTools.SetOnce(HttpContext, name);
+
+                        //HttpContext.Response.Cookies.Delete("city");
+
                         float temperature = 0f;
                         _= model.Current.Temp_c == -0f ? temperature = 0f : temperature = model.Current.Temp_c;
 
@@ -163,12 +172,11 @@ namespace Weather.Controllers
             }
             catch { return RedirectToAction("Index"); }
         }
-        public async Task<CityesByRegionsModel> GetDataForIndex()
+        async Task<CityesByRegionsModel> GetDataForIndex()
         {
             var data = new CityesByRegionsModel();
 
             IEnumerable<Root> cityesFromJson = new List<Root>();
-
             cityesFromJson = data.CityesFromJson = _russianCityes.GetCityes();
 
             data.RegionGroup = _parseFromJsonFile.GetCityesGroup(cityesFromJson);
