@@ -13,13 +13,15 @@ namespace Weather
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            //Add services to the container.
+
             //builder.Services.AddSession(options =>
             //{
             //    options.Cookie.HttpOnly = true;
             //    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-            //    options.IdleTimeout = TimeSpan.FromMinutes(15);
+            //    options.IdleTimeout = TimeSpan.FromMinutes(1);
             //});
+
             builder.Services.AddMvc();
             builder.Services.AddSingleton<ReadCityesFromFile>();
             builder.Services.AddTransient<IWeatherConnection, WeatherService>();
@@ -37,7 +39,8 @@ namespace Weather
 
             var app = builder.Build();
 
-            app.UseExceptionHandler("/Error");
+            app.UseHsts();
+            //app.UseExceptionHandler("/Error");
             app.UseStatusCodePagesWithRedirects("/status/{0}");
 
             app.UseHttpsRedirection();

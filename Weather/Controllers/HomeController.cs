@@ -117,7 +117,7 @@ namespace Weather.Controllers
             try
             {
                 var model = await _parseFromJsonFile.GetCityesInRegionAsync(region);
-                if (model != null)
+                if (model.CityesListWithFirstLetter.Count > 0 && model.CityesListWithNumberKey.Count > 0)
                 {
                     if (model.City.Count > 0)
                         ViewBag.Count = model.City.Count;
