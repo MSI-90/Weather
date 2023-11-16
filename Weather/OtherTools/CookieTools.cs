@@ -26,28 +26,16 @@ namespace Weather.OtherTools
                     if (context.Request.Cookies.TryGetValue(_key, out var cookie))
                     {
                         string[] elementsFromCookie = cookie.Split("|");
-                        bool isIsset = false;
+                        bool isIsset = elementsFromCookie.Contains(value);
 
-                        for (int i = 0; i < elementsFromCookie.Length; i++)
+                        if (!isIsset && elementsFromCookie.Length < _numberOfCityes)
                         {
-                            if (elementsFromCookie[i] == value)
-                            {
-                                isIsset = true;
-                                break;
-                            }  
-                        }
+                            string newValue = cookie + "|" + value;
+                            context.Response.Cookies.Append(_key, newValue, options);
 
-                        if (!isIsset && elementsFromCookie.Length <= _numberOfCityes)
-                        {
-                            if (LastWeather.Count <= _numberOfCityes)
+                            foreach (string city in elementsFromCookie)
                             {
-                                foreach (var item in elementsFromCookie)
-                                {
-                                    LastWeather.Enqueue(item);
-                                }
-                                string newValue = cookie + "|" + value;
-
-                                context.Response.Cookies.Append(_key, newValue, options);
+                                LastWeather.Enqueue(city);
                             }
                         }
                     } 
