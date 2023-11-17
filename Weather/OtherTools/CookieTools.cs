@@ -15,7 +15,7 @@ namespace Weather.OtherTools
             {
                 CookieOptions options = new()
                 {
-                    //SameSite = SameSiteMode.Strict,
+                    SameSite = SameSiteMode.Strict,
                     HttpOnly = true,
                     Secure = true,
                     Expires = DateTimeOffset.UtcNow.AddMonths(1)
