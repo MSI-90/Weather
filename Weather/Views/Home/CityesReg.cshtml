@@ -3,11 +3,11 @@
 
 @{
     int numberOfColumnsInRow = 4;
-    int count = ViewBag.Count;
+    int? count = ViewBag.Count ?? 0;
 }
 
 <div class="container">
-    @if (Model.City.Any())
+    @if (Model.City.Count > 0)
     {
         <h4>@ViewData["Region"] - населённых пунктов: <span class="number_city">@count</span></h4>
 

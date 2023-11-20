@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SmartBreadcrumbs.Extensions;
 using System.Reflection;
-using Weather.Models.Cityes;
 using Weather.Services;
+using Weather.Services.Implementations;
 using Weather.Services.Interfaces;
 
 namespace Weather
@@ -24,7 +24,9 @@ namespace Weather
             //});
 
             builder.Services.AddMvc();
+            builder.Services.AddHttpContextAccessor();
             builder.Services.AddSingleton<ReadCityesFromFile>();
+            builder.Services.AddTransient<ICookieTools, CookieTools>();
             builder.Services.AddTransient<IWeatherConnection, WeatherService>();
             builder.Services.AddTransient<ICitiesParseJsonFile,  RegionParseService>();
 

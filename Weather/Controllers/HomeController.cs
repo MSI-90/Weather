@@ -3,8 +3,8 @@ using SmartBreadcrumbs.Attributes;
 using System.Diagnostics;
 using Weather.Models.Cityes;
 using Weather.Models.search;
-using Weather.OtherTools;
 using Weather.Services;
+using Weather.Services.Implementations;
 using Weather.Services.Interfaces;
 using Weather.ViewModels;
 
@@ -14,13 +14,16 @@ namespace Weather.Controllers
     public class HomeController : Controller
     {
         private readonly ReadCityesFromFile _russianCityes;
+        private readonly ICookieTools _cookieTools;
         private readonly IWeatherConnection _connection;
         private readonly ICitiesParseJsonFile _parseFromJsonFile;
-        public HomeController(IWeatherConnection connection, ICitiesParseJsonFile parseFromJsonFile, ReadCityesFromFile russianCityes)
+        public HomeController(IWeatherConnection connection, ICitiesParseJsonFile parseFromJsonFile, 
+            ReadCityesFromFile russianCityes, ICookieTools cookieTools)
         {
             _connection = connection;
             _parseFromJsonFile = parseFromJsonFile;
             _russianCityes = russianCityes;
+            _cookieTools = cookieTools;
         }
         public async Task<ViewResult> Index()
         {
@@ -91,7 +94,7 @@ namespace Weather.Controllers
                     if (model?.Location != null)
                     {
                         //cookie
-                        CookieTools.SetOnce(HttpContext, name);
+                        _cookieTools.SetOnce(name);
 
                         //HttpContext.Response.Cookies.Delete("city");
 

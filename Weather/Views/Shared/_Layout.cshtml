@@ -1,7 +1,9 @@
-﻿@using Weather.OtherTools
+﻿@using Weather.Services.Interfaces
+
 @{
-    var cookieList = CookieTools.LastWeather;
+    @inject ICookieTools tools
 }
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -67,11 +69,10 @@
     <footer class="border-top footer text-muted">
         <div class="container">
             <div>
-                @foreach (var item in cookieList)
+                @foreach (var item in tools.LastWeather ?? new List<string>())
                 {
                     <p>@item</p>
                 }
-                @* @cookieList.Count; *@
             </div>
             &copy; @DateTime.Now.Year - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
