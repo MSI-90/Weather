@@ -7,7 +7,7 @@
 }
 
 <div class="container">
-    @if (Model.City.Count > 0)
+    @if (Model != null)
     {
         <h4>@ViewData["Region"] - населённых пунктов: <span class="number_city">@count</span></h4>
 
