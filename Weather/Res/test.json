@@ -1,0 +1,181 @@
+[
+	{
+    "type": "republic",
+    "slug": "adygeya",
+    "label": "Адыгея",
+    "localities": [
+      {
+        "type": "city",
+        "slug": "adygeysk",
+        "label": "Адыгейск",
+        "districts": [
+          {
+            "label": "В городе",
+            "slug": "inTown"
+          },
+          {
+            "label": "Пригород",
+            "slug": "suburb"
+          }
+        ]
+      },
+      {
+        "type": "city",
+        "slug": "maykop",
+        "label": "Майкоп",
+        "districts": [
+          {
+            "label": "В городе",
+            "slug": "inTown"
+          },
+          {
+            "label": "Пригород",
+            "slug": "suburb"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "aokr",
+    "slug": "yamalo-neneckiy-ao",
+    "label": "Ямало-Ненецкий АО",
+    "localities": [
+      {
+        "type": "city",
+        "slug": "gubkinskiy",
+        "label": "Губкинский",
+        "districts": [
+          {
+            "label": "В городе",
+            "slug": "inTown"
+          },
+          {
+            "label": "Пригород",
+            "slug": "suburb"
+          }
+        ]
+      },
+      {
+        "type": "city",
+        "slug": "zapolyarnyy",
+        "label": "Заполярный",
+        "districts": [
+          {
+            "label": "В городе",
+            "slug": "inTown"
+          },
+          {
+            "label": "Пригород",
+            "slug": "suburb"
+          }
+        ]
+      },
+      {
+        "type": "city",
+        "slug": "muravlenko",
+        "label": "Муравленко",
+        "districts": [
+          {
+            "label": "В городе",
+            "slug": "inTown"
+          },
+          {
+            "label": "Пригород",
+            "slug": "suburb"
+          }
+        ]
+      },
+      {
+        "type": "city",
+        "slug": "nadym",
+        "label": "Надым",
+        "districts": [
+          {
+            "label": "В городе",
+            "slug": "inTown"
+          },
+          {
+            "label": "Пригород",
+            "slug": "suburb"
+          }
+        ]
+      },
+      {
+        "type": "city",
+        "slug": "novyy-urengoy",
+        "label": "Новый Уренгой",
+        "districts": [
+          {
+            "label": "В городе",
+            "slug": "inTown"
+          },
+          {
+            "label": "Пригород",
+            "slug": "suburb"
+          }
+        ]
+      },
+      {
+        "type": "city",
+        "slug": "noyabrsk",
+        "label": "Ноябрьск",
+        "districts": [
+          {
+            "label": "В городе",
+            "slug": "inTown"
+          },
+          {
+            "label": "Пригород",
+            "slug": "suburb"
+          }
+        ]
+      },
+      {
+        "type": "city",
+        "slug": "purovsk",
+        "label": "Пуровск",
+        "districts": [
+          {
+            "label": "В городе",
+            "slug": "inTown"
+          },
+          {
+            "label": "Пригород",
+            "slug": "suburb"
+          }
+        ]
+      },
+      {
+        "type": "city",
+        "slug": "salehard",
+        "label": "Салехард",
+        "districts": [
+          {
+            "label": "В городе",
+            "slug": "inTown"
+          },
+          {
+            "label": "Пригород",
+            "slug": "suburb"
+          }
+        ]
+      },
+      {
+        "type": "city",
+        "slug": "tarko",
+        "label": "Тарко",
+        "districts": [
+          {
+            "label": "В городе",
+            "slug": "inTown"
+          },
+          {
+            "label": "Пригород",
+            "slug": "suburb"
+          }
+        ]
+      }
+    ]
+  }
+]

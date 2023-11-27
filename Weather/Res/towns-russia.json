@@ -14411,8 +14411,8 @@
     "localities": [
       {
         "type": "city",
-        "slug": "",
-        "label": "",
+        "slug": "Cherkessk",
+        "label": "Черкесск",
         "districts": [
           {
             "label": "В городе",
@@ -14426,8 +14426,8 @@
       },
       {
         "type": "city",
-        "slug": "",
-        "label": "",
+        "slug": "Ust-Dzheguta",
+        "label": "Усть-Джегута",
         "districts": [
           {
             "label": "В городе",
@@ -14441,8 +14441,8 @@
       },
       {
         "type": "city",
-        "slug": "",
-        "label": "",
+        "slug": "Karachaevsk",
+        "label": "Карачаевск",
         "districts": [
           {
             "label": "В городе",
@@ -14456,8 +14456,8 @@
       },
       {
         "type": "city",
-        "slug": "",
-        "label": "",
+        "slug": "Zelenchukskaya",
+        "label": "Зеленчукская",
         "districts": [
           {
             "label": "В городе",
@@ -14468,7 +14468,202 @@
             "slug": "suburb"
           }
         ]
-      }
+      },
+	  {
+        "type": "city",
+        "slug": "Uchkeken",
+        "label": "Учкекен",
+        "districts": [
+          {
+            "label": "В городе",
+            "slug": "inTown"
+          },
+          {
+            "label": "Пригород",
+            "slug": "suburb"
+          }
+        ]
+      },
+	  {
+        "type": "city",
+        "slug": "Sentry",
+        "label": "Сторожевая",
+        "districts": [
+          {
+            "label": "В городе",
+            "slug": "inTown"
+          },
+          {
+            "label": "Пригород",
+            "slug": "suburb"
+          }
+        ]
+      },
+	  {
+        "type": "city",
+        "slug": "Psyzh",
+        "label": "Псыж",
+        "districts": [
+          {
+            "label": "В городе",
+            "slug": "inTown"
+          },
+          {
+            "label": "Пригород",
+            "slug": "suburb"
+          }
+        ]
+      },
+	  {
+        "type": "city",
+        "slug": "Teberda",
+        "label": "Теберда",
+        "districts": [
+          {
+            "label": "В городе",
+            "slug": "inTown"
+          },
+          {
+            "label": "Пригород",
+            "slug": "suburb"
+          }
+        ]
+      },
+	  {
+        "type": "city",
+        "slug": "Pregradnaya",
+        "label": "Преградная",
+        "districts": [
+          {
+            "label": "В городе",
+            "slug": "inTown"
+          },
+          {
+            "label": "Пригород",
+            "slug": "suburb"
+          }
+        ]
+      },
+	  {
+        "type": "city",
+        "slug": "Teresa",
+        "label": "Терезе",
+        "districts": [
+          {
+            "label": "В городе",
+            "slug": "inTown"
+          },
+          {
+            "label": "Пригород",
+            "slug": "suburb"
+          }
+        ]
+      },
+	   {
+        "type": "city",
+        "slug": "Kardonikskaya",
+        "label": "Кардоникская",
+        "districts": [
+          {
+            "label": "В городе",
+            "slug": "inTown"
+          },
+          {
+            "label": "Пригород",
+            "slug": "suburb"
+          }
+        ]
+      },
+	  {
+        "type": "city",
+        "slug": "Khabez",
+        "label": "Хабез",
+        "districts": [
+          {
+            "label": "В городе",
+            "slug": "inTown"
+          },
+          {
+            "label": "Пригород",
+            "slug": "suburb"
+          }
+        ]
+      },
+	  {
+        "type": "city",
+        "slug": "Pervomayskoye",
+        "label": "Первомайское",
+        "districts": [
+          {
+            "label": "В городе",
+            "slug": "inTown"
+          },
+          {
+            "label": "Пригород",
+            "slug": "suburb"
+          }
+        ]
+      },
+	  {
+        "type": "city",
+        "slug": "Chapaevskoe",
+        "label": "Чапаевское",
+        "districts": [
+          {
+            "label": "В городе",
+            "slug": "inTown"
+          },
+          {
+            "label": "Пригород",
+            "slug": "suburb"
+          }
+        ]
+      },
+	  {
+        "type": "city",
+        "slug": "Ali-Berdukovsky",
+        "label": "Али-Бердуковский",
+        "districts": [
+          {
+            "label": "В городе",
+            "slug": "inTown"
+          },
+          {
+            "label": "Пригород",
+            "slug": "suburb"
+          }
+        ]
+      },
+	  {
+        "type": "city",
+        "slug": "Kumysh",
+        "label": "Кумыш",
+        "districts": [
+          {
+            "label": "В городе",
+            "slug": "inTown"
+          },
+          {
+            "label": "Пригород",
+            "slug": "suburb"
+          }
+        ]
+      },
+	  {
+        "type": "city",
+        "slug": "Mednogorsky",
+        "label": "Медногорский",
+        "districts": [
+          {
+            "label": "В городе",
+            "slug": "inTown"
+          },
+          {
+            "label": "Пригород",
+            "slug": "suburb"
+          }
+        ]
+      },
     ]
   },
   {
@@ -20123,7 +20318,7 @@
   {
     "type": "republic",
     "slug": "mariy-el",
-    "label": "Марий Эл",
+    "label": "Марий-Эл",
     "localities": [
       {
         "type": "city",
@@ -29277,7 +29472,7 @@
   {
     "type": "republic",
     "slug": "saha-yakutiya",
-    "label": "Саха (Якутия)",
+    "label": "Саха(Якутия)",
     "localities": [
       {
         "type": "city",
@@ -31422,7 +31617,7 @@
   {
     "type": "republic",
     "slug": "severnaya-osetiya",
-    "label": "Северная Осетия",
+    "label": "Северная-Осетия",
     "localities": [
       {
         "type": "city",
@@ -38756,7 +38951,7 @@
   {
     "type": "aokr",
     "slug": "chukotskiy-ao",
-    "label": "Чукотский АО",
+    "label": "Чукотский",
     "localities": [
       {
         "type": "city",
@@ -38793,7 +38988,7 @@
   {
     "type": "aokr",
     "slug": "yamalo-neneckiy-ao",
-    "label": "Ямало-Ненецкий АО",
+    "label": "Ямало-Ненецкий",
     "localities": [
       {
         "type": "city",
@@ -38935,7 +39130,7 @@
   {
     "type": "aokr",
     "slug": "neneckiy-ao",
-    "label": "Ненецкий АО",
+    "label": "Ненецкий",
     "localities": [
       {
         "type": "city",
@@ -39167,7 +39362,7 @@
   {
     "type": "aokr",
     "slug": "hanty-mansiyskiy-ao",
-    "label": "Ханты-Мансийский АО",
+    "label": "Ханты-Мансийский",
     "localities": [
       {
         "type": "city",

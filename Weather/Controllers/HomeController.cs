@@ -93,10 +93,8 @@ namespace Weather.Controllers
                     var model = await _connection.GetDataAsync(latitude, longitude);
                     if (model?.Location != null)
                     {
-                        //cookie
+                        //set cookie
                         _cookieTools.SetOnce(name);
-
-                        //HttpContext.Response.Cookies.Delete("city");
 
                         float temperature = 0f;
                         _= model.Current.Temp_c == -0f ? temperature = 0f : temperature = model.Current.Temp_c;

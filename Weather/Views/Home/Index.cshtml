@@ -10,7 +10,7 @@
 }
 
 <div class="container">
-    @if (Model != null)
+    @if (Model.CityesFromJson.Count() > 0)
     {
         try
         {
@@ -55,12 +55,19 @@
     }
     else
     {
+        if (Model.CityesFromJson.Count() == 0)
+        {
+            <div class="notCityList">
+                <p>Нет данных. Повторите попытку позднее.</p>
+            </div>
+        }
+
         <div class="notCityList">
             <div asp-validation-summary="All"></div>
             @if (isException)
             {
                 {
-                    errorMessage = "Возникла непредвиденная ошибка!";
+                    errorMessage += "\nВозникла непредвиденная ошибка!\n";
                 }
                 <p>@errorMessage</p>
             }

@@ -16,13 +16,6 @@ namespace Weather
 
             //Add services to the container.
 
-            //builder.Services.AddSession(options =>
-            //{
-            //    options.Cookie.HttpOnly = true;
-            //    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-            //    options.IdleTimeout = TimeSpan.FromMinutes(1);
-            //});
-
             builder.Services.AddMvc();
             builder.Services.AddHttpContextAccessor();
             builder.Services.AddSingleton<ReadCityesFromFile>();
@@ -30,6 +23,7 @@ namespace Weather
             builder.Services.AddTransient<IWeatherConnection, WeatherService>();
             builder.Services.AddTransient<ICitiesParseJsonFile,  RegionParseService>();
 
+            //breadcrumb
             builder.Services.AddBreadcrumbs(Assembly.GetExecutingAssembly(), options =>
             {
                 options.TagName = "nav";

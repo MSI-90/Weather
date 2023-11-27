@@ -44,6 +44,9 @@ namespace Weather.Services
                                 case "obl":
                                     regions.Add(item.Label + " область" + " ");
                                     break;
+                                case "aokr":
+                                    regions.Add(item.Label + " АО" + " ");
+                                    break;
                                 case "republic":
                                     regions.Add("Республика " + item.Label + " ");
                                     break;
@@ -54,7 +57,7 @@ namespace Weather.Services
                                     regions.Add(item.Label + " край" + " ");
                                     break;
                                 default:
-                                    regions.Add(item.Label + " ");
+                                    regions.Add(item.Label);
                                     break;
                             }
                         }
@@ -81,6 +84,7 @@ namespace Weather.Services
                     var regWithKeys = GetCityesGroup(dataList);
                     var cityesInRegion = regWithKeys.CityesInRegion;
                     var firstLetter = new HashSet<char>();
+
                     string[] regionArr = region.Split();
                     foreach (var item in cityesInRegion)
                     {

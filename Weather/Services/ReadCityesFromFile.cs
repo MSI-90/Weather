@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Mvc.TagHelpers;
+using Newtonsoft.Json;
 using Weather.Models.Cityes;
 
 namespace Weather.Services
@@ -6,15 +7,17 @@ namespace Weather.Services
     public class ReadCityesFromFile
     {
         public IEnumerable<Root> RussianCityes { get; set; }
-        public ReadCityesFromFile()
+        private readonly IConfiguration _configuration;
+        public ReadCityesFromFile(IConfiguration configuration)
         {
-            RussianCityes = GetCityFromFileAsync().Result;
+            _configuration = configuration;
+            RussianCityes = GetCityFromFileAsync().GetAwaiter().GetResult();
         }
         public async Task<IEnumerable<Root>> GetCityFromFileAsync()
         {
             try
-            {
-                string filePath = Path.Combine(Environment.CurrentDirectory, "Res", "towns-russia.json");
+            {   
+                string filePath = Path.Combine(Environment.CurrentDirectory + "/" + _configuration.GetSection("Resources")["Folder"] + "/" + _configuration.GetSection("Resources")["File"]);
                 if (File.Exists(filePath))
                 {
                     string json = await File.ReadAllTextAsync(filePath);
@@ -22,13 +25,16 @@ namespace Weather.Services
                     return RussianCityes;
                 }
                 else
-                {
-                    throw new FileNotFoundException("Файл не найден, попробуйте придти позже.");
-                }
+                    return Enumerable.Empty<Root>();
             }
-            catch (FileNotFoundException ex)
+            catch (FileNotFoundException)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("Файл не найден, попробуйте придти позже.");
+            }
+            catch (NullReferenceException)
+            {
+                return Enumerable.Empty<Root>();
+                throw new Exception("Что - то пошло не так");
             }
             catch (Exception ex)
             {
