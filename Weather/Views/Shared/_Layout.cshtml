@@ -71,7 +71,11 @@
             <div>
                 @foreach (var item in tools.LastWeather ?? new List<string>())
                 {
-                    <p>@item</p>
+                    <p class="cookie_item">
+                        <a asp-controller="Home" asp-action="OnDetailsFromRegion" asp-route-cityName="@item">
+                            @item
+                        </a>
+                    </p>
                 }
             </div>
             &copy; @DateTime.Now.Year - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>

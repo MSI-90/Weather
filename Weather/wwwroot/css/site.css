@@ -188,3 +188,6 @@ header {
     color: black;
 }
 
+.footer .cookie_item a {
+    text-decoration: none !important;
+}

@@ -47,3 +47,13 @@ button.accept-policy {
   white-space: nowrap;
   line-height: 60px;
 }
+
+.footer .cookie_item {
+    color: #005EB5;
+    margin: 0px;
+    padding: 0px;
+    font-size: 12pt;
+    font-family: helvetica, arial, verdana, sans-serif;
+    line-height: 25px;
+    text-align: left;
+}
