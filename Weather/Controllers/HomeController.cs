@@ -106,7 +106,8 @@ namespace Weather.Controllers
                             Region = model.Location.Region,
                             Country = model.Location.Country,
                             TempC = temperature,
-                            ImageSrc = model.Current.Condition.Icon
+                            ImageSrc = model.Current.Condition.Icon,
+                            WeatherAsText = model.Current.Condition.Text
                         };
                         return View(viewModel);
                     }

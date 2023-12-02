@@ -10,7 +10,7 @@
 }
 
 <div class="container">
-    @if (Model.CityesFromJson.Count() > 0)
+    @if (Model?.CityesFromJson?.Count() > 0)
     {
         try
         {
@@ -55,7 +55,7 @@
     }
     else
     {
-        if (Model.CityesFromJson.Count() == 0)
+        if (Model?.CityesFromJson?.Count() == 0)
         {
             <div class="notCityList">
                 <p>Нет данных. Повторите попытку позднее.</p>

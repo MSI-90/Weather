@@ -2,47 +2,53 @@
 @model WeatherVM
 
 @{
-    ViewData["Title"] = "Подробно";
+    string title = string.Empty;
+    if (Model != null)
+        title = Model.Name;
+
+    ViewData["Title"] = $"Подробно о погоде в {GetLetter(ref title)}";
 
     string GetLetter(ref string letter)
     {
-        if (letter.Contains(" ") || letter.Contains("-") /* && letter = letter.Split(" ").Length >= 2 */)
-            return letter;
-
-        if (!letter.EndsWith("ово") && !letter.EndsWith('ы') && !letter.EndsWith("ево"))
+        if (!string.IsNullOrEmpty(letter))
         {
-            char lastLetter = letter.Last();
-            letter = letter.TrimEnd(lastLetter);
-            if (lastLetter == 'а' || lastLetter == 'я')
-                letter = letter + 'е';
-            else
+            if (letter.Contains(" ") || letter.Contains("-"))
+                return letter;
+
+            if (!letter.EndsWith("ово") && !letter.EndsWith('ы') && !letter.EndsWith("ево"))
             {
-                if (lastLetter == 'у' || lastLetter == 'ю')
+                char lastLetter = letter.Last();
+                letter = letter.TrimEnd(lastLetter);
+                if (lastLetter == 'а' || lastLetter == 'я')
                     letter = letter + 'е';
                 else
                 {
-                    if ((lastLetter == 'о' || lastLetter == 'е'))
-                        letter = letter + 'м';
+                    if (lastLetter == 'у' || lastLetter == 'ю')
+                        letter = letter + 'е';
                     else
                     {
-                        if (lastLetter == 'й')
-                            letter = (letter.TrimEnd(letter.Last())) + "ом";
+                        if ((lastLetter == 'о' || lastLetter == 'е'))
+                            letter = letter + 'м';
                         else
                         {
-                            if (lastLetter == 'и')
-                                letter = letter + "ах";
+                            if (lastLetter == 'й')
+                                letter = (letter.TrimEnd(letter.Last())) + "ом";
                             else
-                                letter = letter + lastLetter + 'е';
+                            {
+                                if (lastLetter == 'и')
+                                    letter = letter + "ах";
+                                else
+                                    letter = letter + lastLetter + 'е';
+                            }
+                            if (letter.EndsWith("ая"))
+                                letter = (letter.Substring(0, letter.Length - 2)) + "ой";
                         }
-                        if (letter.EndsWith("ая"))
-                            letter = (letter.Substring(0, letter.Length-2)) + "ой";
-
-                        
                     }
                 }
             }
+            return letter;
         }
-        return letter;
+        return string.Empty;
     }
 }
 
@@ -52,15 +58,13 @@
         string name = Model.Name;
         GetLetter(ref name);
         <div class="container">
-            <p>
-                <h4 class="header_details">Погода в @name</h4>
-            </p>
+            <div class="weather-header">
+                <p>
+                    <span class="header_details">Погода в @name</span>
+                    @Model.LocalDateAndTime
+                </p>
+            </div>
             <div class="weather-compressed">
-                <div class="weather-compressed-current">
-                    <p>
-                        <h5>Сейчас @Model.LocalTime</h5>
-                    </p>
-                </div>
                 <p>@Model.Region</p>
                 <p>@Model.Country</p>
                 <p>@Model.TempC °C</p>

@@ -191,3 +191,27 @@ header {
 .footer .cookie_item a {
     text-decoration: none !important;
 }
+
+/*Details*/
+.header_details {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+@media (max-width: 320px) {
+    .header_details {
+        font-size: 1rem;
+        font-weight: 550;
+    }
+}
+
+.weather-header {
+    font-size: 1rem;
+}
+
+@media (max-width: 320px) {
+    .weather-header {
+        font-size: 0.65rem;
+        font-weight: normal;
+    }
+}

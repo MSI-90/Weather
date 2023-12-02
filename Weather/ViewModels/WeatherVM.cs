@@ -25,6 +25,6 @@ namespace Weather.ViewModels
         public string Country { get; set; } = string.Empty;
         public float TempC { get; set; }
         public string ImageSrc { get; set; } = string.Empty;
-
+        public string WeatherAsText { get; set; } = string.Empty;
     }
 }
