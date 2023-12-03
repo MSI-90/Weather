@@ -34,7 +34,8 @@ namespace Weather.Services
                     FeelsLike = feelsLikeC,
                     ImageSrc = CurrentWeather.Current.Condition.Icon,
                     WeatherAsText = CurrentWeather.Current.Condition.Text,
-                    WindDegreesAndText = GetWindCourse(CurrentWeather.Current.Wind_degree, CurrentWeather.Current.Wind_dir)
+                    WindDegreesAndText = GetWindCourse(CurrentWeather.Current.Wind_degree, CurrentWeather.Current.Wind_dir),
+                    WindSpeed = (float)Math.Round(WindSpeed(CurrentWeather.Current.Wind_kph), 1)
                 };
                 return model;
 
@@ -70,6 +71,15 @@ namespace Weather.Services
                return course;
             }
             return new string[] { string.Empty };
+        }
+        private float WindSpeed(float speed)
+        {
+            if (speed >= 0)
+            {
+                float speedMeters = speed * 1000 / 3600;
+                return speedMeters;
+            }
+            return 0;
         }
     }
 }

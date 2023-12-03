@@ -210,13 +210,24 @@ header {
 }
 
 .weather-compressed {
-    background-color: aquamarine;
+    background-image: -webkit-linear-gradient(top, #CCCC66, #99CC33);
+    border-radius: 5px;
     display: block;
+    height: auto;
+    margin: 20px 0 15px 0;
+    padding: 5px 0;
     font-size: 2rem;
+    font-weight: bold;
+    font-family: Arial;
     vertical-align: central;
 }
 
-.weather-compressed p {
+.informer {
+    display:inline-block;
+    margin-right: 20px;
+}
+
+.weather-compressed span {
     margin: 0;
     padding: 0;
 }
@@ -231,16 +242,56 @@ header {
     margin-left: 20px;
 }
 
+@media (max-width: 1023px){
+    .weather-compressed span.temp {
+        margin-left: 0;
+    }
+}
+
 .weather-compressed span.feelslike-temp {
     font-size: 1rem;
 }
 
-.weather-compressed p.wind{
+@media (max-width: 1023px) {
+    .weather-compressed span.feelslike-temp {
+        font-size: 0.7rem;
+        margin-left: 0;
+        padding: 0;
+    }
+}
+
+.weather-compressed .wind{
     font-size: 1.3rem;
     text-align: center;
 }
 
-.weather-compressed p.wind-full {
+@media (max-width: 1023px) {
+    .weather-compressed .wind {
+        font-size: 0.7rem;
+    }
+}
+
+.weather-compressed .wind-full {
     font-size: 1rem;
     text-align: center;
+}
+
+@media (max-width: 1023px) {
+    .weather-compressed .wind-full {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 1023px){
+    .weather-compressed .weather-image img {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+.br {
+    font-size: 0;
+    line-height: 0.1rem;
+    --bs-body-line-height: 0.1;
+    
 }

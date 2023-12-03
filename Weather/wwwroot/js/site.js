@@ -13,13 +13,15 @@ function clearDefaultText() {
 }
 
 /*Details*/
-var element = document.querySelector('.col-sm-3 span.temp');
+var element = document.querySelector('span.temp');
 var temp = parseFloat(element.textContent);
 
-if (temp > 0)
-    element.style.color = 'red';
-else
-    element.style.color = 'blue';
-    
-if (temp == 0)
+if (temp > 0) {
+    element.style.color = 'brown';
+}
+else if (temp < 0) {
+        element.style.color = 'blue';
+}
+else {
     element.style.color = 'green';
+}

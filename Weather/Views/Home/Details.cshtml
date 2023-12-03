@@ -64,20 +64,22 @@
                     @Model.LocalDateAndTime[1]
                 </p>
             </div>
-            <div class="weather-compressed">
-                <div class="row">
-                    <div class="col-sm-3">
+            <div class="weather-compressed row">
+                <div class="col-sm">
+                    <div class="informer">
                         <span class="temp"> @Math.Round(Convert.ToDecimal(@Model.TempC), 0) °C </span>
+                    </div>
+                    <div class="informer">
                         <span class="feelslike-temp"> ощущается как @Model.FeelsLike </span>
                     </div>
-                    <div class="col-sm-2">
-                        <p class="wind"> @Model.WindDegreesAndText[0] </p>
-                        <p class="wind-full">@Model.WindDegreesAndText[1]</p>
+                    <div class="informer">
+                        <span class="wind"> @Model.WindSpeed м/с </span>
+                        <span class="wind"> @Model.WindDegreesAndText[0] </span>
                     </div>
-                    <div class="col-sm-2">
-                        <p>
+                    <div class="informer">
+                        <span class="weather-image">
                             <img src="@Model.ImageSrc" alt="иконка отображающая состояние погоды" />
-                        </p>
+                        </span>
                     </div>
                 </div>
             </div>
