@@ -226,3 +226,21 @@ header {
         font-size: 1rem;
     }
 }
+
+.weather-compressed span.temp {
+    margin-left: 20px;
+}
+
+.weather-compressed span.feelslike-temp {
+    font-size: 1rem;
+}
+
+.weather-compressed p.wind{
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+.weather-compressed p.wind-full {
+    font-size: 1rem;
+    text-align: center;
+}

@@ -96,21 +96,10 @@ namespace Weather.Controllers
                         //set cookie
                         _cookieTools.SetOnce(name);
 
-                        float temperature = 0f;
-                        _= model.Current.Temp_c == -0f ? temperature = 0f : temperature = model.Current.Temp_c;
-
-                        var viewModel = new WeatherVM()
-                        {
-                            Name = name,
-                            LocalDateAndTime = model.Location.Localtime,
-                            Region = model.Location.Region,
-                            Country = model.Location.Country,
-                            TempC = temperature,
-                            ImageSrc = model.Current.Condition.Icon,
-                            WeatherAsText = model.Current.Condition.Text,
-                            WindDegreesAndText = model.Current.Wind_dir
-                        };
+                        var weatherService = new WeaterVMService(model);
+                        var viewModel = weatherService.GetMyCurrentWeatherAsync(name);
                         return View(viewModel);
+
                     }
                 }
                 return View();
