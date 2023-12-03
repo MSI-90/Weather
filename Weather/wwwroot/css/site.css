@@ -100,13 +100,6 @@ header {
     color: red;
 }
 
-.weather-compressed {
-    background-color: aquamarine;
-    display: block;
-    border-radius: 15px;
-    width: 40%;
-}
-
 /*--index--*/
 .notCityList{
     color:chocolate;
@@ -213,5 +206,23 @@ header {
     .weather-header {
         font-size: 0.65rem;
         font-weight: normal;
+    }
+}
+
+.weather-compressed {
+    background-color: aquamarine;
+    display: block;
+    font-size: 2rem;
+    vertical-align: central;
+}
+
+.weather-compressed p {
+    margin: 0;
+    padding: 0;
+}
+
+@media (max-width: 1023px) {
+    .weather-compressed {
+        font-size: 1rem;
     }
 }

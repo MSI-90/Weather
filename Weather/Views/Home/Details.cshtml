@@ -61,16 +61,23 @@
             <div class="weather-header">
                 <p>
                     <span class="header_details">Погода в @name</span>
-                    @Model.LocalDateAndTime
+                    @Model.LocalTime
                 </p>
             </div>
             <div class="weather-compressed">
-                <p>@Model.Region</p>
-                <p>@Model.Country</p>
-                <p>@Model.TempC °C</p>
-                <p>
-                    <img src="@Model.ImageSrc" alt="иконка отображающая состояние погоды" />
-                </p>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <p class="temp"> @Math.Round(Convert.ToDecimal(@Model.TempC), 0) °C </p>
+                    </div>
+                    <div class="col-sm-4">
+                        <p> @Model.WindDegreesAndText </p>
+                    </div>
+                    <div class="col-sm-4">
+                        <p>
+                            <img src="@Model.ImageSrc" alt="иконка отображающая состояние погоды" />
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     }

@@ -3,7 +3,7 @@
 
 // Write your JavaScript code.
 
-
+/*_Layout*/
 function clearDefaultText() {
     var input = document.getElementById('City');
     if (input.value === 'Введите наименование н.п.') {
@@ -11,3 +11,15 @@ function clearDefaultText() {
         document.getElementById('button').style.display = 'block';
     }
 }
+
+/*Details*/
+var element = document.querySelector('.col-sm-4 p.temp');
+var temp = parseFloat('@Model.TempC');
+
+if (temp > 0)
+    element.style.color = 'red';
+else
+    element.style.color = 'blue';
+
+if (temp == 0)
+    element.style.color = 'green';
