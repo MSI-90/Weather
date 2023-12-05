@@ -57,29 +57,45 @@
     {
         string name = Model.Name;
         GetLetter(ref name);
-        <div class="container">
-            <div class="weather-header">
-                <p>
-                    <span class="header_details">Погода в @name</span>
-                    @Model.LocalDateAndTime[1]
-                </p>
+        
+        <div class="weather-header">
+            <p>
+                <span class="header_details">Погода в @name</span>
+                @Model.LocalDateAndTime[1]
+            </p>
+        </div>
+        <div class="weather-compressed">
+            <div class="row informer-caption">
+                <div class="col-sm-3"> Температура </div>
+                <div class="col-sm-3"> Ветер </div>
+                <div class="col-sm"> Осадки </div>
             </div>
-            <div class="weather-compressed row">
-                <div class="col-sm">
+            <div class="row">
+                <div class="col-sm-3">
                     <div class="informer">
                         <span class="temp"> @Math.Round(Convert.ToDecimal(@Model.TempC), 0) °C </span>
+                        <p>
+                            <span class="feelslike-temp"> ощущается как @Model.FeelsLike </span>
+                        </p>
                     </div>
+                </div>
+                <div class="col-sm-3">
                     <div class="informer">
-                        <span class="feelslike-temp"> ощущается как @Model.FeelsLike </span>
-                    </div>
-                    <div class="informer">
-                        <span class="wind"> @Model.WindSpeed м/с </span>
+                        <span class="wind"> @Model.WindSpeed м/с, </span>
                         <span class="wind"> @Model.WindDegreesAndText[0] </span>
+                        <p>
+                            <span class="gust-wind"> Порывы до @Model.WindGust м/с </span>
+                        </p>
                     </div>
+                </div>
+                <div class="col-sm">
                     <div class="informer">
                         <span class="weather-image">
-                            <img src="@Model.ImageSrc" alt="иконка отображающая состояние погоды" />
+                            <img src="@Model.ImageSrc" alt="Погода" title="@Model.WeatherText" />
                         </span>
+                    </div>
+                    <div class="informer">
+                        <span></span>
                     </div>
                 </div>
             </div>

@@ -35,7 +35,9 @@ namespace Weather.Services
                     ImageSrc = CurrentWeather.Current.Condition.Icon,
                     WeatherAsText = CurrentWeather.Current.Condition.Text,
                     WindDegreesAndText = GetWindCourse(CurrentWeather.Current.Wind_degree, CurrentWeather.Current.Wind_dir),
-                    WindSpeed = (float)Math.Round(WindSpeed(CurrentWeather.Current.Wind_kph), 1)
+                    WindSpeed = (float)Math.Round(WindSpeed(CurrentWeather.Current.Wind_kph), 0),
+                    WeatherText = CurrentWeather.Current.Condition.Text,
+                    WindGust = (float)Math.Round(WindSpeed(CurrentWeather.Current.Gust_kph), 0),
                 };
                 return model;
 
