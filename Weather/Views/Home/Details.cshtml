@@ -15,8 +15,8 @@
             if (letter.Contains(" ") || letter.Contains("-"))
                 return letter;
 
-            if (!letter.EndsWith("ово") && !letter.EndsWith('ы') && !letter.EndsWith("ево") && !letter.EndsWith("ре"))
-            {
+            if (!letter.EndsWith("ово") && !letter.EndsWith('ы') && !letter.EndsWith("ево") && !letter.EndsWith("ре") && !letter.EndsWith("но"))
+    {
                 char lastLetter = letter.Last();
                 letter = letter.TrimEnd(lastLetter);
                 if (lastLetter == 'а' || lastLetter == 'я')
@@ -73,18 +73,27 @@
             <div class="row">
                 <div class="col-sm-3">
                     <div class="informer">
-                        <span class="temp"> @Math.Round(Convert.ToDecimal(@Model.TempC), 0) °C </span>
+                        <span class="temp">
+                            <span id="temp-number"> @Math.Round(Convert.ToDecimal(@Model.TempC), 0) </span> 
+                            °C 
+                        </span>
                         <p>
-                            <span class="feelslike-temp"> ощущается как @Model.FeelsLike </span>
+                            <span class="feelslike-temp"> ощущается как 
+                                <span id="feelslike-temp">@Model.FeelsLike</span>
+                                °C
+                            </span>
                         </p>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="informer">
-                        <span class="wind"> @Model.WindSpeed м/с, </span>
+                        <span class="wind" id="windSpeed"> @Model.WindSpeed м/с, </span>
                         <span class="wind"> @Model.WindDegreesAndText[0] </span>
                         <p>
-                            <span class="gust-wind"> Порывы до @Model.WindGust м/с </span>
+                            <span class="gust-wind"> Порывы до
+                                <span id="gust-wind">@Model.WindGust</span> 
+                                м/с 
+                            </span>
                         </p>
                     </div>
                 </div>

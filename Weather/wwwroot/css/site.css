@@ -100,12 +100,20 @@ header {
     color: red;
 }
 
+.footer-early-caption{
+    color: black;
+    font-size: 11pt;
+    font-weight: bold;
+    line-height: 0px;
+    margin-top: 20px;
+}
+
 /*--index--*/
-.notCityList{
-    color:chocolate;
-    font-weight:bold;
-    font-size:15pt;
-    text-align:center;
+.notCityList {
+    color: chocolate;
+    font-weight: bold;
+    font-size: 15pt;
+    text-align: center;
 }
 
 /*Details--, Search*/
@@ -216,7 +224,7 @@ header {
     height: auto;
     margin: 20px 0 15px 0;
     padding: 5px 0;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: bold;
     font-family: Arial;
     vertical-align: central;
@@ -300,7 +308,7 @@ header {
 }
 
 .weather-compressed .wind{
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     text-align: center;
 }
 
@@ -315,11 +323,10 @@ header {
     text-align: center;
 }
 
-/*@media (max-width: 1023px) {
-    .weather-compressed .wind-full {
-        font-size: 0.7rem;
-    }
-}*/
+.weather-compressed .weather-image img {
+    width: 48px;
+    height: 48px;
+}
 
 @media (max-width: 1023px){
     .weather-compressed .weather-image img {

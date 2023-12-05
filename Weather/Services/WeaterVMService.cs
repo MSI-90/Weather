@@ -80,7 +80,7 @@ namespace Weather.Services
             if (speed >= 0)
             {
                 float speedMeters = speed * 1000 / 3600;
-                speedMeters = ((float)Math.Round(speedMeters, 0));
+                speedMeters = ((float)Math.Round(speedMeters, 1));
                 return speedMeters.ToString();
             }
             return "0";
@@ -88,8 +88,8 @@ namespace Weather.Services
         private string TimesOfDay(int? dayOrnight)
         {
             if (dayOrnight == 0)
-                return "ночь";
-            return "день";
+                return "темно";
+            return "светло";
         }
     }
 }
