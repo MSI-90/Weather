@@ -28,6 +28,7 @@ namespace Weather.Services
                 {
                     Name = name,
                     LocalDateAndTime = CurrentWeather.Location.Localtime.Split(' '),
+                    TimesOfDay = TimesOfDay(CurrentWeather.Current.Is_day),
                     Region = CurrentWeather.Location.Region,
                     Country = CurrentWeather.Location.Country,
                     TempC = temperature,
@@ -35,9 +36,9 @@ namespace Weather.Services
                     ImageSrc = CurrentWeather.Current.Condition.Icon,
                     WeatherAsText = CurrentWeather.Current.Condition.Text,
                     WindDegreesAndText = GetWindCourse(CurrentWeather.Current.Wind_degree, CurrentWeather.Current.Wind_dir),
-                    WindSpeed = (float)Math.Round(WindSpeed(CurrentWeather.Current.Wind_kph), 0),
+                    WindSpeed = WindSpeed(CurrentWeather.Current.Wind_kph),
                     WeatherText = CurrentWeather.Current.Condition.Text,
-                    WindGust = (float)Math.Round(WindSpeed(CurrentWeather.Current.Gust_kph), 0),
+                    WindGust = WindSpeed(CurrentWeather.Current.Gust_kph),
                 };
                 return model;
 
@@ -74,14 +75,21 @@ namespace Weather.Services
             }
             return new string[] { string.Empty };
         }
-        private float WindSpeed(float speed)
+        private string WindSpeed(float speed)
         {
             if (speed >= 0)
             {
                 float speedMeters = speed * 1000 / 3600;
-                return speedMeters;
+                speedMeters = ((float)Math.Round(speedMeters, 0));
+                return speedMeters.ToString();
             }
-            return 0;
+            return "0";
+        }
+        private string TimesOfDay(int? dayOrnight)
+        {
+            if (dayOrnight == 0)
+                return "ночь";
+            return "день";
         }
     }
 }

@@ -284,13 +284,15 @@ header {
 }
 
 .weather-compressed span.feelslike-temp,
-.weather-compressed span.gust-wind {
+.weather-compressed span.gust-wind,
+.weather-compressed span.weather-text {
     font-size: 1rem;
 }
 
 @media (max-width: 1023px) {
     .weather-compressed span.feelslike-temp,
-    .weather-compressed span.gust-wind {
+    .weather-compressed span.gust-wind,
+    .weather-compressed span.weather-text {
         font-size: 0.7rem;
         margin-left: 0;
         padding: 0;

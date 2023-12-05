@@ -5,6 +5,7 @@ namespace Weather.ViewModels
     internal class WeatherVM
     {
         internal string[] LocalDateAndTime { get; set; } = new string[2];
+        internal string TimesOfDay { get; set; } = string.Empty;
         internal string Date { get; set; } = string.Empty;
         internal string Name { get; set; } = string.Empty;
         internal string Region { get; set; } = string.Empty;
@@ -14,8 +15,8 @@ namespace Weather.ViewModels
         internal string ImageSrc { get; set; } = string.Empty;
         internal string WeatherAsText { get; set; } = string.Empty;
         internal string[] WindDegreesAndText { get; set; } = new string[3];
-        internal float WindSpeed { get; set; }
+        internal string WindSpeed { get; set; }
         internal string WeatherText {  get; set; } = string.Empty;
-        internal float WindGust { get; set; }
+        internal string WindGust { get; set; }
     }
 }

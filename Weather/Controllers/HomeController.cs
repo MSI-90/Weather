@@ -150,7 +150,7 @@ namespace Weather.Controllers
                 modelCityList = await _connection.GetCitiesAsync(city);
                 if (modelCityList.Any())
                 {
-                    var myVariant = modelCityList.Where(model => model.Country == "Россия");
+                    var myVariant = modelCityList/*.Where(model => model.Country == "Россия")*/;
                     if (myVariant.Any())
                         return View("Search", myVariant);
                     else

@@ -15,7 +15,7 @@
             if (letter.Contains(" ") || letter.Contains("-"))
                 return letter;
 
-            if (!letter.EndsWith("ово") && !letter.EndsWith('ы') && !letter.EndsWith("ево"))
+            if (!letter.EndsWith("ово") && !letter.EndsWith('ы') && !letter.EndsWith("ево") && !letter.EndsWith("ре"))
             {
                 char lastLetter = letter.Last();
                 letter = letter.TrimEnd(lastLetter);
@@ -61,15 +61,15 @@
         <div class="weather-header">
             <p>
                 <span class="header_details">Погода в @name</span>
-                @Model.LocalDateAndTime[1]
+                @Model.LocalDateAndTime[1] (@Model.TimesOfDay)
             </p>
         </div>
         <div class="weather-compressed">
-            <div class="row informer-caption">
+@*             <div class="row informer-caption">
                 <div class="col-sm-3"> Температура </div>
                 <div class="col-sm-3"> Ветер </div>
                 <div class="col-sm"> Осадки </div>
-            </div>
+            </div> *@
             <div class="row">
                 <div class="col-sm-3">
                     <div class="informer">
@@ -88,14 +88,14 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-sm">
+                <div class="col-sm-3">
                     <div class="informer">
                         <span class="weather-image">
                             <img src="@Model.ImageSrc" alt="Погода" title="@Model.WeatherText" />
                         </span>
-                    </div>
-                    <div class="informer">
-                        <span></span>
+                        <p>
+                            <span class="weather-text" style="display: block; top: -5px;"> @Model.WeatherText </span>
+                        </p>
                     </div>
                 </div>
             </div>
