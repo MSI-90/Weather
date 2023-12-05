@@ -92,14 +92,12 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-sm-3">
-                    <div class="informer">
+                <div class="col-sm-6">
+                    <div class="informer-right">
                         <span class="weather-image">
                             <img src="@Model.ImageSrc" alt="Погода" title="@Model.WeatherText" />
                         </span>
-                        <p>
-                            <span class="weather-text" style="display: block; top: -5px;"> @Model.WeatherText </span>
-                        </p>
+                        <span class="weather-text"> @Model.WeatherText </span>
                     </div>
                 </div>
             </div>
@@ -111,7 +109,7 @@
             <div asp-validation-summary="All"></div>
         </div>
     }
-    <div>
+    <div class="home-page">
         <a asp-action="Index">На главную</a>
     </div>
 </div>

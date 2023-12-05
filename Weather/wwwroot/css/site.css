@@ -218,7 +218,7 @@ header {
 }
 
 .weather-compressed {
-    background-image: -webkit-linear-gradient(top, #CCCC66, #99CC33);
+    background-image: -webkit-linear-gradient(top, #CCCC66, #99CC33 ); /*#CCCC66, #99CC33*/
     border-radius: 5px;
     display: block;
     height: auto;
@@ -239,6 +239,9 @@ header {
     margin-right: 20px;
 }
 
+informer-right {
+    display: block;
+}
 
 .weather-compressed span {
     margin: 0;
@@ -320,4 +323,10 @@ header {
     line-height: 0.1rem;
     --bs-body-line-height: 0.1;
     
+}
+
+.home-page a {
+    text-decoration: none;
+    color: #330066;
+    font-weight: 600;
 }
