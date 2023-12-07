@@ -68,17 +68,20 @@
     </div>
     <footer class="border-top footer text-muted">
         <div class="container">
-            <div>
-                <p class="footer-early-caption"> Просмотрены ранее: </p>
-                @foreach (var item in tools.LastWeather ?? new List<string>())
-                {
-                    <p class="cookie_item">
-                        <a asp-controller="Home" asp-action="OnDetailsFromRegion" asp-route-cityName="@item">
-                            @item
-                        </a>
-                    </p>
-                }
-            </div>
+            @if(tools.LastWeather.Any())
+            {
+                <div>
+                    <p class="footer-early-caption"> Просмотрены ранее: </p>
+                    @foreach (var item in tools.LastWeather ?? new List<string>())
+                    {
+                        <p class="cookie_item">
+                            <a asp-controller="Home" asp-action="OnDetailsFromRegion" asp-route-cityName="@item">
+                                @item
+                            </a>
+                        </p>
+                    }
+                </div>
+            }
             &copy; @DateTime.Now.Year - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
