@@ -9,6 +9,6 @@ namespace Weather.Services.Interfaces
     {
         Task<IEnumerable<NewItem>> GetCitiesAsync(CityToFind cityToFind);
         Task<WeatherModel> GetDataAsync(float lat, float lon);
-        Task<WeatherOnWeek> GetDataOnWeekAsync(CityToFind cityToFind);
+        Task<WeatherOnWeek> GetDataOnPeriodAsync(CityToFind cityToFind, int numberOfDays);
     }
 }

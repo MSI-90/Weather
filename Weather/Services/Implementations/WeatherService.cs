@@ -76,7 +76,7 @@ namespace Weather.Services
                 }
             }
         }
-        public async Task<WeatherOnWeek> GetDataOnWeekAsync(CityToFind cityToFind)
+        public async Task<WeatherOnWeek> GetDataOnPeriodAsync(CityToFind cityToFind, int numberOfDays)
         {
             using (var client = new HttpClient())
             {
@@ -86,7 +86,7 @@ namespace Weather.Services
 
                 using (var request = new HttpRequestMessage())
                 {
-                    request.RequestUri = new Uri($"{forecastString}?{nameof(key)}={key}&q={cityToFind.City}&days=7&{nameof(lang)}={lang}");
+                    request.RequestUri = new Uri($"{forecastString}?{nameof(key)}={key}&q={cityToFind.City}&days={numberOfDays}&{nameof(lang)}={lang}");
                     request.Method = HttpMethod.Get;
                     try
                     {
