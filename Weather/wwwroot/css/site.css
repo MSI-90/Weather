@@ -20,9 +20,8 @@ body {
 }
 
 header {
-    background-image:url(../images/headerBg.png);
+    background: linear-gradient(#6666FF, #0099FF);
     color: white;
-    
 }
 
 .search {
@@ -39,7 +38,7 @@ header {
     --bs-gutter-x: 0;
     color: azure;
     font-weight: bold;
-    height: 35px;
+    height: 5%;
 }
 
 .search_listHeader .col:nth-child(1),
@@ -53,14 +52,14 @@ header {
 }
 
 .search_list {
-    background-image: url(../images/listBg.png);
-    height: 30px;
+    background-image: -webkit-linear-gradient(top, #FFFFFF, #CCCCCC );
+    height: 5%;
     margin: 4px 0px;
 }
 
 .search_list:hover {
     background: #005eb5;
-    color:white;
+    color: white;
 }
 
 .search_list:hover a {
@@ -78,7 +77,6 @@ header {
     padding-left: var(--bs-gutter-x,.75rem);
     margin-right: auto;
     margin-left: auto;
-    margin-bottom: 20px;
 }
 
 .error{
@@ -126,6 +124,12 @@ header {
 }
 
 /*Index*/
+@media (max-width: 400px) {
+    .body-container {
+        font-size: 10pt;
+    }
+}
+
 .region_first_letter {
     background: url("../images/BgLetter.png") repeat-x;
     color: white;
@@ -173,7 +177,7 @@ header {
 }
 
 .body_404 form .my-btn {
-    font-size: 1vw;
+    font-size: 100%;
     padding: 6px 15px;
 }
 

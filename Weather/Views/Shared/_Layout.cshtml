@@ -16,9 +16,12 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between" id="navbarNav">
                     <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Weather</a>
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
@@ -35,7 +38,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <div class="input-group">
-                                                <input type="text" value="Введите наименование н.п." id="City" name="City" class="search form-control" onfocus="clearDefaultText()" aria-describedby="button" style="width:280px;" />
+                                                <input type="text" value="Введите наименование н.п." id="City" name="City" class="search form-control" onfocus="clearDefaultText()" aria-describedby="button" />
                                                 <input type="submit" value="Найти" class="btn btn-outline-secondary" id="button" style="display:none;" />
                                             </div>
                                         </div>
@@ -61,7 +64,7 @@
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main" class="pb-3 body-container">
             <breadcrumb></breadcrumb>
             @RenderBody()
         </main>
