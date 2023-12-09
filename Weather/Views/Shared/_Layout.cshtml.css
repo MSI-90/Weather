@@ -71,3 +71,9 @@ button.accept-policy {
     line-height: 25px;
     text-align: left;
 }
+
+@media (width < 400px) {
+    .footer .cookie_item {
+        font-size: 10pt;
+    }
+}

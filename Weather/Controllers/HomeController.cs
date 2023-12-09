@@ -88,21 +88,37 @@ namespace Weather.Controllers
 
             try
             {
-                if (Single.TryParse(lat, out float latitude) && Single.TryParse(lon, out float longitude))
+                var city = new CityToFind();
+                city.City = name;
+
+                var confirmCity = await _connection.GetCitiesAsync(city);
+                if (confirmCity.Count() > 0)
                 {
-                    var model = await _connection.GetDataAsync(latitude, longitude);
-                    if (model?.Location != null)
+                    foreach (var item in confirmCity)
                     {
-                        //set cookie
-                        _cookieTools.SetOnce(name);
+                        if (item.Name == name)
+                        {
+                            if (Single.TryParse(lat, out float latitude) && Single.TryParse(lon, out float longitude))
+                            {
+                                var model = await _connection.GetDataAsync(latitude, longitude);
 
-                        var weatherService = new WeaterVMService(model);
-                        var viewModel = weatherService.GetMyCurrentWeatherAsync(name);
-                        return View(viewModel);
+                                if (model?.Location != null)
+                                {
+                                    //set cookie
+                                    _cookieTools.SetOnce(name);
 
+                                    var weatherService = new WeaterVMService(model);
+                                    var viewModel = weatherService.GetMyCurrentWeatherAsync(name);
+                                    return View(viewModel);
+
+                                }
+                            }
+                            return View();
+                        }
+                        return RedirectToAction("Index");
                     }
                 }
-                return View();
+                return RedirectToAction("Index");
             }
             catch
             {
