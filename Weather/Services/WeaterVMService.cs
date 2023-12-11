@@ -55,21 +55,21 @@ namespace Weather.Services
                 string[] course = windDir switch
                 {
                     "N" => new string[] { "С", "Север", windDegree.ToString() },
-                    "NNE" => new string[] { "ССВ", "Север Северо-Восток", windDegree.ToString() },
+                    "NNE" => new string[] { "С СВ", "Север Северо-Восток", windDegree.ToString() },
                     "NE" => new string[] { "СВ", "Северо-Восток", windDegree.ToString() },
-                    "ENE" => new string[] { "ВСВ", "Восток Северо-Восток", windDegree.ToString() },
+                    "ENE" => new string[] { "В СВ", "Восток Северо-Восток", windDegree.ToString() },
                     "E" => new string[] { "В", "Восток", windDegree.ToString() },
-                    "ESE" => new string[] { "ВЮВ", "Восток Юго-Восток", windDegree.ToString() },
+                    "ESE" => new string[] { "В ЮВ", "Восток Юго-Восток", windDegree.ToString() },
                     "SE" => new string[] { "ЮВ", "Юго-Восток", windDegree.ToString() },
-                    "SSE" => new string[] { "ЮЮВ", "Юг Юго-Восток", windDegree.ToString() },
+                    "SSE" => new string[] { "Ю ЮВ", "Юг Юго-Восток", windDegree.ToString() },
                     "S" => new string[] { "Ю", "Юг", windDegree.ToString() },
-                    "SSW" => new string[] { "ЮЮЗ", "Юг Юго-Запад", windDegree.ToString() },
+                    "SSW" => new string[] { "Ю ЮЗ", "Юг Юго-Запад", windDegree.ToString() },
                     "SW" => new string[] { "ЮЗ", "Юго-Запад", windDegree.ToString() },
-                    "WSW" => new string[] { "ЗЮЗ", "Запад Юго-Запад", windDegree.ToString() },
+                    "WSW" => new string[] { "З ЮЗ", "Запад Юго-Запад", windDegree.ToString() },
                     "W" => new string[] { "З", "Запад", windDegree.ToString() },
-                    "WNW" => new string[] { "ЗСЗ", "Запад Северо-Запад", windDegree.ToString() },
+                    "WNW" => new string[] { "З СЗ", "Запад Северо-Запад", windDegree.ToString() },
                     "NW" => new string[] { "СЗ", "Северо-Запад", windDegree.ToString() },
-                    "NNW" => new string[] { "ССЗ", "Север Северо-Запад", windDegree.ToString() }
+                    "NNW" => new string[] { "С СЗ", "Север Северо-Запад", windDegree.ToString() }
                 };
                return course;
             }

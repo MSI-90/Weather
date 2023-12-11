@@ -203,7 +203,7 @@ header {
     font-size: 1.5rem;
 }
 
-@media (max-width: 320px) {
+@media (width < 400px) {
     .header_details {
         font-size: 1rem;
         font-weight: 550;
@@ -214,9 +214,9 @@ header {
     font-size: 1rem;
 }
 
-@media (max-width: 320px) {
+@media (width < 400px) {
     .weather-header {
-        font-size: 0.65rem;
+        font-size: 0.8rem;
         font-weight: normal;
     }
 }
@@ -254,7 +254,7 @@ informer-right {
 
 @media (max-width: 1023px) {
     .weather-compressed {
-        font-size: 1rem;
+        font-size: 1.5rem;
     }
 }
 
@@ -288,7 +288,7 @@ informer-right {
     .weather-compressed span.feelslike-temp,
     .weather-compressed span.gust-wind,
     .weather-compressed span.weather-text {
-        font-size: 0.7rem;
+        font-size: 0.8rem;
         margin-left: 0;
         padding: 0;
     }
@@ -301,7 +301,7 @@ informer-right {
 
 @media (max-width: 1023px) {
     .weather-compressed .wind .wind-full {
-        font-size: 0.7rem;
+        font-size: 0.8rem;
     }
 }
 
