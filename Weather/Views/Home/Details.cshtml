@@ -1,4 +1,5 @@
 ﻿@using Weather.ViewModels
+@using Weather.Models.Search
 @model WeatherVM
 
 @{
@@ -7,6 +8,7 @@
         title = Model.Name;
 
     ViewData["Title"] = $"Подробно о погоде в {GetLetter(ref title)}";
+    ViewData["City"] = Model?.Name;
 
     string GetLetter(ref string letter)
     {
@@ -16,7 +18,7 @@
                 return letter;
 
             if (!letter.EndsWith("ово") && !letter.EndsWith('ы') && !letter.EndsWith("ево") && !letter.EndsWith("ре") && !letter.EndsWith("но"))
-    {
+            {
                 char lastLetter = letter.Last();
                 letter = letter.TrimEnd(lastLetter);
                 if (lastLetter == 'а' || lastLetter == 'я')
@@ -55,6 +57,7 @@
 <div class="container">
     @if (Model != null)
     {
+        int days = 0;
         string name = Model.Name;
         GetLetter(ref name);
         
@@ -85,7 +88,7 @@
                         <span class="wind" id="windSpeed"> @Model.WindSpeed м/с, </span>
                         <span class="wind"> @Model.WindDegreesAndText[0] </span>
                         <p>
-                            <span class="gust-wind"> Порывы до
+                            <span class="gust-wind"> порывы до
                                 <span id="gust-wind">@Model.WindGust</span> 
                                 м/с 
                             </span>
@@ -102,6 +105,15 @@
                 </div>
             </div>
         </div>
+        <div class="several-days">
+            <h4><a href="#" class="forecast">Пронгоз погоды на 3 дня:</a></h4>
+            <input type="hidden" id="сityName" value="@Model.Name" />
+            <div class="row">
+                <div class="col">
+                    <h4 id="test"></h4>
+                </div>
+            </div>
+        </div>
     }
     else
     {
@@ -109,7 +121,7 @@
             <div asp-validation-summary="All"></div>
         </div>
     }
-    <div class="home-page">
+   @*  <div class="home-page">
         <a asp-action="Index">На главную</a>
-    </div>
+    </div> *@
 </div>

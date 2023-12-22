@@ -3,6 +3,7 @@ using SmartBreadcrumbs.Attributes;
 using System.Diagnostics;
 using Weather.Models.Cityes;
 using Weather.Models.search;
+using Weather.Models.Search;
 using Weather.Services;
 using Weather.Services.Implementations;
 using Weather.Services.Interfaces;
@@ -194,6 +195,21 @@ namespace Weather.Controllers
         public ViewResult Privacy()
         {
             return View();
+        }
+
+        [HttpPost]
+        [Route("forecast")]
+        public async Task<IActionResult> GetWeatherOnPeriod([FromBody] CityToFind city)
+        {
+            if (city == null)
+                return StatusCode(StatusCodes.Status400BadRequest);
+
+            if (city.DayOfWeek == 0 || city.DayOfWeek != 3)
+                return StatusCode(StatusCodes.Status400BadRequest);
+
+            var model = await _connection.GetDataOnPeriodAsync(city, city.DayOfWeek);
+            var t = model.Current.TempC;
+            return new ObjectResult(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -1,7 +1,8 @@
 ﻿using Weather.Models.search;
 using Weather.Models.current;
+using Weather.Models.Search;
+using Weather.Models.Cityes;
 using Weather.Models.OnWeek;
-using Weather.ViewModels;
 
 namespace Weather.Services.Interfaces
 {

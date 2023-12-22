@@ -99,3 +99,27 @@ function ChangeColorOfGustWind() {
     
 }
 ChangeColorOfGustWind()
+
+$(document).ready(function () {
+    $('.forecast').click(function () {
+        Forecast();
+    });
+});
+
+function Forecast() {
+    let obj = {
+        City: $('#сityName').val(),
+        DayOfWeek: 3
+    }
+
+    $.ajax({
+        url: "/forecast",
+        data: JSON.stringify(obj),
+        method: 'POST',
+        contentType: "application/json;charset=UTF-8",
+        dataType: "json",
+        success: function (result) {
+            $('#test').text(result.current.tempC);
+        }
+    });
+}

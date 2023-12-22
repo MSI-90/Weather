@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Components.Forms;
+using System.ComponentModel.DataAnnotations;
 
 namespace Weather.ViewModels
 {
@@ -10,8 +11,8 @@ namespace Weather.ViewModels
         internal string Name { get; set; } = string.Empty;
         internal string Region { get; set; } = string.Empty;
         internal string Country { get; set; } = string.Empty;
-        internal float TempC { get; set; }
-        public float FeelsLike { get; set; }
+        internal float TempC { get; set; } = 0f;
+        public float FeelsLike { get; set; } = 0f;
         internal string ImageSrc { get; set; } = string.Empty;
         internal string WeatherAsText { get; set; } = string.Empty;
         internal string[] WindDegreesAndText { get; set; } = new string[3];

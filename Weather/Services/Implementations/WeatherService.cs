@@ -1,9 +1,9 @@
 ﻿using Weather.Services.Interfaces;
 using Newtonsoft.Json;
-using Weather.ViewModels;
-using Weather.Models.OnWeek;
 using Weather.Models.current;
 using Weather.Models.search;
+using Weather.Models.Search;
+using Weather.Models.OnWeek;
 
 namespace Weather.Services
 {
@@ -96,7 +96,7 @@ namespace Weather.Services
                             var obj = await response.Content.ReadAsStringAsync();
                             var result = JsonConvert.DeserializeObject<WeatherOnWeek>(obj);
 
-                            return new WeatherOnWeek();
+                            return result;
                         }
                     }
                     catch {throw;}
