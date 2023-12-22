@@ -342,6 +342,7 @@ informer-right {
 section {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 
 article {
@@ -349,4 +350,8 @@ article {
     margin: 10px;
     background: aqua;
     flex: 1 auto;
+}
+
+article h5 {
+    text-align: center;
 }

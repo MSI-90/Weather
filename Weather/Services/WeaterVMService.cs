@@ -1,5 +1,8 @@
-﻿using NuGet.Versioning;
+﻿using Microsoft.AspNetCore.Mvc;
+using NuGet.Protocol;
+using Weather.DTO;
 using Weather.Models.current;
+using Weather.Models.OnWeek;
 using Weather.ViewModels;
 
 namespace Weather.Services
@@ -7,9 +10,14 @@ namespace Weather.Services
     class WeaterVMService
     {
         protected WeatherModel CurrentWeather { get; set; }
+        protected WeatherOnWeek WeatherOnWeek { get; set; }
         public WeaterVMService(WeatherModel currentWeather)
         {
             CurrentWeather = currentWeather;
+        }
+        public WeaterVMService(WeatherOnWeek onWeek)
+        {
+            WeatherOnWeek = onWeek;
         }
 
         internal WeatherVM GetMyCurrentWeatherAsync(string name)
@@ -34,7 +42,6 @@ namespace Weather.Services
                     TempC = temperature,
                     FeelsLike = feelsLikeC,
                     ImageSrc = CurrentWeather.Current.Condition.Icon,
-                    WeatherAsText = CurrentWeather.Current.Condition.Text,
                     WindDegreesAndText = GetWindCourse(CurrentWeather.Current.Wind_degree, CurrentWeather.Current.Wind_dir),
                     WindSpeed = WindSpeed(CurrentWeather.Current.Wind_kph),
                     WeatherText = CurrentWeather.Current.Condition.Text,
@@ -46,6 +53,43 @@ namespace Weather.Services
             catch
             {
                 throw new Exception("Не можем отобразить информацию о погоде, повторите операцию позже");
+            }
+        }
+        internal ObjectResult /*IActionResult*/ WeatherOnNextDays()
+        {
+            try
+            {
+                if (WeatherOnWeek == null)
+                    return new ObjectResult(null);
+
+                WeatherVMDays[] weatherDays = new WeatherVMDays[WeatherOnWeek.Forecast.Forecastday.Count];
+
+                for (int i = 0; i < weatherDays.Length; i++)
+                {
+                    DateTimeOffset dateTime = DateTimeOffset.FromUnixTimeSeconds(WeatherOnWeek.Forecast.Forecastday[i].DateEpoch);
+                    DateTime date = dateTime.DateTime;
+
+                    weatherDays[i] = new WeatherVMDays()
+                    {
+                        Date = date.ToString("dd.MM.yyyy"),
+                        MaxTemp = WeatherOnWeek.Forecast.Forecastday[i].Day.MaxtempC,
+                        MinTemp = WeatherOnWeek.Forecast.Forecastday[i].Day.MintempC,
+                        AvgTemp = WeatherOnWeek.Forecast.Forecastday[i].Day.AvgtempC,
+                        WindSpeed = WeatherOnWeek.Forecast.Forecastday[i].Day.MaxwindKph,
+                        AvgVisInKm = WeatherOnWeek.Forecast.Forecastday[i].Day.AvgvisKm,
+                        Humidity = (byte)WeatherOnWeek.Forecast.Forecastday[i].Day.Avghumidity,
+                        WeatherText = WeatherOnWeek.Forecast.Forecastday[i].Day.Condition.Text,
+                        WeatherImg = WeatherOnWeek.Forecast.Forecastday[i].Day.Condition.Icon
+                    };
+                }
+
+                return new ObjectResult(weatherDays);/*new JsonResult(weatherDays)*/;
+
+            }
+            catch
+            {
+                throw new Exception("Не можем отобразить информацию о погоде, повторите операцию позже");
+                //return new StatusCodeResult(500);
             }
         }
         private string[] GetWindCourse(int windDegree, string windDir)

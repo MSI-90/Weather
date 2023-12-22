@@ -120,7 +120,13 @@ function Forecast() {
         dataType: "json",
         success: function (result) {
             $('.three-days').css('display', 'block');
-            $('#firstDay').text(result.current.tempC);
+            console.log(result);
+            $('#firstDay h5').text(result[0].date);
+            $('#firstDay .review').text('Средняя температура воздуха: ');
+            $('#firstDay .data').text(result[0].avgTemp);
+
+            $('#secondDay h5').text(result[0].date);
+            $('#threeDay h5').text(result[0].date);
         }
     });
 }
