@@ -334,3 +334,19 @@ informer-right {
     color: #330066;
     font-weight: 600;
 }
+
+.three-days{
+    display: none;
+}
+
+section {
+    display: flex;
+    flex-direction: row;
+}
+
+article {
+    padding: 10px;
+    margin: 10px;
+    background: aqua;
+    flex: 1 auto;
+}

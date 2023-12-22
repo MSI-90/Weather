@@ -119,7 +119,8 @@ function Forecast() {
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
         success: function (result) {
-            $('#test').text(result.current.tempC);
+            $('.three-days').css('display', 'block');
+            $('#firstDay').text(result.current.tempC);
         }
     });
 }
