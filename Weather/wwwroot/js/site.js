@@ -123,18 +123,24 @@ function Forecast() {
             console.log(result);
             $('#firstDay h5').text(result[0].date);
             $('#firstDay .temp').text('Температура воздуха: ' + result[0].minTemp + ' °C' + ' ... ' + result[0].maxTemp + ' °C ');
+            $('#firstDay .windGust').text('Ветер до: ' + result[0].windGust + ' м/с');
             $('#firstDay .tempIco').html('<img src= "' + result[0].weatherImg + '" alt = "' + result[0].weatherText + '"title = "' + result[0].weatherText + '"/>');
             $('#firstDay .visible').text('Горизонтальная видимость: ' + result[0].avgVisInKm + 'км');
+            $('#firstDay .humidity').text('Влажность: ' + result[0].humidity);
 
             $('#secondDay h5').text(result[1].date);
             $('#secondDay .temp').text('Температура воздуха: ' + result[1].minTemp + ' °C' + ' ... ' + result[1].maxTemp + ' °C ');
+            $('#secondDay .windGust').text('Ветер до: ' + result[1].windGust + ' м/с');
             $('#secondDay .tempIco').html('<img src= "' + result[1].weatherImg + '" alt = "' + result[1].weatherText + '"title = "' + result[1].weatherText + '"/>');
             $('#secondDay .visible').text('Горизонтальная видимость: ' + result[1].avgVisInKm + 'км');
+            $('#secondDay .humidity').text('Влажность: ' + result[1].humidity);
 
             $('#threeDay h5').text(result[2].date);
             $('#threeDay .temp').text('Температура воздуха: ' + result[2].minTemp + ' °C' + ' ... ' + result[2].maxTemp + ' °C ');
+            $('#threeDay .windGust').text('Ветер до: ' + result[2].windGust + ' м/с');
             $('#threeDay .tempIco').html('<img src= "' + result[2].weatherImg + '" alt = "' + result[2].weatherText + '"title = "' + result[2].weatherText + '"/>');
             $('#threeDay .visible').text('Горизонтальная видимость: ' + result[2].avgVisInKm + 'км');
+            $('#threeDay .humidity').text('Влажность: ' + result[2].humidity);
         }
     });
 }

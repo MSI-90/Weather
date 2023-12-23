@@ -75,7 +75,7 @@ namespace Weather.Services
                         MaxTemp = WeatherOnWeek.Forecast.Forecastday[i].Day.MaxtempC,
                         MinTemp = WeatherOnWeek.Forecast.Forecastday[i].Day.MintempC,
                         AvgTemp = WeatherOnWeek.Forecast.Forecastday[i].Day.AvgtempC,
-                        WindSpeed = WeatherOnWeek.Forecast.Forecastday[i].Day.MaxwindKph,
+                        WindGust = WindSpeed(WeatherOnWeek.Forecast.Forecastday[i].Day.MaxwindKph),
                         AvgVisInKm = WeatherOnWeek.Forecast.Forecastday[i].Day.AvgvisKm,
                         Humidity = (byte)WeatherOnWeek.Forecast.Forecastday[i].Day.Avghumidity,
                         WeatherText = WeatherOnWeek.Forecast.Forecastday[i].Day.Condition.Text,
@@ -119,15 +119,14 @@ namespace Weather.Services
             }
             return new string[] { string.Empty };
         }
-        private string WindSpeed(float speed)
+        private float WindSpeed(double speed)
         {
             if (speed >= 0)
             {
-                float speedMeters = speed * 1000 / 3600;
-                speedMeters = ((float)Math.Round(speedMeters, 1));
-                return speedMeters.ToString();
+                float speedMeters = Convert.ToSingle(speed) * 1000 / 3600;
+                return (float)Math.Round(speedMeters, 1);
             }
-            return "0";
+            return default;
         }
         private string TimesOfDay(int? dayOrnight)
         {

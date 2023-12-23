@@ -346,9 +346,9 @@ section {
 }
 
 article {
+    background-image: -webkit-linear-gradient(top, #CCCC66, #99CC33 );
     padding: 3px;
     margin: 5px;
-    background: aqua;
     flex: 1;
 }
 

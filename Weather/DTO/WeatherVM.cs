@@ -16,8 +16,8 @@ namespace Weather.ViewModels
         internal string ImageSrc { get; set; } = string.Empty;
         internal string WeatherAsText { get; set; } = string.Empty;
         internal string[] WindDegreesAndText { get; set; } = new string[3];
-        internal string WindSpeed { get; set; } = string.Empty;
+        internal float WindSpeed { get; set; } = 0f;
         internal string WeatherText {  get; set; } = string.Empty;
-        internal string WindGust { get; set; } = string.Empty;
+        internal float WindGust { get; set; } = 0f;
     }
 }
