@@ -346,10 +346,10 @@ section {
 }
 
 article {
-    padding: 10px;
-    margin: 10px;
+    padding: 3px;
+    margin: 5px;
     background: aqua;
-    flex: 1 auto;
+    flex: 1;
 }
 
 article h5 {
