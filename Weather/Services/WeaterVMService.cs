@@ -55,7 +55,7 @@ namespace Weather.Services
                 throw new Exception("Не можем отобразить информацию о погоде, повторите операцию позже");
             }
         }
-        internal ObjectResult /*IActionResult*/ WeatherOnNextDays()
+        internal ObjectResult WeatherOnNextDays()
         {
             try
             {
@@ -85,10 +85,26 @@ namespace Weather.Services
                         WeatherText = WeatherOnWeek.Forecast.Forecastday[i].Day.Condition.Text,
                         WeatherImg = WeatherOnWeek.Forecast.Forecastday[i].Day.Condition.Icon
                     };
+
+                    for (int j = 0; j <= 23; j++) 
+                    {
+                        weatherDays[i].Hours.Add(new Hours
+                        {
+                            TimeOfHours = WeatherOnWeek.Forecast.Forecastday[i].Hour[j].Time.Split(' '),
+                            IsDay = (byte)WeatherOnWeek.Forecast.Forecastday[i].Hour[j].IsDay,
+                            WeatherImg = WeatherOnWeek.Forecast.Forecastday[i].Hour[j].Condition.Icon,
+                            WeatherText = WeatherOnWeek.Forecast.Forecastday[i].Hour[j].Condition.Text,
+                            TempC = WeatherOnWeek.Forecast.Forecastday[i].Hour[j].TempC,
+                            FeelsLikeC = WeatherOnWeek.Forecast.Forecastday[i].Hour[j].FeelslikeC,
+                            WindSpeed = WindSpeed(WeatherOnWeek.Forecast.Forecastday[i].Hour[j].WindKph),
+                            WindGust = WindSpeed(WeatherOnWeek.Forecast.Forecastday[i].Hour[j].GustKph),
+                            WindDegreesAndText = GetWindCourse(WeatherOnWeek.Forecast.Forecastday[i].Hour[j].WindDegree, WeatherOnWeek.Forecast.Forecastday[i].Hour[j].WindDir),
+                            Pressure = GetPressure(WeatherOnWeek.Forecast.Forecastday[i].Hour[j].PressureMb)
+                        });
+                    }
                 }
 
-                return new ObjectResult(weatherDays);/*new JsonResult(weatherDays)*/;
-
+                return new ObjectResult(weatherDays);
             }
             catch
             {
@@ -137,6 +153,15 @@ namespace Weather.Services
             if (dayOrnight == 0)
                 return "темно";
             return "светло";
+        }
+        private int GetPressure(double pressureMb)
+        {
+            if (pressureMb <= 0d)
+                return 0;
+
+            double mmHg = 0.75006375541921d;
+            return (int)Math.Round(pressureMb * mmHg);
+
         }
     }
 }
