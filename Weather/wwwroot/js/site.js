@@ -119,9 +119,21 @@ function Forecast() {
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
         success: function (result) {
+
+            let dayColor = [];
+            for (let i = 0; i < 3; i++) {
+                if (result[i].dayOfWeek === "Суббота" || result[i].dayOfWeek === "Воскресенье") {
+                    dayColor.push('red');
+                }
+                else {
+                    dayColor.push('blue');
+                }
+            }
+
             $('.three-days').css('display', 'block');
             console.log(result);
             $('#firstDay h5').text(result[0].date);
+            $('#firstDay h5').css('color', dayColor[0]);
             $('#firstDay .temp').text('Температура воздуха: ' + result[0].minTemp + ' °C' + ' ... ' + result[0].maxTemp + ' °C ');
             $('#firstDay .windGust').text('Ветер до: ' + result[0].windGust + ' м/с');
             $('#firstDay .tempIco').html('<img src= "' + result[0].weatherImg + '" alt = "' + result[0].weatherText + '"title = "' + result[0].weatherText + '"/>');
@@ -129,6 +141,7 @@ function Forecast() {
             $('#firstDay .humidity').text('Влажность: ' + result[0].humidity);
 
             $('#secondDay h5').text(result[1].date);
+            $('#secondDay h5').css('color', dayColor[1]);
             $('#secondDay .temp').text('Температура воздуха: ' + result[1].minTemp + ' °C' + ' ... ' + result[1].maxTemp + ' °C ');
             $('#secondDay .windGust').text('Ветер до: ' + result[1].windGust + ' м/с');
             $('#secondDay .tempIco').html('<img src= "' + result[1].weatherImg + '" alt = "' + result[1].weatherText + '"title = "' + result[1].weatherText + '"/>');
@@ -136,6 +149,7 @@ function Forecast() {
             $('#secondDay .humidity').text('Влажность: ' + result[1].humidity);
 
             $('#threeDay h5').text(result[2].date);
+            $('#threeDay h5').css('color', dayColor[2]);
             $('#threeDay .temp').text('Температура воздуха: ' + result[2].minTemp + ' °C' + ' ... ' + result[2].maxTemp + ' °C ');
             $('#threeDay .windGust').text('Ветер до: ' + result[2].windGust + ' м/с');
             $('#threeDay .tempIco').html('<img src= "' + result[2].weatherImg + '" alt = "' + result[2].weatherText + '"title = "' + result[2].weatherText + '"/>');

@@ -3,6 +3,7 @@
     internal class WeatherVMDays
     {
         public string Date {  get; set; } = string.Empty;
+        public string DayOfWeek {  get; set; } = string.Empty;
         public double MaxTemp { get; set; } = 0d;
         public double MinTemp { get; set; } = 0d;
         public double AvgTemp { get; set; } = 0d;

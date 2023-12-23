@@ -68,10 +68,14 @@ namespace Weather.Services
                 {
                     DateTimeOffset dateTime = DateTimeOffset.FromUnixTimeSeconds(WeatherOnWeek.Forecast.Forecastday[i].DateEpoch);
                     DateTime date = dateTime.DateTime;
+                    DayOfWeek dayOfWeek = date.DayOfWeek;
+                    string day = date.ToString("dddd", new System.Globalization.CultureInfo("ru-RU")).First().ToString().ToUpper() + 
+                        date.ToString("dddd", new System.Globalization.CultureInfo("ru-RU")).Substring(1);
 
                     weatherDays[i] = new WeatherVMDays()
                     {
                         Date = date.ToString("dd.MM.yyyy"),
+                        DayOfWeek = day,
                         MaxTemp = WeatherOnWeek.Forecast.Forecastday[i].Day.MaxtempC,
                         MinTemp = WeatherOnWeek.Forecast.Forecastday[i].Day.MintempC,
                         AvgTemp = WeatherOnWeek.Forecast.Forecastday[i].Day.AvgtempC,
