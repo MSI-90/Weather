@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SmartBreadcrumbs.Attributes;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 using Weather.Models.Cityes;
 using Weather.Models.search;
 using Weather.Models.Search;
@@ -53,6 +54,11 @@ namespace Weather.Controllers
             {
                 try
                 {
+                    Regex regex = new Regex(@"[^а-яёА-ЯЁ\s\d.,\/#!$%\^&\*;:{}=\-_`~()\[\]\""'<>\?\\|]+");
+                    MatchCollection matches = regex.Matches(cityName.City);
+                    if (matches.Count > 0)
+                        throw new Exception("Возникла ошибка, повторите попытку позднее");
+
                     IEnumerable<NewItem> model = new List<NewItem>();
                     model = await _connection.GetCitiesAsync(cityName);
 
