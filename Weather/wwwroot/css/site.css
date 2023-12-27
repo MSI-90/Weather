@@ -223,7 +223,7 @@ header {
 
 .weather-compressed {
     background-image: -webkit-linear-gradient(top, #CCCC66, #99CC33 ); /*#CCCC66, #99CC33*/
-    border-radius: 5px;
+    border-radius: 10px;
     display: block;
     height: auto;
     margin: 20px 0 15px 0;
@@ -339,6 +339,74 @@ informer-right {
     display: none;
 }
 
+.nav {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.nav ol li {
+    margin-top: 0;
+}
+
+.nav-tabs > li {
+    float: left;
+    margin-bottom: -1px;
+}
+
+.nav > li {
+    position: relative;
+    display: block;
+}
+
+.nav > li > a{
+    position: relative;
+    display: block;
+    text-decoration:none !important;
+}
+
+.nav-tabs > li > a {
+    font-size: 16px;
+    border: 0;
+    border-bottom-width: 0px;
+    border-bottom-style: none;
+    border-bottom-color: currentcolor;
+    border-bottom: 3px solid transparent;
+    border-radius: 0;
+    margin-right: 35px;
+    line-height: 1.428;
+}
+
+.nav > li > a {
+    padding: 8px 0;
+}
+
+.nav-tabs > li > a{
+    cursor:default;
+}
+
+
+.nav-tabs > li > a:active, .nav-tabs > li > a:hover, .nav-tabs > li > a:focus {
+    background: transparent;
+    color: #202020;
+    cursor: pointer;
+    border-bottom: 3px solid #29ca8e;
+}
+
+a:hover, a:active, a:focus {
+    color: #29ca8e;
+    outline: none;
+}
+
+.tab-pane {
+    background-image: -webkit-linear-gradient(top, #CCCC66, #99CC33 );
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 3px;
+    margin: 5px;
+    /*flex: 1;*/
+}
+
 section {
     display: flex;
     flex-direction: row;
@@ -347,6 +415,8 @@ section {
 
 article {
     background-image: -webkit-linear-gradient(top, #CCCC66, #99CC33 );
+    border-radius: 10px;
+    cursor: pointer;
     padding: 3px;
     margin: 5px;
     flex: 1;
