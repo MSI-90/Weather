@@ -99,7 +99,8 @@ namespace Weather.Services
                             WindSpeed = WindSpeed(WeatherOnWeek.Forecast.Forecastday[i].Hour[j].WindKph),
                             WindGust = WindSpeed(WeatherOnWeek.Forecast.Forecastday[i].Hour[j].GustKph),
                             WindDegreesAndText = GetWindCourse(WeatherOnWeek.Forecast.Forecastday[i].Hour[j].WindDegree, WeatherOnWeek.Forecast.Forecastday[i].Hour[j].WindDir),
-                            Pressure = GetPressure(WeatherOnWeek.Forecast.Forecastday[i].Hour[j].PressureMb)
+                            Pressure = GetPressure(WeatherOnWeek.Forecast.Forecastday[i].Hour[j].PressureMb),
+                            Humidity = WeatherOnWeek.Forecast.Forecastday[i].Hour[j].Humidity
                         });
                     }
                 }

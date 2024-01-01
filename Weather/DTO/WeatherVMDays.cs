@@ -27,5 +27,6 @@
         public float WindGust { get; set; } = 0f;
         public string[] WindDegreesAndText {  get; set; } = new string[3];
         public int Pressure { get; set; } = 0;
+        public int Humidity { get; set; } = 0;
     }
 }

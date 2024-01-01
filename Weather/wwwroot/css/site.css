@@ -73,8 +73,8 @@ header {
 .container {
     max-width: 1320px;
     width: 100%;
-    padding-right: var(--bs-gutter-x,.75rem);
-    padding-left: var(--bs-gutter-x,.75rem);
+    padding-right: 0;
+    padding-left: 0;
     margin-right: auto;
     margin-left: auto;
 }
@@ -127,6 +127,28 @@ header {
 @media (max-width: 400px) {
     .body-container {
         font-size: 10pt;
+    }
+
+    .weather-compressed{
+        text-align: center;
+    }
+
+    .several-days h4{
+        text-align: center;
+    }
+
+    ul.nav.nav-tabs.tab-header {
+        display: flex;
+        justify-content: center;
+    }
+
+    ul.nav.nav-tabs.tab-header li {
+        flex: 1;
+        text-align: center;
+    }
+
+    ul.nav.nav-tabs.tab-header li a{
+        margin-right: 0px;
     }
 }
 
@@ -226,15 +248,19 @@ header {
     border-radius: 10px;
     display: block;
     height: auto;
-    margin: 20px 0 15px 0;
-    padding: 5px 0;
+    margin: 20px 3px 15px 3px;
+    padding: 5px 3px;
     font-size: 1.5rem;
     font-weight: bold;
     font-family: Arial;
     vertical-align: central;
 }
 
-.weather-compressed p{
+.weather-compressed row {
+    margin: 0px !important;
+}
+
+.weather-compressed p {
     margin: 0px;
 }
 
@@ -329,10 +355,19 @@ informer-right {
     
 }
 
+.forecast {
+    text-decoration: none;
+    color: brown;
+}
+
 .home-page a {
     text-decoration: none;
     color: #330066;
     font-weight: 600;
+}
+
+.tab-content{
+    
 }
 
 .three-days{
@@ -349,7 +384,7 @@ informer-right {
     margin-top: 0;
 }
 
-.nav-tabs > li {
+.tab-header > li {
     float: left;
     margin-bottom: -1px;
 }
@@ -365,7 +400,7 @@ informer-right {
     text-decoration:none !important;
 }
 
-.nav-tabs > li > a {
+.tab-header > li > a {
     font-size: 16px;
     border: 0;
     border-bottom-width: 0px;
@@ -381,21 +416,15 @@ informer-right {
     padding: 8px 0;
 }
 
-.nav-tabs > li > a{
-    cursor:default;
+.tab-header > li > a {
+    cursor: default;
 }
 
-
-.nav-tabs > li > a:active, .nav-tabs > li > a:hover, .nav-tabs > li > a:focus {
+.tab-header > li > a:active, .tab-header > li > a:hover, .tab-header > li > a:focus {
     background: transparent;
     color: #202020;
     cursor: pointer;
     border-bottom: 3px solid #29ca8e;
-}
-
-a:hover, a:active, a:focus {
-    color: #29ca8e;
-    outline: none;
 }
 
 .tab-pane {
@@ -404,7 +433,24 @@ a:hover, a:active, a:focus {
     cursor: pointer;
     padding: 3px;
     margin: 5px;
-    /*flex: 1;*/
+}
+
+#own-info-table{
+    width: 100%;
+}
+
+#hours{
+    text-align:center;
+}
+
+#temp, #day, #evening, #night{
+    color: brown;
+    font-size: 10pt;
+}
+
+#hours th {
+    padding: 0px 20px;
+    font-size: 10.5pt;
 }
 
 section {

@@ -114,154 +114,283 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12">
-                                    <ul class="nav nav-tabs" role="tablist">
+                                    <ul class="nav nav-tabs tab-header variant" role="tablist">
                                         <li class="tab1 active"><a href="#tab01" aria-controls="tab01" role="tab" data-toggle="tab"></a></li>
                                         <li class="tab2"><a href="#tab02" aria-controls="tab02" role="tab" data-toggle="tab"></a></li>
                                         <li class="tab3"><a href="#tab03" aria-controls="tab03" role="tab" data-toggle="tab"></a></li>
                                     </ul>
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="tab-content">
+                                                <div class="tab-pane active" id="tab01" role="tabpanel">
+                                                    <div class="tab-pane-item" id="firstDay">
+                                                        <table id="own-info-table">
+                                                            <tbody class="tbody">
+                                                                <tr>
+                                                                    <td><span class="temp"></span></td>
+                                                                    @* <td><span class="tempIco"></span></td> *@
+                                                                    <td colspan="5" rowspan="5">
+                                                                        <table id="hours">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th></th>
+                                                                                    <th></th>
+                                                                                    <th></th>
+                                                                                    <th style="line-height:1">Давление<br />мм рт.ст.</th>
+                                                                                    <th>Влажность</th>
+                                                                                    <th style="line-height:1">Ветер,<br />м/с</th>
+                                                                                    <th>Ощущается как</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <span id="temp">утром</span>
+                                                                                        <p id="temp-morning"></p>
+                                                                                    </td>
+                                                                                    <td><span id="weather-ico-morning"></span></td>
+                                                                                    <td><span id="wt-text-morning"></span></td>
+                                                                                    <td><span id="pressure-morning"></span></td>
+                                                                                    <td><span id="humidity-morning"></span></td>
+                                                                                    <td><span id="wind-morning"></span></td>
+                                                                                    <td><span id="like-morning"></span></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <span id="day">днем</span>
+                                                                                        <p id="temp-day"></p>
+                                                                                    </td>
+                                                                                    <td><span id="weather-ico-day"></span>
+                                                                                    <td><span id="wt-text-day"></span></td>
+                                                                                    <td><span id="pressure-day"></span></td>
+                                                                                    <td><span id="humidity-day"></span></td>
+                                                                                    <td><span id="wind-day"></span></td>
+                                                                                    <td><span id="like-day"></span></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <span id="evening">вечером</span>
+                                                                                        <p id="temp-evening"></p>
+                                                                                    </td>
+                                                                                    <td><span id="weather-ico-evening"></span></td>
+                                                                                    <td><span id="wt-text-evening"></span></td>
+                                                                                    <td><span id="pressure-evening"></span></td>
+                                                                                    <td><span id="humidity-evening"></span></td>
+                                                                                    <td><span id="wind-evening"></span></td>
+                                                                                    <td><span id="like-evening"></span></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <span id="night">ночью</span>
+                                                                                        <p id="temp-night"></p>
+                                                                                    </td>
+                                                                                    <td><span id="weather-ico-night"></span></td>
+                                                                                    <td><span id="wt-text-night"></span></td>
+                                                                                    <td><span id="pressure-night"></span></td>
+                                                                                    <td><span id="humidity-night"></span></td>
+                                                                                    <td><span id="wind-night"></span></td>
+                                                                                    <td><span id="like-night"></span></td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                            <tfoot></tfoot>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><span class="windGust"></span></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><span class="visible"></span></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><span class="humidity"></span></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane" id="tab02" role="tabpanel">
+                                                    <div class="tab-pane-item" id="secondDay">
+                                                        <table id="own-info-table">
+                                                            <tbody class="tbody">
+                                                                <tr>
+                                                                    <td><span class="temp"></span></td>
+                                                                    @* <td><span class="tempIco"></span></td> *@
+                                                                    <td colspan="5" rowspan="5">
+                                                                        <table id="hours">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th></th>
+                                                                                    <th></th>
+                                                                                    <th></th>
+                                                                                    <th style="line-height:1">Давление<br />мм рт.ст.</th>
+                                                                                    <th>Влажность</th>
+                                                                                    <th style="line-height:1">Ветер,<br />м/с</th>
+                                                                                    <th>Ощущается как</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <span id="temp">утром</span>
+                                                                                        <p id="temp2-morning"></p>
+                                                                                    </td>
+                                                                                    <td><span id="weather2-ico-morning"></span></td>
+                                                                                    <td><span id="wt2-text-morning"></span></td>
+                                                                                    <td><span id="pressure2-morning"></span></td>
+                                                                                    <td><span id="humidity2-morning"></span></td>
+                                                                                    <td><span id="wind2-morning"></span></td>
+                                                                                    <td><span id="like2-morning"></span></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <span id="day">днем</span>
+                                                                                        <p id="temp2-day"></p>
+                                                                                    </td>
+                                                                                    <td><span id="weather2-ico-day"></span>
+                                                                                    <td><span id="wt2-text-day"></span></td>
+                                                                                    <td><span id="pressure2-day"></span></td>
+                                                                                    <td><span id="humidity2-day"></span></td>
+                                                                                    <td><span id="wind2-day"></span></td>
+                                                                                    <td><span id="like2-day"></span></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <span id="evening">вечером</span>
+                                                                                        <p id="temp2-evening"></p>
+                                                                                    </td>
+                                                                                    <td><span id="weather2-ico-evening"></span></td>
+                                                                                    <td><span id="wt2-text-evening"></span></td>
+                                                                                    <td><span id="pressure2-evening"></span></td>
+                                                                                    <td><span id="humidity2-evening"></span></td>
+                                                                                    <td><span id="wind2-evening"></span></td>
+                                                                                    <td><span id="like2-evening"></span></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <span id="night">ночью</span>
+                                                                                        <p id="temp2-night"></p>
+                                                                                    </td>
+                                                                                    <td><span id="weather2-ico-night"></span></td>
+                                                                                    <td><span id="wt2-text-night"></span></td>
+                                                                                    <td><span id="pressure2-night"></span></td>
+                                                                                    <td><span id="humidity2-night"></span></td>
+                                                                                    <td><span id="wind2-night"></span></td>
+                                                                                    <td><span id="like2-night"></span></td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                            <tfoot></tfoot>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><span class="windGust"></span></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><span class="visible"></span></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><span class="humidity"></span></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane" id="tab03" role="tabpanel">
+                                                    <div class="tab-pane-item" id="threeDay">
+                                                        <table id="own-info-table">
+                                                            <tbody class="tbody">
+                                                                <tr>
+                                                                    <td><span class="temp"></span></td>
+                                                                    @* <td><span class="tempIco"></span></td> *@
+                                                                    <td colspan="5" rowspan="5">
+                                                                        <table id="hours">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th></th>
+                                                                                    <th></th>
+                                                                                    <th></th>
+                                                                                    <th style="line-height:1">Давление<br />мм рт.ст.</th>
+                                                                                    <th>Влажность</th>
+                                                                                    <th style="line-height:1">Ветер,<br />м/с</th>
+                                                                                    <th>Ощущается как</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <span id="temp">утром</span>
+                                                                                        <p id="temp3-morning"></p>
+                                                                                    </td>
+                                                                                    <td><span id="weather3-ico-morning"></span></td>
+                                                                                    <td><span id="wt3-text-morning"></span></td>
+                                                                                    <td><span id="pressure3-morning"></span></td>
+                                                                                    <td><span id="humidity3-morning"></span></td>
+                                                                                    <td><span id="wind3-morning"></span></td>
+                                                                                    <td><span id="like3-morning"></span></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <span id="day">днем</span>
+                                                                                        <p id="temp3-day"></p>
+                                                                                    </td>
+                                                                                    <td><span id="weather3-ico-day"></span>
+                                                                                    <td><span id="wt3-text-day"></span></td>
+                                                                                    <td><span id="pressure3-day"></span></td>
+                                                                                    <td><span id="humidity3-day"></span></td>
+                                                                                    <td><span id="wind3-day"></span></td>
+                                                                                    <td><span id="like3-day"></span></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <span id="evening">вечером</span>
+                                                                                        <p id="temp3-evening"></p>
+                                                                                    </td>
+                                                                                    <td><span id="weather3-ico-evening"></span></td>
+                                                                                    <td><span id="wt3-text-evening"></span></td>
+                                                                                    <td><span id="pressure3-evening"></span></td>
+                                                                                    <td><span id="humidity3-evening"></span></td>
+                                                                                    <td><span id="wind3-evening"></span></td>
+                                                                                    <td><span id="like3-evening"></span></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <span id="night">ночью</span>
+                                                                                        <p id="temp3-night"></p>
+                                                                                    </td>
+                                                                                    <td><span id="weather3-ico-night"></span></td>
+                                                                                    <td><span id="wt3-text-night"></span></td>
+                                                                                    <td><span id="pressure3-night"></span></td>
+                                                                                    <td><span id="humidity3-night"></span></td>
+                                                                                    <td><span id="wind3-night"></span></td>
+                                                                                    <td><span id="like3-night"></span></td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                            <tfoot></tfoot>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><span class="windGust"></span></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><span class="visible"></span></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><span class="humidity"></span></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                                    <div class="tab-content">
-                                        <div class="tab-pane active" id="tab01" role="tabpanel">
-                                            <div class="tab-pane-item" id="firstDay">
-                                                <p>
-                                                    <table>
-                                                        <tbody class="tbody">
-                                                            <tr>
-                                                                <td><span class="temp"></span></td>
-                                                                <td><span class="tempIco"></span></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><span class="windGust"></span></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><span class="visible"></span></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><span class="humidity"></span></td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane" id="tab02" role="tabpanel">
-                                            <div class="tab-pane-item" id="secondDay">
-                                                <p>
-                                                    <table>
-                                                        <tbody class="tbody">
-                                                            <tr>
-                                                                <td><span class="temp"></span></td>
-                                                                <td><span class="tempIco"></span></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><span class="windGust"></span></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><span class="visible"></span></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><span class="humidity"></span></td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane" id="tab03" role="tabpanel">
-                                            <div class="tab-pane-item" id="threeDay">
-                                                <p>
-                                                    <table>
-                                                        <tbody class="tbody">
-                                                            <tr>
-                                                                <td><span class="temp"></span></td>
-                                                                <td><span class="tempIco"></span></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><span class="windGust"></span></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><span class="visible"></span></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><span class="humidity"></span></td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </p>
-                                            </div>
-                                        </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
-                        
-
-                        @* <article id="firstDay">
-                            <h5></h5>
-                            <p>
-                                <table>
-                                    <tbody class="tbody">
-                                        <tr>
-                                            <td><span class="temp"></span></td>
-                                            <td><span class="tempIco"></span></td>
-                                        </tr>
-                                        <tr>
-                                            <td><span class="windGust"></span></td>
-                                        </tr>
-                                        <tr>
-                                            <td><span class="visible"></span></td> 
-                                        </tr>
-                                        <tr>
-                                            <td><span class="humidity"></span></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </p>
-                        </article>
-                        <article id="secondDay">
-                            <h5></h5>
-                            <p>
-                                <table>
-                                    <tbody class="tbody">
-                                        <tr>
-                                            <td><span class="temp"></span></td>
-                                            <td><span class="tempIco"></span></td>
-                                        </tr>
-                                        <tr>
-                                            <td><span class="windGust"></span></td>
-                                        </tr>
-                                        <tr>
-                                            <td><span class="visible"></span></td>
-                                        </tr>
-                                        <tr>
-                                            <td><span class="humidity"></span></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </p>
-                        </article>
-                        <article id="threeDay">
-                            <h5></h5>
-                            <p>
-                                <table>
-                                    <tbody class="tbody">
-                                        <tr>
-                                            <td><span class="temp"></span></td>
-                                            <td><span class="tempIco"></span></td>
-                                        </tr>
-                                        <tr>
-                                            <td><span class="windGust"></span></td>
-                                        </tr>
-                                        <tr>
-                                            <td><span class="visible"></span></td>
-                                        </tr>
-                                        <tr>
-                                            <td><span class="humidity"></span></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </p>
-                        </article> *@
                     </section>
                 </div>
             </div>
