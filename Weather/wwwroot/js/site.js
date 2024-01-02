@@ -191,7 +191,7 @@ function Forecast() {
 
             //morning
             $('#temp2-morning').text(result[1].hours[7].tempC + ' °C');
-            $('#weather2-ico-morning').html('<img src= "' + result[0].hours[7].weatherImg + '" alt = "' + result[0].hours[7].weatherText + '"title = "' + result[0].hours[7].weatherText + '"/>');
+            $('#weather2-ico-morning').html('<img src= "' + result[1].hours[7].weatherImg + '" alt = "' + result[1].hours[7].weatherText + '"title = "' + result[1].hours[7].weatherText + '"/>');
             $('#wt2-text-morning').text(result[1].hours[7].weatherText);
             $('#pressure2-morning').text(result[1].hours[7].pressure);
             $('#humidity2-morning').text(result[1].hours[7].humidity + ' %');
@@ -199,7 +199,7 @@ function Forecast() {
             $('#like2-morning').text(result[1].hours[7].feelsLikeC + ' °C');
             //day
             $('#temp2-day').text(result[0].hours[13].tempC + ' °C');
-            $('#weather2-ico-day').html('<img src= "' + result[0].hours[13].weatherImg + '" alt = "' + result[0].hours[13].weatherText + '"title = "' + result[0].hours[13].weatherText + '"/>');
+            $('#weather2-ico-day').html('<img src= "' + result[1].hours[13].weatherImg + '" alt = "' + result[1].hours[13].weatherText + '"title = "' + result[1].hours[13].weatherText + '"/>');
             $('#wt2-text-day').text(result[1].hours[13].weatherText);
             $('#pressure2-day').text(result[1].hours[13].pressure);
             $('#humidity2-day').text(result[1].hours[13].humidity + ' %');
@@ -207,7 +207,7 @@ function Forecast() {
             $('#like2-day').text(result[1].hours[13].feelsLikeC + ' °C');
             //evening
             $('#temp2-evening').text(result[1].hours[19].tempC + ' °C');
-            $('#weather2-ico-evening').html('<img src= "' + result[0].hours[19].weatherImg + '" alt = "' + result[0].hours[19].weatherText + '"title = "' + result[0].hours[19].weatherText + '"/>');
+            $('#weather2-ico-evening').html('<img src= "' + result[1].hours[19].weatherImg + '" alt = "' + result[1].hours[19].weatherText + '"title = "' + result[1].hours[19].weatherText + '"/>');
             $('#wt2-text-evening').text(result[1].hours[19].weatherText);
             $('#pressure2-evening').text(result[1].hours[19].pressure);
             $('#humidity2-evening').text(result[1].hours[19].humidity + ' %');
@@ -215,7 +215,7 @@ function Forecast() {
             $('#like2-evening').text(result[1].hours[19].feelsLikeC + ' °C');
             //night
             $('#temp2-night').text(result[1].hours[1].tempC + ' °C');
-            $('#weather2-ico-night').html('<img src= "' + result[0].hours[1].weatherImg + '" alt = "' + result[0].hours[1].weatherText + '"title = "' + result[0].hours[1].weatherText + '"/>');
+            $('#weather2-ico-night').html('<img src= "' + result[1].hours[1].weatherImg + '" alt = "' + result[1].hours[1].weatherText + '"title = "' + result[1].hours[1].weatherText + '"/>');
             $('#wt2-text-night').text(result[1].hours[1].weatherText);
             $('#pressure2-night').text(result[1].hours[1].pressure);
             $('#humidity2-night').text(result[1].hours[1].humidity + ' %');
@@ -231,15 +231,15 @@ function Forecast() {
 
             //morning
             $('#temp3-morning').text(result[2].hours[7].tempC + ' °C');
-            $('#weather3-ico-morning').html('<img src= "' + result[0].hours[7].weatherImg + '" alt = "' + result[0].hours[7].weatherText + '"title = "' + result[0].hours[7].weatherText + '"/>');
+            $('#weather3-ico-morning').html('<img src= "' + result[2].hours[7].weatherImg + '" alt = "' + result[2].hours[7].weatherText + '"title = "' + result[2].hours[7].weatherText + '"/>');
             $('#wt3-text-morning').text(result[2].hours[7].weatherText);
             $('#pressure3-morning').text(result[2].hours[7].pressure);
             $('#humidity3-morning').text(result[2].hours[7].humidity + ' %');
             $('#wind3-morning').text(result[2].hours[7].windSpeed);
             $('#like3-morning').text(result[2].hours[7].feelsLikeC + ' °C');
             //day
-            $('#temp3-day').text(result[0].hours[13].tempC + ' °C');
-            $('#weather3-ico-day').html('<img src= "' + result[0].hours[13].weatherImg + '" alt = "' + result[0].hours[13].weatherText + '"title = "' + result[0].hours[13].weatherText + '"/>');
+            $('#temp3-day').text(result[2].hours[13].tempC + ' °C');
+            $('#weather3-ico-day').html('<img src= "' + result[2].hours[13].weatherImg + '" alt = "' + result[2].hours[13].weatherText + '"title = "' + result[2].hours[13].weatherText + '"/>');
             $('#wt3-text-day').text(result[2].hours[13].weatherText);
             $('#pressure3-day').text(result[2].hours[13].pressure);
             $('#humidity3-day').text(result[2].hours[13].humidity + ' %');
@@ -247,7 +247,7 @@ function Forecast() {
             $('#like3-day').text(result[2].hours[13].feelsLikeC + ' °C');
             //evening
             $('#temp3-evening').text(result[2].hours[19].tempC + ' °C');
-            $('#weather3-ico-evening').html('<img src= "' + result[0].hours[19].weatherImg + '" alt = "' + result[0].hours[19].weatherText + '"title = "' + result[0].hours[19].weatherText + '"/>');
+            $('#weather3-ico-evening').html('<img src= "' + result[2].hours[19].weatherImg + '" alt = "' + result[2].hours[19].weatherText + '"title = "' + result[2].hours[19].weatherText + '"/>');
             $('#wt3-text-evening').text(result[2].hours[19].weatherText);
             $('#pressure3-evening').text(result[2].hours[19].pressure);
             $('#humidity3-evening').text(result[2].hours[19].humidity + ' %');
@@ -255,7 +255,7 @@ function Forecast() {
             $('#like3-evening').text(result[2].hours[19].feelsLikeC + ' °C');
             //night
             $('#temp3-night').text(result[2].hours[1].tempC + ' °C');
-            $('#weather3-ico-night').html('<img src= "' + result[0].hours[1].weatherImg + '" alt = "' + result[0].hours[1].weatherText + '"title = "' + result[0].hours[1].weatherText + '"/>');
+            $('#weather3-ico-night').html('<img src= "' + result[2].hours[1].weatherImg + '" alt = "' + result[2].hours[1].weatherText + '"title = "' + result[2].hours[1].weatherText + '"/>');
             $('#wt3-text-night').text(result[2].hours[1].weatherText);
             $('#pressure3-night').text(result[2].hours[1].pressure);
             $('#humidity3-night').text(result[2].hours[1].humidity + ' %');
